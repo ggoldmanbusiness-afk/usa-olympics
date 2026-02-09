@@ -1,0 +1,45 @@
+name: Update Olympics Results
+
+  on:
+    schedule:
+      # Run every 4 hours during the Olympics (Feb 6-22, 2026)
+      - cron: '0 */4 * * *'
+    workflow_dispatch: # Allow manual trigger
+
+  permissions:
+    contents: write
+    pages: write
+    id-token: write
+
+  jobs:
+    update-and-deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Set up Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.12'
+
+        - name: Update results
+          run: python update_results.py
+
+        - name: Build HTML
+          run: python build.py
+
+        - name: Commit updated data
+          run: |
+            git config user.name "Olympics Bot"
+            git config user.email "bot@github.actions"
+            git add data.json index.html
+            git diff --cached --quiet || git commit -m "🏅 Update results $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+
+        - name: Deploy to GitHub Pages
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./
+            publish_branch: gh-pages
