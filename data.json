@@ -380,7 +380,7 @@
       "channel": "USA / Peacock",
       "badge": "🏒",
       "priority": "usa",
-      "done": true,
+      "done": false,
       "tags": [
         "hockey"
       ],
