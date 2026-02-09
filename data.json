@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-09T19:57:18+00:00",
+  "last_updated": "2026-02-09T21:49:06+00:00",
   "events_completed": 13,
   "events_total": 116,
   "medal_table": [
@@ -337,7 +337,7 @@
         "curling"
       ],
       "energy": false,
-      "result": null
+      "result": "USA WINS 9-8! Gold match Tue"
     },
     {
       "id": "sj-m-nh",
@@ -353,7 +353,7 @@
         "skiing"
       ],
       "energy": true,
-      "result": "🥇 1R"
+      "result": "🥇 RAIMUND (GER)"
     },
     {
       "id": "sb-w-bigair",
@@ -364,12 +364,12 @@
       "channel": "NBC / Peacock",
       "badge": "🏂",
       "priority": "medal",
-      "done": false,
+      "done": true,
       "tags": [
         "snowboard"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 MURASE (JPN)"
     },
     {
       "id": "hoc-w-sui",
@@ -380,7 +380,7 @@
       "channel": "USA / Peacock",
       "badge": "🏒",
       "priority": "usa",
-      "done": false,
+      "done": true,
       "tags": [
         "hockey"
       ],

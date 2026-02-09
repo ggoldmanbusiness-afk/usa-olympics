@@ -311,6 +311,8 @@ def scrape_event_result(event_id):
     """
     Try to scrape the gold medalist from a Wikipedia event page.
     Returns a result string like '🥇 GREMAUD (SUI)' or None.
+    
+    Uses multiple strategies with strict validation to avoid garbage results.
     """
     wiki_slug = EVENT_WIKI_MAP.get(event_id)
     if not wiki_slug:
@@ -321,51 +323,127 @@ def scrape_event_result(event_id):
     if not html:
         return None
 
-    # Strategy 1: Look for infobox with gold/silver/bronze medalists
-    # Wikipedia event pages have a sidebar with medalists
-    gold_match = re.search(
-        r'(?:gold|1st|First)[^<]*</(?:th|td)>[^<]*<td[^>]*>(.*?)</td>',
-        html, re.DOTALL | re.IGNORECASE
-    )
-    if not gold_match:
-        # Try: look for "Gold" row in infobox
-        gold_match = re.search(
-            r'🥇.*?<a[^>]*>([^<]+)</a>',
-            html, re.DOTALL
-        )
-    if not gold_match:
-        # Try medalist template pattern
-        gold_match = re.search(
-            r'gold_medalist[^>]*>.*?<a[^>]*title="([^"]+)"',
-            html, re.DOTALL | re.IGNORECASE
-        )
-
-    if not gold_match:
+    # First check: does the page indicate the event is COMPLETED?
+    # If the page says "will be held" but NOT "was held/was won", skip it
+    text_only = re.sub(r'<[^>]+>', ' ', html)
+    text_lower = text_only.lower()
+    
+    # Strong signals the event has NOT happened yet
+    future_signals = [
+        "will be held",
+        "will be started",
+        "the event will",
+        "will take place",
+    ]
+    past_signals = [
+        "was held",
+        "was won",
+        "won the competition",
+        "won the gold",
+        "won the event",
+        "claimed gold",
+        "took gold",
+        "finished first",
+        "became the champion",
+        "became the olympic champion",
+        "won the olympic",
+    ]
+    
+    has_future = any(sig in text_lower for sig in future_signals)
+    has_past = any(sig in text_lower for sig in past_signals)
+    
+    # If page only has future tense and no past tense, event hasn't happened
+    if has_future and not has_past:
+        print(f"     ⏳ Event not completed yet (future tense detected)")
         return None
 
-    winner_text = re.sub(r'<[^>]+>', ' ', gold_match.group(1)).strip()
-
-    # Try to find country code near the winner
-    # Look for 3-letter code in parentheses or flag template
-    code = None
-    context = html[max(0, gold_match.start()-200):gold_match.end()+500]
-    code_match = re.search(r'\(([A-Z]{3})\)', context)
-    if code_match:
-        code = code_match.group(1)
-
-    if not code:
-        # Try to find country from text
-        context_clean = re.sub(r'<[^>]+>', ' ', context).lower()
-        for name, c in NAME_TO_CODE.items():
-            if name in context_clean:
-                code = c
+    # Strategy 1: Look for medalist infobox pattern
+    # Wikipedia uses: {{MedalGold}} or class="gold" or similar
+    # The most reliable pattern is the medalists section with gold/silver/bronze rows
+    
+    winner_name = None
+    country_code = None
+    
+    # Pattern A: "X won the competition" or "X claimed gold"  
+    won_patterns = [
+        r'([A-Z][a-záéíóúñ]+(?:\s+[A-Z][a-záéíóúñ]+)+)\s+(?:of\s+)?(\w+)\s+won\s+the\s+competition',
+        r'([A-Z][a-záéíóúñ]+(?:\s+[A-Z][a-záéíóúñ]+)+)\s+(?:of\s+)?(\w+)\s+claimed?\s+(?:the\s+)?(?:olympic\s+)?gold',
+        r'([A-Z][a-záéíóúñ]+(?:\s+[A-Z][a-záéíóúñ]+)+)\s+(?:of\s+)?(\w+)\s+won\s+(?:the\s+)?(?:olympic\s+)?gold',
+    ]
+    
+    for pattern in won_patterns:
+        m = re.search(pattern, text_only)
+        if m:
+            winner_name = m.group(1).strip()
+            country_word = m.group(2).strip().lower()
+            country_code = NAME_TO_CODE.get(country_word)
+            if winner_name and country_code:
                 break
+    
+    # Pattern B: Look for medalist template in HTML
+    # Wikipedia often has: <th>Gold</th>...<td>...<a>Name</a>...<a>Country</a>
+    if not winner_name:
+        # Look for gold medalist in infobox - must have both gold AND silver nearby
+        # This prevents matching random "gold" mentions
+        gold_section = re.search(
+            r'(?:1st\s*place|Gold|gold_medalist|🥇).*?<a[^>]*title="([^"]+)"[^>]*>([^<]+)</a>',
+            html, re.DOTALL | re.IGNORECASE
+        )
+        silver_section = re.search(
+            r'(?:2nd\s*place|Silver|silver_medalist|🥈)',
+            html, re.IGNORECASE
+        )
+        
+        # Only trust gold match if silver is also present (confirms it's a results section)
+        if gold_section and silver_section:
+            candidate = gold_section.group(2).strip()
+            # Validate: name should be 2+ words, not a country/sport name
+            words = candidate.split()
+            if len(words) >= 2 and len(candidate) > 4:
+                # Check it looks like a person's name (capitalized words)
+                if all(w[0].isupper() for w in words if w):
+                    winner_name = candidate
+                    # Find country code nearby
+                    context = html[gold_section.start():gold_section.end()+500]
+                    code_match = re.search(r'\(([A-Z]{3})\)', context)
+                    if code_match:
+                        country_code = code_match.group(1)
+    
+    # Pattern C: Look for results table with rank column
+    if not winner_name:
+        # Find a table row with rank "1" and extract the athlete name
+        rank1_match = re.search(
+            r'<t[dh][^>]*>\s*1\s*</t[dh]>.*?<a[^>]*title="([^"]+)"[^>]*>([^<]+)</a>',
+            html, re.DOTALL
+        )
+        if rank1_match:
+            candidate = rank1_match.group(2).strip()
+            words = candidate.split()
+            if len(words) >= 2 and len(candidate) > 4:
+                if all(w[0].isupper() for w in words if w):
+                    winner_name = candidate
+                    context = html[rank1_match.start():rank1_match.end()+500]
+                    code_match = re.search(r'\(([A-Z]{3})\)', context)
+                    if code_match:
+                        country_code = code_match.group(1)
 
-    # Format the result
-    surname = winner_text.split()[-1].upper() if winner_text else "?"
-    if code:
-        flag = FLAG_MAP.get(code, "")
-        return f"🥇 {surname} ({code})"
+    if not winner_name:
+        return None
+    
+    # Final validation: result must look like a real name
+    # Reject single words, numbers, or very short strings
+    surname = winner_name.split()[-1].upper()
+    if len(surname) < 2 or surname.isdigit():
+        return None
+    
+    # Reject known garbage patterns
+    garbage = ['ROUND', 'FINAL', 'QUALIFICATION', 'TRAINING', 'OFFICIAL', 'SESSION', 
+               'MEDAL', 'EVENT', 'COMPETITION', 'OLYMPIC', 'WINTER', 'GAMES']
+    if surname in garbage or winner_name.upper() in garbage:
+        return None
+
+    if country_code:
+        return f"🥇 {surname} ({country_code})"
     else:
         return f"🥇 {surname}"
 
