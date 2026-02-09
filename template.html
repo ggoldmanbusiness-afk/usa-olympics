@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇺🇸 Team USA — Milano Cortina 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--red:#BF0A30;--red-light:#FEF2F2;--gold:#92710C;--gold-bg:#FFFBEB;--blue:#1E40AF;--blue-bg:#EFF6FF;--energy:#C2410C;--energy-bg:#FFF7ED;--text:#1A202C;--sub:#4A5568;--mute:#718096;--bg:#F7F8FA;--card:#fff;--bdr:rgba(0,0,0,.08)}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+.hero{padding:2.5rem 1.5rem 1.5rem;background:linear-gradient(135deg,#0A1128,#1a1a3e 40%,#1B2A4A);text-align:center;color:#fff}
+.hero-flag{font-size:2.5rem;margin-bottom:.3rem}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.5rem,5vw,2.4rem);text-transform:uppercase;letter-spacing:.05em;background:linear-gradient(135deg,#fff,#D4A843);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-family:'Oswald',sans-serif;font-weight:300;font-size:.85rem;color:#B0C4DE;letter-spacing:.15em;text-transform:uppercase;margin-top:.25rem}
+.hero-medals{display:flex;justify-content:center;gap:1rem;margin-top:1rem;flex-wrap:wrap}
+.hm{display:flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.35rem .9rem;font-family:'Oswald',sans-serif;font-weight:500;font-size:.8rem;color:#fff}
+.hm .c{font-size:1.2rem;color:#D4A843}
+
+/* Tabs */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--bdr);background:var(--card)}
+.tab-btn{flex:1;font-family:'Oswald',sans-serif;font-weight:500;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:.7rem .5rem;border:none;background:transparent;color:var(--mute);cursor:pointer;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-2px}
+.tab-btn.active{color:var(--red);border-bottom-color:var(--red)}
+.tab-btn:hover{color:var(--text)}
+.tab-content{display:none}.tab-content.active{display:block}
+
+/* Filters */
+.filters{position:sticky;top:0;z-index:100;background:rgba(247,248,250,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);padding:.5rem .6rem;display:flex;gap:.35rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+.fb{font-family:'Oswald',sans-serif;font-weight:400;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);color:var(--mute);border:1px solid var(--bdr);border-radius:100px;padding:.3rem .7rem;cursor:pointer;white-space:nowrap;transition:all .2s}
+.fb:hover{color:var(--text);border-color:rgba(0,0,0,.2)}.fb.active{background:var(--red);color:#fff;border-color:var(--red)}.fb.eb.active{background:var(--energy);border-color:var(--energy);color:#fff}
+
+/* Schedule */
+.schedule{max-width:900px;margin:0 auto;padding:.6rem}
+.day-section{margin-bottom:1.2rem}
+.day-hdr{font-family:'Oswald',sans-serif;font-weight:600;font-size:1.1rem;text-transform:uppercase;letter-spacing:.1em;padding:.5rem 0;border-bottom:2px solid var(--red);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.day-hdr .dl{color:var(--red)}.day-hdr .dd{color:var(--text)}
+.day-hdr .dt{font-size:.55rem;background:var(--red);color:#fff;padding:.12rem .4rem;border-radius:100px;margin-left:auto}
+
+.ec{display:grid;grid-template-columns:60px 1fr auto;gap:.6rem;padding:.7rem;margin-bottom:.35rem;border-radius:8px;border-left:3px solid transparent;transition:all .2s;align-items:start;background:var(--card)}
+.ec:hover{background:#F0F2F5;transform:translateX(3px)}
+.ec.star{background:var(--red-light);border-left-color:var(--red)}.ec.medal{background:var(--gold-bg);border-left-color:var(--gold)}.ec.usa{background:var(--blue-bg);border-left-color:var(--blue)}.ec.chaos{background:var(--energy-bg);border-left-color:var(--energy)}.ec.done{opacity:.4;border-left-color:#D1D5DB;background:#F9FAFB}
+.et{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;color:var(--red);padding-top:.1rem}.ec.done .et{color:#9CA3AF}.ec.chaos .et{color:var(--energy)}
+.ei h3{font-family:'Oswald',sans-serif;font-weight:500;font-size:.9rem;text-transform:uppercase;letter-spacing:.03em;line-height:1.25;color:var(--text)}
+.ei .ed{font-size:.78rem;color:var(--sub);margin-top:.15rem;line-height:1.4}
+.etags{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.3rem}
+.tg{display:inline-block;font-family:'Oswald',sans-serif;font-size:.55rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:.1rem .4rem;border-radius:3px}
+.tg-ch{background:#F3F4F6;color:#6B7280}.tg-e{background:#FED7AA;color:#9A3412}.tg-n{background:#E9D5FF;color:#7C3AED}.tg-u{background:#DBEAFE;color:#1E40AF}
+.eb2{font-size:1.3rem;text-align:center;min-width:28px}
+.rt{display:inline-block;font-family:'Oswald',sans-serif;font-size:.55rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .4rem;border-radius:3px;margin-left:.3rem;vertical-align:middle}
+.rt.rg{background:#D4A843;color:#fff}.rt.ri{background:#dc2626;color:#fff}
+
+/* Medal Table */
+.medal-section{max-width:900px;margin:0 auto;padding:.75rem}
+.medal-header{font-family:'Oswald',sans-serif;font-weight:600;font-size:1.1rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text);margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:2px solid var(--red)}
+.medal-sub{font-size:.78rem;color:var(--sub);margin-bottom:1rem;line-height:1.4}
+
+/* USA Tracker */
+.usa-tracker{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:1.2rem;margin-bottom:1.5rem}
+.usa-tracker h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;text-transform:uppercase;letter-spacing:.08em;color:var(--red);margin-bottom:.8rem}
+.score-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem}
+.score-card{background:var(--bg);border:1px solid var(--bdr);border-radius:10px;padding:.8rem .5rem;text-align:center;transition:all .2s}
+.score-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.score-emoji{font-size:1.4rem;margin-bottom:.2rem}
+.score-big{font-family:'Oswald',sans-serif;font-weight:700;font-size:2rem;line-height:1;color:var(--text)}
+.score-of{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--mute);margin-top:.15rem}
+.score-label{font-family:'Oswald',sans-serif;font-size:.6rem;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--sub);margin-top:.3rem}
+.gold-card{border-color:#D4A843;background:#FFFEF5}.gold-card .score-big{color:#92710C}
+.total-card .score-big{color:var(--red)}
+.events-card .score-big{color:#6366F1}
+.tracker-note{font-size:.72rem;color:var(--mute);margin-top:.4rem;line-height:1.4;font-style:italic}
+
+/* Medal Table */
+.mtable{width:100%;border-collapse:collapse;font-size:.82rem}
+.mtable th{font-family:'Oswald',sans-serif;font-weight:500;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--mute);text-align:left;padding:.5rem .4rem;border-bottom:2px solid var(--bdr)}
+.mtable th.num{text-align:center}
+.mtable td{padding:.5rem .4rem;border-bottom:1px solid var(--bdr)}
+.mtable td.num{text-align:center;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.8rem}
+.mtable tr:hover{background:#F8FAFC}
+.mtable tr.usa-row{background:var(--blue-bg);font-weight:600}
+.mtable tr.usa-row td{color:var(--blue)}
+.mtable .rank{color:var(--mute);font-family:'JetBrains Mono',monospace;font-size:.7rem}
+.mtable .flag{font-size:1.1rem;margin-right:.3rem;vertical-align:middle}
+.mtable .country{font-family:'Oswald',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.03em}
+.gold-num{color:#92710C}.silver-num{color:#6B7280}.bronze-num{color:#92400E}
+.total-cell{font-weight:700;color:var(--text)}
+.progress-note{font-size:.72rem;color:var(--mute);text-align:center;margin-top:.75rem}
+
+/* Athletes */
+.ath-section{max-width:900px;margin:1.2rem auto;padding:0 .75rem}
+.ath-section h2{font-family:'Oswald',sans-serif;font-weight:600;font-size:1.2rem;text-transform:uppercase;letter-spacing:.08em;color:var(--red);margin-bottom:.6rem;padding-bottom:.3rem;border-bottom:2px solid var(--red)}
+.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.6rem}
+.ac{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:.9rem;transition:all .2s}
+.ac:hover{background:#F0F2F5;transform:translateY(-2px)}.ac.inj{opacity:.5;border-color:#dc2626}
+.an{font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;text-transform:uppercase;color:var(--text)}
+.as2{font-family:'Oswald',sans-serif;font-weight:300;font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--red);margin-top:.05rem}
+.ast{font-size:.75rem;color:var(--sub);margin-top:.35rem;line-height:1.4}
+.ao{display:inline-block;font-family:'Oswald',sans-serif;font-weight:500;font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;padding:.12rem .45rem;border-radius:100px;margin-top:.35rem}
+.og{background:#D4A843;color:#fff}.om{background:var(--blue-bg);color:var(--blue);border:1px solid #93C5FD}.oo{background:#dc2626;color:#fff}
+
+.footer{text-align:center;padding:1.2rem;font-size:.65rem;color:#9CA3AF;font-family:'Oswald',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.jump-today{position:fixed;bottom:1.2rem;right:1.2rem;z-index:200;font-family:'Oswald',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;border-radius:100px;padding:.6rem 1.2rem;cursor:pointer;box-shadow:0 4px 16px rgba(191,10,48,.35);transition:all .2s;display:none}
+.jump-today:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(191,10,48,.45)}
+.jump-today.visible{display:flex;align-items:center;gap:.4rem}
+@media(max-width:600px){.ec{grid-template-columns:48px 1fr 26px;gap:.4rem;padding:.6rem}.hero{padding:1.5rem 1rem 1rem}.ag{grid-template-columns:1fr}.score-grid{grid-template-columns:repeat(3,1fr)}.tracker-label{width:70px;font-size:.65rem}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-flag">🇺🇸</div>
+  <h1>Team USA Viewing Guide</h1>
+  <div class="hero-sub">Milano Cortina 2026 &bull; Feb 6–22 &bull; All Times ET</div>
+  <div class="hero-medals">
+    <div class="hm"><span>🥇</span> <span class="c">{{USA_GOLD}}</span> Gold</div>
+    <div class="hm"><span>🥈</span> <span class="c">{{USA_SILVER}}</span> Silver</div>
+    <div class="hm"><span>🥉</span> <span class="c">{{USA_BRONZE}}</span> Bronze</div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <button class="tab-btn active" data-tab="schedule">📅 Schedule</button>
+  <button class="tab-btn" data-tab="medals">🏅 Medal Table</button>
+  <button class="tab-btn" data-tab="athletes">🌟 Athletes</button>
+</div>
+
+<!-- TAB 1: SCHEDULE -->
+<div class="tab-content active" id="tab-schedule">
+<div class="filters" id="filters">
+  <button class="fb active" data-filter="all">All</button>
+  <button class="fb" data-filter="star">🇺🇸 Team USA</button>
+  <button class="fb eb" data-filter="chaos">🔥 High Energy</button>
+  <button class="fb" data-filter="upcoming">Upcoming</button>
+  <button class="fb" data-filter="hockey">🏒</button>
+  <button class="fb" data-filter="skating">⛸️</button>
+  <button class="fb" data-filter="skiing">⛷️</button>
+  <button class="fb" data-filter="snowboard">🏂</button>
+  <button class="fb" data-filter="sliding">🛷</button>
+</div>
+<div class="schedule" id="schedule"></div>
+</div>
+
+<!-- TAB 2: MEDALS -->
+<div class="tab-content" id="tab-medals">
+<div class="medal-section">
+
+<div class="medal-header">🇺🇸 Team USA Projection Tracker</div>
+<div class="medal-sub">Pre-Games forecasts projected USA for {{PROJ_GOLD_LOW}}–{{PROJ_GOLD_HIGH}} golds and {{PROJ_TOTAL_LOW}}–{{PROJ_TOTAL_HIGH}} total medals. Here's where we stand ({{EVENTS_DONE}} of {{EVENTS_TOTAL}} events completed).</div>
+
+<div class="usa-tracker">
+  <h3>USA vs. Projection</h3>
+  <div class="score-grid">
+    <div class="score-card gold-card">
+      <div class="score-emoji">🥇</div>
+      <div class="score-big">{{USA_GOLD}}</div>
+      <div class="score-of">of ~{{PROJ_GOLD_MID}}</div>
+      <div class="score-label">Golds</div>
+    </div>
+    <div class="score-card silver-card">
+      <div class="score-emoji">🥈</div>
+      <div class="score-big">{{USA_SILVER}}</div>
+      <div class="score-of">—</div>
+      <div class="score-label">Silvers</div>
+    </div>
+    <div class="score-card bronze-card">
+      <div class="score-emoji">🥉</div>
+      <div class="score-big">{{USA_BRONZE}}</div>
+      <div class="score-of">—</div>
+      <div class="score-label">Bronzes</div>
+    </div>
+    <div class="score-card total-card">
+      <div class="score-emoji">🏅</div>
+      <div class="score-big">{{USA_TOTAL}}</div>
+      <div class="score-of">of ~{{PROJ_TOTAL_MID}}</div>
+      <div class="score-label">Total</div>
+    </div>
+    <div class="score-card events-card">
+      <div class="score-emoji">📊</div>
+      <div class="score-big">{{EVENTS_DONE}}</div>
+      <div class="score-of">of {{EVENTS_TOTAL}}</div>
+      <div class="score-label">Events Done</div>
+    </div>
+  </div>
+  <div class="tracker-note">
+    📊 Experts forecasted {{PROJ_GOLD_LOW}}–{{PROJ_GOLD_HIGH}} golds, {{PROJ_TOTAL_LOW}}–{{PROJ_TOTAL_HIGH}} total medals (3rd behind Norway, Germany). Most medal opportunities come in Weeks 2–3 (figure skating, hockey, snowboarding, speed skating, bobsled).
+  </div>
+</div>
+
+<div class="medal-header" style="margin-top:1.5rem">🌍 Full Medal Table</div>
+<div class="medal-sub">{{EVENTS_DONE}} of {{EVENTS_TOTAL}} medal events completed. Sorted by gold medals, then silver, then bronze.</div>
+
+<table class="mtable">
+<thead>
+  <tr><th>#</th><th>Country</th><th class="num">🥇</th><th class="num">🥈</th><th class="num">🥉</th><th class="num">Total</th></tr>
+</thead>
+<tbody>
+{{MEDAL_TABLE_ROWS}}
+</tbody>
+</table>
+<div class="progress-note">{{EVENTS_DONE}} of {{EVENTS_TOTAL}} events completed &bull; {{TOTAL_MEDALS}} medals awarded &bull; {{COUNTRIES_COUNT}} countries on the board &bull; Updated {{LAST_UPDATED}}</div>
+
+</div>
+</div>
+
+<!-- TAB 3: ATHLETES -->
+<div class="tab-content" id="tab-athletes">
+<div class="ath-section">
+  <h2>🌟 Team USA Stars to Watch</h2>
+  <div class="ag" id="athletes"></div>
+</div>
+</div>
+
+<button class="jump-today visible" id="jumpToday" onclick="jumpToToday()">📍 Jump to Today</button>
+<div class="footer">Stream everything on Peacock &bull; TV: NBC / USA Network / CNBC &bull; Updated {{LAST_UPDATED}}</div>
+
+<script>
+const RAW_SCHEDULE = {{SCHEDULE_JSON}};
+const RAW_ATHLETES = {{ATHLETES_JSON}};
+
+// Map data.json format to display format
+const MONTHS = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function fmtDate(iso) {
+  const d = new Date(iso + 'T00:00:00');
+  return DAYS[d.getDay()] + ' ' + MONTHS[d.getMonth()+1] + ' ' + d.getDate();
+}
+const E = RAW_SCHEDULE.map(ev => ({
+  date: fmtDate(ev.date),
+  time: ev.time,
+  title: ev.title,
+  desc: ev.desc,
+  ch: ev.channel,
+  badge: ev.badge,
+  p: ev.priority,
+  done: ev.done ? 1 : 0,
+  tags: ev.tags,
+  e: ev.energy ? 1 : 0,
+  r: ev.result,
+  nw: ev.new_event || false,
+}));
+const athletes = RAW_ATHLETES;
+
+// TABS
+document.querySelectorAll('.tab-btn').forEach(b=>{b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById('tab-'+b.dataset.tab).classList.add('active');
+})});
+
+// SCHEDULE
+function render(f='all'){
+  const c=document.getElementById('schedule');c.innerHTML='';
+  let list=E;
+  if(f==='star')list=E.filter(x=>x.p==='star'||x.p==='usa');
+  if(f==='chaos')list=E.filter(x=>x.e);
+  if(f==='upcoming')list=E.filter(x=>!x.done);
+  if(f==='hockey')list=E.filter(x=>x.tags.includes('hockey'));
+  if(f==='skating')list=E.filter(x=>x.tags.includes('skating'));
+  if(f==='skiing')list=E.filter(x=>x.tags.includes('skiing'));
+  if(f==='snowboard')list=E.filter(x=>x.tags.includes('snowboard'));
+  if(f==='sliding')list=E.filter(x=>x.tags.includes('sliding'));
+  let d='';
+  list.forEach(ev=>{
+    if(ev.date!==d){d=ev.date;const t=ev.date.includes('Feb 9');const s=document.createElement('div');s.className='day-section';const h=document.createElement('div');h.className='day-hdr';h.innerHTML=`<span class="dl">${ev.date.split(' ')[0]}</span><span class="dd">${ev.date.split(' ').slice(1).join(' ')}</span>${t?'<span class="dt">TODAY</span>':''}`;s.appendChild(h);c.appendChild(s)}
+    const card=document.createElement('div');
+    card.className=`ec ${ev.done?'done':(ev.e&&!ev.done&&ev.p!=='star')?'chaos':ev.p}`;
+    let r='';if(ev.r){const g=ev.r.includes('GOLD')||ev.r.includes('🥇');r=`<span class="rt ${g?'rg':'ri'}">${ev.r}</span>`}
+    let tg='<div class="etags">';tg+=`<span class="tg tg-ch">${ev.ch}</span>`;
+    if(ev.e&&!ev.done)tg+=` <span class="tg tg-e">🔥 High Energy</span>`;
+    if((ev.p==='star'||ev.p==='usa')&&!ev.done)tg+=` <span class="tg tg-u">🇺🇸 Team USA</span>`;
+    if(ev.nw&&!ev.done)tg+=` <span class="tg tg-n">✨ New</span>`;tg+='</div>';
+    card.innerHTML=`<div class="et">${ev.time}</div><div class="ei"><h3>${ev.title} ${r}</h3><div class="ed">${ev.desc}</div>${tg}</div><div class="eb2">${ev.badge}</div>`;
+    c.lastChild.appendChild(card);
+  });
+  if(!list.length)c.innerHTML='<p style="text-align:center;color:#9CA3AF;padding:3rem">No events match.</p>';
+}
+
+// FILTERS
+document.querySelectorAll('.fb').forEach(b=>{b.addEventListener('click',()=>{
+  document.querySelectorAll('.fb').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');render(b.dataset.filter);
+})});
+
+// ATHLETES
+function renderA(){
+  const c=document.getElementById('athletes');
+  athletes.forEach(a=>{const d=document.createElement('div');d.className=`ac${a.injured?' inj':''}`;
+  const o=a.odds==='gold'?'og':a.odds==='out'?'oo':'om';
+  const l=a.odds==='gold'?'🥇 Gold Favorite':a.odds==='out'?'❌ Out':'🏅 Medal Contender';
+  d.innerHTML=`<div class="an">${a.name}</div><div class="as2">${a.sport}</div><div class="ast">${a.story}</div><span class="ao ${o}">${l}</span>`;
+  c.appendChild(d)});
+}
+
+render();renderA();
+
+function jumpToToday(){
+  document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+  document.querySelector('[data-tab="schedule"]').classList.add('active');
+  document.getElementById('tab-schedule').classList.add('active');
+  // Reset filter to All so today is visible
+  document.querySelectorAll('.fb').forEach(x=>x.classList.remove('active'));
+  document.querySelector('[data-filter="all"]').classList.add('active');
+  render('all');
+  setTimeout(()=>{
+    const headers=document.querySelectorAll('.day-hdr');
+    for(const h of headers){if(h.querySelector('.dt')){h.scrollIntoView({behavior:'smooth',block:'start'});break;}}
+  },50);
+}
+
+function updateJumpBtn(){
+  const btn=document.getElementById('jumpToday');
+  const schedTab=document.getElementById('tab-schedule');
+  if(!schedTab.classList.contains('active')){btn.classList.remove('visible');return;}
+  const headers=document.querySelectorAll('.day-hdr');
+  let todayEl=null;
+  for(const h of headers){if(h.querySelector('.dt')){todayEl=h;break;}}
+  if(!todayEl){btn.classList.remove('visible');return;}
+  const rect=todayEl.getBoundingClientRect();
+  if(rect.top<0||rect.top>window.innerHeight){btn.classList.add('visible');}
+  else{btn.classList.remove('visible');}
+}
+window.addEventListener('scroll',updateJumpBtn);
+document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>setTimeout(updateJumpBtn,100)));
+
+</script>
+</body>
+</html>
