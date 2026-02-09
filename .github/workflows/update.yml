@@ -33,4 +33,12 @@ jobs:
           git config user.name "Olympics Bot"
           git config user.email "bot@github.actions"
           git add data.json index.html
-          git diff --cached --quiet || git commit -m "🏅 Update results $(date -u
+          git diff --cached --quiet || git commit -m "Update results"
+          git push
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
