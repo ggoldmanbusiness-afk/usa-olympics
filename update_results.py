@@ -476,10 +476,25 @@ def update_event_results(data):
             print(f"     → No result found yet")
 
 
+def _event_duration_minutes(event):
+    """Return expected duration in minutes based on event tags."""
+    # Longer-form events need a bigger threshold before being marked done
+    LONG_EVENTS = {
+        "hockey": 180,    # ~3 hours with intermissions/OT
+        "curling": 180,   # ~3 hours per match
+        "ceremony": 210,  # opening/closing ceremonies
+    }
+    for tag in event.get("tags", []):
+        if tag in LONG_EVENTS:
+            return LONG_EVENTS[tag]
+    return 90  # default for most events
+
+
 def mark_past_events_done(data):
     """
     Mark events as done if their date+time is in the past.
-    Marks done if event started 90+ minutes ago.
+    Uses per-event duration estimates so long events (hockey, curling)
+    aren't marked done prematurely.
     """
     et = timezone(timedelta(hours=-5))  # Eastern Time
     now = datetime.now(et)
@@ -499,8 +514,9 @@ def mark_past_events_done(data):
             dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %I:%M %p")
             dt = dt.replace(tzinfo=et)
 
-            # Mark as done if event started 90+ minutes ago
-            if now - dt > timedelta(minutes=90):
+            # Mark as done if enough time has passed for this event type
+            duration = _event_duration_minutes(event)
+            if now - dt > timedelta(minutes=duration):
                 event["done"] = True
                 print(f"  ✅ Auto-marked done: {event['title']}")
         except ValueError:
