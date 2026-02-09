@@ -4,6 +4,7 @@ Update Olympics results from Wikipedia (primary) with Claude API fallback.
 Fetches medal table and marks completed events.
 """
 
+import html as html_mod
 import json
 import re
 import sys
@@ -337,6 +338,7 @@ def scrape_event_result(event_id):
     # First check: does the page indicate the event is COMPLETED?
     # If the page says "will be held" but NOT "was held/was won", skip it
     text_only = re.sub(r'<[^>]+>', ' ', html)
+    text_only = html_mod.unescape(text_only)
     text_lower = text_only.lower()
     
     # Strong signals the event has NOT happened yet
@@ -474,8 +476,9 @@ def scrape_tournament_game_result(event_id):
     if not html:
         return None
 
-    # Strip HTML tags to get plain text
+    # Strip HTML tags, decode entities (&nbsp; &ndash; etc.), collapse whitespace
     text = re.sub(r'<[^>]+>', ' ', html)
+    text = html_mod.unescape(text)
     text = re.sub(r'\s+', ' ', text)
 
     # Look for score patterns like "United States 5 – 0 Finland"
