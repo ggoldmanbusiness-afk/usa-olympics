@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-09T19:20:07+00:00",
+  "last_updated": "2026-02-09T19:46:53+00:00",
   "events_completed": 13,
   "events_total": 116,
   "medal_table": [
@@ -193,7 +193,7 @@
         "skiing"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 PARIS (AUT)"
     },
     {
       "id": "hoc-w-fin",
@@ -289,7 +289,7 @@
         "skiing"
       ],
       "energy": false,
-      "result": null
+      "result": "🥇 GREMAUD (SUI)"
     },
     {
       "id": "fs-id-rhythm",
@@ -305,7 +305,7 @@
         "skating"
       ],
       "energy": false,
-      "result": null
+      "result": "Chock/Bates in 2nd"
     },
     {
       "id": "luge-w-12",
@@ -348,12 +348,12 @@
       "channel": "USA / Peacock",
       "badge": "🏅",
       "priority": "medal",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 1R"
     },
     {
       "id": "sb-w-bigair",
