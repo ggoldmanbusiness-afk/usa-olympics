@@ -256,10 +256,230 @@ Include ALL countries that have won at least one medal. Sort by gold medals desc
     return result
 
 
+# Map schedule event IDs to Wikipedia article URL fragments
+EVENT_WIKI_MAP = {
+    "alp-m-dh": "Alpine_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_downhill",
+    "alp-w-dh": "Alpine_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_downhill",
+    "alp-w-sg": "Alpine_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_super-G",
+    "alp-w-gs": "Alpine_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_giant_slalom",
+    "alp-w-sl": "Alpine_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_slalom",
+    "frs-w-slope": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_slopestyle",
+    "frs-m-slope": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_slopestyle",
+    "frs-w-moguls": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_moguls",
+    "frs-m-moguls": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_moguls",
+    "frs-w-bigair": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_big_air",
+    "frs-m-bigair": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_big_air",
+    "frs-w-hp": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_halfpipe",
+    "frs-w-aerials": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_aerials",
+    "frs-m-aerials": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_aerials",
+    "sj-m-nh": "Ski_jumping_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_normal_hill_individual",
+    "sb-w-bigair": "Snowboard_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_big_air",
+    "sb-w-hp-final": "Snowboard_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_halfpipe",
+    "sb-m-hp": "Snowboard_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_halfpipe",
+    "ss-m-1000": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_1000_metres",
+    "ss-m-500": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_500_metres",
+    "ss-w-500": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_500_metres",
+    "luge-w-final": "Luge_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_singles",
+    "luge-relay": "Luge_at_the_2026_Winter_Olympics_%E2%80%93_Team_relay",
+    "fs-m-free": "Figure_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_singles",
+    "fs-id-free": "Figure_skating_at_the_2026_Winter_Olympics_%E2%80%93_Ice_dance",
+    "fs-w-free": "Figure_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_singles",
+    "bob-mono-final": "Bobsleigh_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_monobob",
+    "hoc-w-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament",
+    "hoc-m-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament",
+}
+
+# Reverse lookup: country name fragments to 3-letter codes
+NAME_TO_CODE = {}
+for code, name in COUNTRY_NAMES.items():
+    NAME_TO_CODE[name.lower()] = code
+    # Also add partial names
+    for part in name.lower().split():
+        if len(part) > 3:
+            NAME_TO_CODE[part] = code
+# Add common Wikipedia variants
+NAME_TO_CODE.update({
+    "swiss": "SUI", "chinese": "CHN", "american": "USA", "japanese": "JPN",
+    "norwegian": "NOR", "italian": "ITA", "german": "GER", "french": "FRA",
+    "austrian": "AUT", "swedish": "SWE", "canadian": "CAN", "korean": "KOR",
+    "czech": "CZE", "slovenian": "SLO", "dutch": "NED", "finnish": "FIN",
+    "british": "GBR", "australian": "AUS",
+})
+
+
+def scrape_event_result(event_id):
+    """
+    Try to scrape the gold medalist from a Wikipedia event page.
+    Returns a result string like '🥇 GREMAUD (SUI)' or None.
+    
+    Uses multiple strategies with strict validation to avoid garbage results.
+    """
+    wiki_slug = EVENT_WIKI_MAP.get(event_id)
+    if not wiki_slug:
+        return None
+
+    url = f"https://en.wikipedia.org/wiki/{wiki_slug}"
+    html = fetch_url(url)
+    if not html:
+        return None
+
+    # First check: does the page indicate the event is COMPLETED?
+    # If the page says "will be held" but NOT "was held/was won", skip it
+    text_only = re.sub(r'<[^>]+>', ' ', html)
+    text_lower = text_only.lower()
+    
+    # Strong signals the event has NOT happened yet
+    future_signals = [
+        "will be held",
+        "will be started",
+        "the event will",
+        "will take place",
+    ]
+    past_signals = [
+        "was held",
+        "was won",
+        "won the competition",
+        "won the gold",
+        "won the event",
+        "claimed gold",
+        "took gold",
+        "finished first",
+        "became the champion",
+        "became the olympic champion",
+        "won the olympic",
+    ]
+    
+    has_future = any(sig in text_lower for sig in future_signals)
+    has_past = any(sig in text_lower for sig in past_signals)
+    
+    # If page only has future tense and no past tense, event hasn't happened
+    if has_future and not has_past:
+        print(f"     ⏳ Event not completed yet (future tense detected)")
+        return None
+
+    # Strategy 1: Look for medalist infobox pattern
+    # Wikipedia uses: {{MedalGold}} or class="gold" or similar
+    # The most reliable pattern is the medalists section with gold/silver/bronze rows
+    
+    winner_name = None
+    country_code = None
+    
+    # Pattern A: "X won the competition" or "X claimed gold"  
+    won_patterns = [
+        r'([A-Z][a-záéíóúñ]+(?:\s+[A-Z][a-záéíóúñ]+)+)\s+(?:of\s+)?(\w+)\s+won\s+the\s+competition',
+        r'([A-Z][a-záéíóúñ]+(?:\s+[A-Z][a-záéíóúñ]+)+)\s+(?:of\s+)?(\w+)\s+claimed?\s+(?:the\s+)?(?:olympic\s+)?gold',
+        r'([A-Z][a-záéíóúñ]+(?:\s+[A-Z][a-záéíóúñ]+)+)\s+(?:of\s+)?(\w+)\s+won\s+(?:the\s+)?(?:olympic\s+)?gold',
+    ]
+    
+    for pattern in won_patterns:
+        m = re.search(pattern, text_only)
+        if m:
+            winner_name = m.group(1).strip()
+            country_word = m.group(2).strip().lower()
+            country_code = NAME_TO_CODE.get(country_word)
+            if winner_name and country_code:
+                break
+    
+    # Pattern B: Look for medalist template in HTML
+    # Wikipedia often has: <th>Gold</th>...<td>...<a>Name</a>...<a>Country</a>
+    if not winner_name:
+        # Look for gold medalist in infobox - must have both gold AND silver nearby
+        # This prevents matching random "gold" mentions
+        gold_section = re.search(
+            r'(?:1st\s*place|Gold|gold_medalist|🥇).*?<a[^>]*title="([^"]+)"[^>]*>([^<]+)</a>',
+            html, re.DOTALL | re.IGNORECASE
+        )
+        silver_section = re.search(
+            r'(?:2nd\s*place|Silver|silver_medalist|🥈)',
+            html, re.IGNORECASE
+        )
+        
+        # Only trust gold match if silver is also present (confirms it's a results section)
+        if gold_section and silver_section:
+            candidate = gold_section.group(2).strip()
+            # Validate: name should be 2+ words, not a country/sport name
+            words = candidate.split()
+            if len(words) >= 2 and len(candidate) > 4:
+                # Check it looks like a person's name (capitalized words)
+                if all(w[0].isupper() for w in words if w):
+                    winner_name = candidate
+                    # Find country code nearby
+                    context = html[gold_section.start():gold_section.end()+500]
+                    code_match = re.search(r'\(([A-Z]{3})\)', context)
+                    if code_match:
+                        country_code = code_match.group(1)
+    
+    # Pattern C: Look for results table with rank column
+    if not winner_name:
+        # Find a table row with rank "1" and extract the athlete name
+        rank1_match = re.search(
+            r'<t[dh][^>]*>\s*1\s*</t[dh]>.*?<a[^>]*title="([^"]+)"[^>]*>([^<]+)</a>',
+            html, re.DOTALL
+        )
+        if rank1_match:
+            candidate = rank1_match.group(2).strip()
+            words = candidate.split()
+            if len(words) >= 2 and len(candidate) > 4:
+                if all(w[0].isupper() for w in words if w):
+                    winner_name = candidate
+                    context = html[rank1_match.start():rank1_match.end()+500]
+                    code_match = re.search(r'\(([A-Z]{3})\)', context)
+                    if code_match:
+                        country_code = code_match.group(1)
+
+    if not winner_name:
+        return None
+    
+    # Final validation: result must look like a real name
+    # Reject single words, numbers, or very short strings
+    surname = winner_name.split()[-1].upper()
+    if len(surname) < 2 or surname.isdigit():
+        return None
+    
+    # Reject known garbage patterns
+    garbage = ['ROUND', 'FINAL', 'QUALIFICATION', 'TRAINING', 'OFFICIAL', 'SESSION', 
+               'MEDAL', 'EVENT', 'COMPETITION', 'OLYMPIC', 'WINTER', 'GAMES']
+    if surname in garbage or winner_name.upper() in garbage:
+        return None
+
+    if country_code:
+        return f"🥇 {surname} ({country_code})"
+    else:
+        return f"🥇 {surname}"
+
+
+def update_event_results(data):
+    """
+    For events marked done but without results, try to scrape Wikipedia.
+    Only checks medal events (those with 🏅 in title).
+    """
+    print("\n🔍 Checking for event results on Wikipedia...")
+    for event in data["schedule"]:
+        # Only check done medal events without results
+        if not event["done"]:
+            continue
+        if event.get("result"):
+            continue
+        if "🏅" not in event.get("title", ""):
+            continue
+
+        eid = event["id"]
+        if eid not in EVENT_WIKI_MAP:
+            continue
+
+        print(f"  📄 Checking {event['title'][:40]}...")
+        result = scrape_event_result(eid)
+        if result:
+            event["result"] = result
+            print(f"     → {result}")
+        else:
+            print(f"     → No result found yet")
+
+
 def mark_past_events_done(data):
     """
     Mark events as done if their date+time is in the past.
-    Conservative: only auto-marks if event was >3 hours ago.
+    Marks done if event started 90+ minutes ago.
     """
     et = timezone(timedelta(hours=-5))  # Eastern Time
     now = datetime.now(et)
@@ -279,8 +499,8 @@ def mark_past_events_done(data):
             dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %I:%M %p")
             dt = dt.replace(tzinfo=et)
 
-            # Mark as done if event started 3+ hours ago (buffer for long events)
-            if now - dt > timedelta(hours=3):
+            # Mark as done if event started 90+ minutes ago
+            if now - dt > timedelta(minutes=90):
                 event["done"] = True
                 print(f"  ✅ Auto-marked done: {event['title']}")
         except ValueError:
@@ -326,14 +546,14 @@ def main():
     print("\n⏰ Checking event times...")
     mark_past_events_done(data)
 
-    # --- Step 3: Update timestamp ---
-    if updated:
-        data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
-        with open(DATA_FILE, "w") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-        print(f"\n💾 Data saved to {DATA_FILE}")
-    else:
-        print("\n🔄 No changes detected")
+    # --- Step 2b: Try to fill in results for done medal events ---
+    update_event_results(data)
+
+    # --- Step 3: Always update timestamp and save ---
+    data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    with open(DATA_FILE, "w") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    print(f"\n💾 Data saved to {DATA_FILE}")
 
     print("✅ Done!")
     return 0
