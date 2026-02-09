@@ -481,14 +481,16 @@ def scrape_tournament_game_result(event_id):
     text = html_mod.unescape(text)
     text = re.sub(r'\s+', ' ', text)
 
-    # Look for score patterns like "United States 5 – 0 Finland"
-    # The score separator can be – (en-dash), - (hyphen), or — (em-dash)
-    score_sep = r'\s*[–\-—]\s*'
+    # Look for score patterns like "United States 5–1 (1–0, 3–1, 1–0) Finland"
+    # Wikipedia format: scores are tight around en-dash, followed by optional
+    # period breakdown in parentheses before the opponent name.
+    score_sep = r'[–\-—]'
+    period_scores = r'(?:\s*\([^)]*\))?'
     patterns = [
-        # USA listed first: "United States  5 – 0  Finland"
-        (rf'United States\s+(\d+){score_sep}(\d+)\s+{opponent}', False),
-        # Opponent listed first: "Finland  0 – 5  United States"
-        (rf'{opponent}\s+(\d+){score_sep}(\d+)\s+United States', True),
+        # USA listed first: "United States 5–0 (1–0, 3–0, 1–0) Finland"
+        (rf'United States\s+(\d+){score_sep}(\d+){period_scores}\s+{opponent}', False),
+        # Opponent listed first: "Switzerland 0–5 (0–1, 0–1, 0–3) United States"
+        (rf'{opponent}\s+(\d+){score_sep}(\d+){period_scores}\s+United States', True),
     ]
 
     for pattern, opponent_first in patterns:
