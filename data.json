@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-09T12:30:00-05:00",
+  "last_updated": "2026-02-09T19:46:53+00:00",
   "events_completed": 13,
   "events_total": 116,
   "medal_table": [
@@ -348,12 +348,12 @@
       "channel": "USA / Peacock",
       "badge": "🏅",
       "priority": "medal",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 1R"
     },
     {
       "id": "sb-w-bigair",
