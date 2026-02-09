@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-09T19:20:07+00:00",
+  "last_updated": "2026-02-09T12:30:00-05:00",
   "events_completed": 13,
   "events_total": 116,
   "medal_table": [
@@ -193,7 +193,7 @@
         "skiing"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 PARIS (AUT)"
     },
     {
       "id": "hoc-w-fin",
@@ -289,7 +289,7 @@
         "skiing"
       ],
       "energy": false,
-      "result": null
+      "result": "🥇 GREMAUD (SUI)"
     },
     {
       "id": "fs-id-rhythm",
@@ -305,7 +305,7 @@
         "skating"
       ],
       "energy": false,
-      "result": null
+      "result": "Chock/Bates in 2nd"
     },
     {
       "id": "luge-w-12",
