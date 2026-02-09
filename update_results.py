@@ -4,6 +4,7 @@ Update Olympics results from Wikipedia (primary) with Claude API fallback.
 Fetches medal table and marks completed events.
 """
 
+import html as html_mod
 import json
 import re
 import sys
@@ -289,6 +290,17 @@ EVENT_WIKI_MAP = {
     "hoc-m-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament",
 }
 
+# Tournament game events — maps event ID to (wiki_slug, opponent country name)
+# Used for group-stage / knockout games where we scrape a score, not a gold medalist.
+TOURNAMENT_GAME_MAP = {
+    "hoc-w-fin": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Finland"),
+    "hoc-w-sui": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Switzerland"),
+    "hoc-w-can": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Canada"),
+    "hoc-m-lat": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Latvia"),
+    "hoc-m-den": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Denmark"),
+    "curl-md-ita": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Italy"),
+}
+
 # Reverse lookup: country name fragments to 3-letter codes
 NAME_TO_CODE = {}
 for code, name in COUNTRY_NAMES.items():
@@ -326,6 +338,7 @@ def scrape_event_result(event_id):
     # First check: does the page indicate the event is COMPLETED?
     # If the page says "will be held" but NOT "was held/was won", skip it
     text_only = re.sub(r'<[^>]+>', ' ', html)
+    text_only = html_mod.unescape(text_only)
     text_lower = text_only.lower()
     
     # Strong signals the event has NOT happened yet
@@ -448,38 +461,111 @@ def scrape_event_result(event_id):
         return f"🥇 {surname}"
 
 
+def scrape_tournament_game_result(event_id):
+    """
+    Scrape a tournament game result (hockey/curling) from Wikipedia.
+    Returns a result string like 'USA wins 5-0' or 'Lost 2-3' or None.
+    """
+    info = TOURNAMENT_GAME_MAP.get(event_id)
+    if not info:
+        return None
+
+    wiki_slug, opponent = info
+    url = f"https://en.wikipedia.org/wiki/{wiki_slug}"
+    html = fetch_url(url)
+    if not html:
+        return None
+
+    # Strip HTML tags, decode entities (&nbsp; &ndash; etc.), collapse whitespace
+    text = re.sub(r'<[^>]+>', ' ', html)
+    text = html_mod.unescape(text)
+    text = re.sub(r'\s+', ' ', text)
+
+    # Look for score patterns like "United States 5 – 0 Finland"
+    # The score separator can be – (en-dash), - (hyphen), or — (em-dash)
+    score_sep = r'\s*[–\-—]\s*'
+    patterns = [
+        # USA listed first: "United States  5 – 0  Finland"
+        (rf'United States\s+(\d+){score_sep}(\d+)\s+{opponent}', False),
+        # Opponent listed first: "Finland  0 – 5  United States"
+        (rf'{opponent}\s+(\d+){score_sep}(\d+)\s+United States', True),
+    ]
+
+    for pattern, opponent_first in patterns:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            if opponent_first:
+                opp_score = int(match.group(1))
+                usa_score = int(match.group(2))
+            else:
+                usa_score = int(match.group(1))
+                opp_score = int(match.group(2))
+
+            if usa_score > opp_score:
+                return f"USA wins {usa_score}-{opp_score}"
+            elif usa_score < opp_score:
+                return f"Lost {usa_score}-{opp_score}"
+            else:
+                return f"Draw {usa_score}-{opp_score}"
+
+    return None
+
+
 def update_event_results(data):
     """
     For events marked done but without results, try to scrape Wikipedia.
-    Only checks medal events (those with 🏅 in title).
+    Checks medal events (🏅 in title) and tournament games (hockey/curling).
     """
     print("\n🔍 Checking for event results on Wikipedia...")
     for event in data["schedule"]:
-        # Only check done medal events without results
         if not event["done"]:
             continue
         if event.get("result"):
             continue
-        if "🏅" not in event.get("title", ""):
-            continue
 
         eid = event["id"]
-        if eid not in EVENT_WIKI_MAP:
+
+        # Medal events — scrape for gold medalist
+        if "🏅" in event.get("title", "") and eid in EVENT_WIKI_MAP:
+            print(f"  📄 Checking {event['title'][:40]}...")
+            result = scrape_event_result(eid)
+            if result:
+                event["result"] = result
+                print(f"     → {result}")
+            else:
+                print(f"     → No result found yet")
             continue
 
-        print(f"  📄 Checking {event['title'][:40]}...")
-        result = scrape_event_result(eid)
-        if result:
-            event["result"] = result
-            print(f"     → {result}")
-        else:
-            print(f"     → No result found yet")
+        # Tournament games — scrape for score
+        if eid in TOURNAMENT_GAME_MAP:
+            print(f"  📄 Checking {event['title'][:40]}...")
+            result = scrape_tournament_game_result(eid)
+            if result:
+                event["result"] = result
+                print(f"     → {result}")
+            else:
+                print(f"     → No result found yet")
+
+
+def _event_duration_minutes(event):
+    """Return expected duration in minutes based on event tags."""
+    # Longer-form events need a bigger threshold before being marked done
+    LONG_EVENTS = {
+        "hockey": 180,    # ~3 hours with intermissions/OT
+        "curling": 180,   # ~3 hours per match
+        "ceremony": 210,  # opening/closing ceremonies
+    }
+    for tag in event.get("tags", []):
+        if tag in LONG_EVENTS:
+            return LONG_EVENTS[tag]
+    return 90  # default for most events
 
 
 def mark_past_events_done(data):
     """
     Mark events as done if their date+time is in the past.
-    Marks done if event started 90+ minutes ago.
+    Uses per-event duration estimates so long events (hockey, curling)
+    aren't marked done prematurely.
     """
     et = timezone(timedelta(hours=-5))  # Eastern Time
     now = datetime.now(et)
@@ -499,8 +585,9 @@ def mark_past_events_done(data):
             dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %I:%M %p")
             dt = dt.replace(tzinfo=et)
 
-            # Mark as done if event started 90+ minutes ago
-            if now - dt > timedelta(minutes=90):
+            # Mark as done if enough time has passed for this event type
+            duration = _event_duration_minutes(event)
+            if now - dt > timedelta(minutes=duration):
                 event["done"] = True
                 print(f"  ✅ Auto-marked done: {event['title']}")
         except ValueError:
