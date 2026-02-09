@@ -259,7 +259,7 @@ Include ALL countries that have won at least one medal. Sort by gold medals desc
 def mark_past_events_done(data):
     """
     Mark events as done if their date+time is in the past.
-    Conservative: only auto-marks if event was >3 hours ago.
+    Marks done if event started 90+ minutes ago.
     """
     et = timezone(timedelta(hours=-5))  # Eastern Time
     now = datetime.now(et)
@@ -279,8 +279,8 @@ def mark_past_events_done(data):
             dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %I:%M %p")
             dt = dt.replace(tzinfo=et)
 
-            # Mark as done if event started 3+ hours ago (buffer for long events)
-            if now - dt > timedelta(hours=3):
+            # Mark as done if event started 90+ minutes ago
+            if now - dt > timedelta(minutes=90):
                 event["done"] = True
                 print(f"  ✅ Auto-marked done: {event['title']}")
         except ValueError:
@@ -326,14 +326,11 @@ def main():
     print("\n⏰ Checking event times...")
     mark_past_events_done(data)
 
-    # --- Step 3: Update timestamp ---
-    if updated:
-        data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
-        with open(DATA_FILE, "w") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-        print(f"\n💾 Data saved to {DATA_FILE}")
-    else:
-        print("\n🔄 No changes detected")
+    # --- Step 3: Always update timestamp and save ---
+    data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    with open(DATA_FILE, "w") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    print(f"\n💾 Data saved to {DATA_FILE}")
 
     print("✅ Done!")
     return 0
