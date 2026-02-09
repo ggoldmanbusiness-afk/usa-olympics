@@ -481,9 +481,20 @@ def scrape_tournament_game_result(event_id):
     text = html_mod.unescape(text)
     text = re.sub(r'\s+', ' ', text)
 
+    # Debug: show text around opponent name and "United States" to diagnose regex
+    for keyword in [opponent, "United States"]:
+        idx = text.find(keyword)
+        while idx != -1:
+            snippet = text[max(0, idx - 30):idx + len(keyword) + 30]
+            print(f"     🔎 ...{snippet}...")
+            idx = text.find(keyword, idx + 1)
+            # Only show first 4 occurrences
+            if idx != -1 and text[:idx].count(keyword) > 3:
+                break
+
     # Look for score patterns like "United States 5 – 0 Finland"
     # The score separator can be – (en-dash), - (hyphen), or — (em-dash)
-    score_sep = r'\s*[–\-—]\s*'
+    score_sep = r'\s*[–\-—:]\s*'
     patterns = [
         # USA listed first: "United States  5 – 0  Finland"
         (rf'United States\s+(\d+){score_sep}(\d+)\s+{opponent}', False),
@@ -494,6 +505,7 @@ def scrape_tournament_game_result(event_id):
     for pattern, opponent_first in patterns:
         match = re.search(pattern, text, re.IGNORECASE)
         if match:
+            print(f"     ✅ Matched: {match.group(0)}")
             if opponent_first:
                 opp_score = int(match.group(1))
                 usa_score = int(match.group(2))
