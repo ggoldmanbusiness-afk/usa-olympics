@@ -209,7 +209,7 @@
         "hockey"
       ],
       "energy": false,
-      "result": null
+      "result": "USA wins 5-0"
     },
     {
       "id": "fs-team-d1",
@@ -385,7 +385,7 @@
         "hockey"
       ],
       "energy": false,
-      "result": null
+      "result": "USA wins 5-0"
     },
     {
       "id": "st-mixed-relay",
