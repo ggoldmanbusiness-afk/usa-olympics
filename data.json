@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-09T22:43:45+00:00",
+  "last_updated": "2026-02-09T23:01:47+00:00",
   "events_completed": 13,
   "events_total": 116,
   "medal_table": [
@@ -380,7 +380,7 @@
       "channel": "USA / Peacock",
       "badge": "🏒",
       "priority": "usa",
-      "done": false,
+      "done": true,
       "tags": [
         "hockey"
       ],
