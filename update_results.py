@@ -172,16 +172,33 @@ def parse_wiki_medal_table(html):
 
 
 def parse_events_completed(html):
-    """Try to extract number of completed events from Wikipedia."""
+    """
+    Extract number of completed events from Wikipedia medal table.
+    Uses total gold medals awarded as proxy (1 gold per event, with rare ties).
+    """
     if not html:
         return None
-    match = re.search(r'(\d+)\s*of\s*116\s*events?\s*completed', html, re.IGNORECASE)
-    if match:
-        return int(match.group(1))
-    # Try alternate pattern
-    match = re.search(r'Completed events\D*(\d+)', html, re.IGNORECASE)
-    if match:
-        return int(match.group(1))
+
+    # Find the wikitable
+    table_match = re.search(
+        r'<table[^>]*class="[^"]*wikitable[^"]*"[^>]*>(.*?)</table>',
+        html, re.DOTALL
+    )
+    if not table_match:
+        return None
+
+    # Find the Totals row
+    rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_match.group(1), re.DOTALL)
+    for row in rows:
+        if 'Totals' not in row and 'Total' not in row:
+            continue
+        cells = re.findall(r'<t[hd][^>]*>(.*?)</t[hd]>', row, re.DOTALL)
+        numbers = [int(re.sub(r'<[^>]+>', '', c).strip())
+                   for c in cells if re.sub(r'<[^>]+>', '', c).strip().isdigit()]
+        if numbers:
+            # First number is total golds = approximate events completed
+            return numbers[0]
+
     return None
 
 
