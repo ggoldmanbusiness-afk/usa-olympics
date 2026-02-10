@@ -325,8 +325,31 @@ EVENT_WIKI_MAP = {
     "fs-w-free": "Figure_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_singles",
     "bob-mono-final": "Bobsleigh_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_monobob",
     "st-mixed-relay": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_2000_metre_relay",
-    "hoc-w-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament",
-    "hoc-m-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament",
+    # Snowboard cross
+    "sbx-m": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_snowboard_cross",
+    "sbx-w": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_snowboard_cross",
+    "sbx-mixed": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_team_snowboard_cross",
+    # Short track (individual/relay)
+    "st-500-1000": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_500_metres",
+    "st-m-1500": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_1500_metres",
+    "st-w-1000": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_1000_metres",
+    "st-relay-500": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_3000_metre_relay",
+    "st-m-5000relay": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_5000_metre_relay",
+    # Freestyle (new events)
+    "frs-w-dualmog": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_dual_moguls",
+    "frs-m-dualmog": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_dual_moguls",
+    "frs-m-skicross": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_ski_cross",
+    "frs-mixed-aerials": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_team_aerials",
+    # Biathlon
+    "bia-w-pursuit": "Biathlon_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_pursuit",
+    "bia-m-mass": "Biathlon_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_mass_start",
+    "bia-w-mass": "Biathlon_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_mass_start",
+    # Skeleton
+    "skel-mixed": "Skeleton_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_team",
+    # Bobsled
+    "bob-2man": "Bobsleigh_at_the_2026_Winter_Olympics_%E2%80%93_Two-man",
+    # Speed skating
+    "ss-mass": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_mass_start",
 }
 
 # Tournament game events — maps event ID to (wiki_slug, opponent country name)
@@ -351,6 +374,9 @@ TOURNAMENT_GAME_MAP = {
     "curl-md-kor": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "South Korea"),
     "curl-md-gbr": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Great Britain"),
     "curl-md-gold": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Sweden"),
+    # Hockey gold medal games — opponents TBD until semifinals
+    "hoc-w-gold": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Canada"),
+    "hoc-m-gold": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Canada"),
 }
 
 # Reverse lookup: country name fragments to 3-letter codes
