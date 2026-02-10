@@ -38,8 +38,9 @@
 .day-hdr .dl{color:var(--red)}.day-hdr .dd{color:var(--text)}
 .day-hdr .dt{font-size:.55rem;background:var(--red);color:#fff;padding:.12rem .4rem;border-radius:100px;margin-left:auto}
 
-.ec{display:grid;grid-template-columns:60px 1fr auto;gap:.6rem;padding:.7rem;margin-bottom:.35rem;border-radius:8px;border-left:3px solid var(--red);transition:all .2s;align-items:start;background:var(--card)}
+.ec{display:grid;grid-template-columns:60px 1fr auto;gap:.6rem;padding:.7rem;margin-bottom:.35rem;border-radius:8px;border-left:3px solid transparent;transition:all .2s;align-items:start;background:var(--card)}
 .ec:hover{background:#F0F2F5;transform:translateX(3px)}
+.ec.e-medal{border-left-color:var(--gold)}.ec.e-usa{border-left-color:var(--red)}.ec.e-energy{border-left-color:var(--energy)}
 .ec.done{opacity:.55;border-left-color:#D1D5DB;background:#F9FAFB}
 .et{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;color:var(--red);padding-top:.1rem}.ec.done .et{color:#9CA3AF}
 .ei h3{font-family:'Oswald',sans-serif;font-weight:500;font-size:.9rem;text-transform:uppercase;letter-spacing:.03em;line-height:1.25;color:var(--text)}
@@ -265,7 +266,7 @@ function render(f='all'){
   list.forEach(ev=>{
     if(ev.date!==d){d=ev.date;const now=new Date();const todayStr=DAYS[now.getDay()]+' '+MONTHS[now.getMonth()+1]+' '+now.getDate();const t=ev.date===todayStr;const s=document.createElement('div');s.className='day-section';const h=document.createElement('div');h.className='day-hdr';h.innerHTML=`<span class="dl">${ev.date.split(' ')[0]}</span><span class="dd">${ev.date.split(' ').slice(1).join(' ')}</span>${t?'<span class="dt">TODAY</span>':''}`;s.appendChild(h);c.appendChild(s)}
     const card=document.createElement('div');
-    card.className=`ec${ev.done?' done':''}`;
+    const isMedal=ev.title.includes('🏅');const isUsa=ev.p==='star'||ev.p==='usa';const accent=ev.done?'done':isMedal?'e-medal':isUsa?'e-usa':ev.e?'e-energy':'';card.className=`ec${accent?' '+accent:''}`;
     let r='';if(ev.r){const g=ev.r.includes('GOLD')||ev.r.includes('🥇');r=`<span class="rt ${g?'rg':'ri'}">${ev.r}</span>`}
     let tg='<div class="etags">';tg+=`<span class="tg tg-ch">${ev.ch}</span>`;
     if(ev.e&&!ev.done)tg+=` <span class="tg tg-e">🔥 High Energy</span>`;
