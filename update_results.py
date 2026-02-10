@@ -331,12 +331,24 @@ EVENT_WIKI_MAP = {
 # Tournament game events — maps event ID to (wiki_slug, opponent country name)
 # Used for group-stage / knockout games where we scrape a score, not a gold medalist.
 TOURNAMENT_GAME_MAP = {
+    # Women's hockey - group stage
     "hoc-w-fin": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Finland"),
     "hoc-w-sui": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Switzerland"),
     "hoc-w-can": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Canada"),
+    "hoc-w-cze": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Czechia"),
+    # Men's hockey - group stage
     "hoc-m-lat": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Latvia"),
     "hoc-m-den": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Denmark"),
+    "hoc-m-fin": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Finland"),
+    "hoc-m-swe": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Sweden"),
+    # Curling - mixed doubles
     "curl-md-ita": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Italy"),
+    "curl-md-nor": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Norway"),
+    "curl-md-swe": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Sweden"),
+    "curl-md-can": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Canada"),
+    "curl-md-chn": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "China"),
+    "curl-md-kor": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "South Korea"),
+    "curl-md-gbr": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Great Britain"),
 }
 
 # Reverse lookup: country name fragments to 3-letter codes
@@ -680,6 +692,58 @@ def mark_past_events_done(data):
             continue
 
 
+def update_projections(data):
+    """
+    Dynamically update USA medal projections based on current pace.
+    Uses medals won so far and events remaining to project final totals.
+    """
+    events_done = data.get("events_completed", 0)
+    events_total = data.get("events_total", 116)
+    if events_done < 1:
+        return
+
+    usa = next((m for m in data.get("medal_table", []) if m["code"] == "USA"), None)
+    if not usa:
+        return
+
+    gold_now = usa["gold"]
+    total_now = usa["total"]
+    pct_done = events_done / events_total
+
+    # Project based on current pace, with slight regression toward pre-Games
+    # expectations (10G, 30T) to handle early variance
+    pre_gold = 10
+    pre_total = 30
+    # Weight current pace more as Games progress
+    pace_weight = min(pct_done * 1.5, 0.9)  # caps at 90% pace weight
+
+    pace_gold = gold_now / pct_done if pct_done > 0 else pre_gold
+    pace_total = total_now / pct_done if pct_done > 0 else pre_total
+
+    proj_gold = round(pace_weight * pace_gold + (1 - pace_weight) * pre_gold)
+    proj_total = round(pace_weight * pace_total + (1 - pace_weight) * pre_total)
+
+    # Projections can't be less than what's already won
+    proj_gold = max(proj_gold, gold_now)
+    proj_total = max(proj_total, total_now)
+
+    # Range: ±20% of mid projection, floored at current count
+    gold_low = max(round(proj_gold * 0.8), gold_now)
+    gold_high = round(proj_gold * 1.2)
+    total_low = max(round(proj_total * 0.8), total_now)
+    total_high = round(proj_total * 1.2)
+
+    data["usa_projection"] = {
+        "projected_gold_low": gold_low,
+        "projected_gold_high": gold_high,
+        "projected_gold_mid": proj_gold,
+        "projected_total_low": total_low,
+        "projected_total_high": total_high,
+        "projected_total_mid": proj_total,
+    }
+    print(f"\n📈 Updated projections: {proj_gold}G ({gold_low}-{gold_high}), {proj_total}T ({total_low}-{total_high})")
+
+
 def main():
     print("🏅 Olympics Tracker Update")
     print(f"   Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}")
@@ -721,6 +785,9 @@ def main():
 
     # --- Step 2b: Try to fill in results for done medal events ---
     update_event_results(data)
+
+    # --- Step 2c: Update projections based on pace ---
+    update_projections(data)
 
     # --- Step 3: Always update timestamp and save ---
     data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
