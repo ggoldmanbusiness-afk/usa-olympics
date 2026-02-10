@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-10T01:24:35+00:00",
+  "last_updated": "2026-02-10T01:31:29+00:00",
   "events_completed": 13,
   "events_total": 116,
   "medal_table": [
@@ -312,7 +312,7 @@
       "title": "Freestyle — Women's Slopestyle Final 🏅",
       "desc": "Medal final.",
       "channel": "USA / Peacock",
-      "badge": "🏅",
+      "badge": "⛷️",
       "priority": "medal",
       "done": true,
       "tags": [
@@ -376,7 +376,7 @@
       "title": "Ski Jumping — Men's Normal Hill 🏅",
       "desc": "Incredible heights.",
       "channel": "USA / Peacock",
-      "badge": "🏅",
+      "badge": "⛷️",
       "priority": "medal",
       "done": true,
       "tags": [
@@ -424,7 +424,7 @@
       "title": "🔥 Short Track — Mixed Relay 🏅",
       "desc": "NASCAR ON ICE. Crashes, photo finishes.",
       "channel": "Peacock (live) / USA 11:30a",
-      "badge": "⚡",
+      "badge": "⛸️",
       "priority": "chaos",
       "done": false,
       "tags": [
@@ -441,7 +441,7 @@
       "title": "Freestyle — Men's Slopestyle Final 🏅",
       "desc": "USA's Ralph, Hall, Forehand for gold.",
       "channel": "USA / Peacock",
-      "badge": "🏅",
+      "badge": "⛷️",
       "priority": "medal",
       "done": false,
       "tags": [
@@ -521,7 +521,7 @@
       "title": "🔥 Freestyle — Women's Moguls Final 🏅",
       "desc": "Fast, technical, spectacular wipeouts.",
       "channel": "USA / Peacock",
-      "badge": "⚡",
+      "badge": "⛷️",
       "priority": "chaos",
       "done": false,
       "tags": [
@@ -586,7 +586,7 @@
       "title": "🔥 Freestyle — Men's Moguls Final 🏅",
       "desc": "Kingsbury for GOAT status.",
       "channel": "USA / Peacock",
-      "badge": "⚡",
+      "badge": "⛷️",
       "priority": "chaos",
       "done": false,
       "tags": [
@@ -652,7 +652,7 @@
       "title": "🔥 Short Track — 500m/1000m Finals 🏅",
       "desc": "Sprint finals. Bumping, passing, falls.",
       "channel": "NBC / Peacock",
-      "badge": "⚡",
+      "badge": "⛸️",
       "priority": "chaos",
       "done": false,
       "tags": [
@@ -734,7 +734,7 @@
       "title": "🔥 Freestyle — Women's Dual Moguls 🏅",
       "desc": "NEW! Head-to-head bracket on bumps.",
       "channel": "USA / Peacock",
-      "badge": "⚡",
+      "badge": "⛷️",
       "priority": "chaos",
       "done": false,
       "tags": [
@@ -768,7 +768,7 @@
       "title": "🔥 Short Track — Men's 1500m 🏅",
       "desc": "Max strategy + max chaos.",
       "channel": "USA / Peacock",
-      "badge": "⚡",
+      "badge": "⛸️",
       "priority": "chaos",
       "done": false,
       "tags": [
@@ -817,7 +817,7 @@
       "title": "🔥 Freestyle — Men's Dual Moguls 🏅",
       "desc": "NEW! Head-to-head. Olympic debut.",
       "channel": "USA / Peacock",
-      "badge": "⚡",
+      "badge": "⛷️",
       "priority": "chaos",
       "done": false,
       "tags": [
@@ -936,7 +936,7 @@
       "title": "🔥 Short Track — Women's 1000m 🏅",
       "desc": "More bumping & photo finishes.",
       "channel": "Peacock (live) / USA 6:15p",
-      "badge": "⚡",
+      "badge": "⛸️",
       "priority": "chaos",
       "done": false,
       "tags": [
@@ -1054,7 +1054,7 @@
       "title": "Freestyle — Women's HP Final 🏅",
       "desc": "Gu defends. USA could medal.",
       "channel": "NBC / Peacock",
-      "badge": "🏅",
+      "badge": "⛷️",
       "priority": "medal",
       "done": false,
       "tags": [
@@ -1070,7 +1070,7 @@
       "title": "🔥 Short Track — Relay/500m Finals 🏅",
       "desc": "Double feature of insanity.",
       "channel": "USA / Peacock",
-      "badge": "⚡",
+      "badge": "⛸️",
       "priority": "chaos",
       "done": false,
       "tags": [
@@ -1138,7 +1138,7 @@
       "title": "🔥 Freestyle — Men's Ski Cross 🏅",
       "desc": "Like SBX but on SKIS. Full contact.",
       "channel": "Peacock / USA 11:45a",
-      "badge": "⚡",
+      "badge": "⛷️",
       "priority": "chaos",
       "done": false,
       "tags": [
@@ -1218,7 +1218,7 @@
       "title": "🔥 Short Track — Men's 5000m Relay 🏅",
       "desc": "45 laps of relay mayhem.",
       "channel": "USA / Peacock",
-      "badge": "⚡",
+      "badge": "⛸️",
       "priority": "chaos",
       "done": false,
       "tags": [

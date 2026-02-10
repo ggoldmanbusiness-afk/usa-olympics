@@ -295,9 +295,9 @@ EVENT_WIKI_MAP = {
     "frs-w-aerials": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_aerials",
     "frs-m-aerials": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_aerials",
     "sj-m-nh": "Ski_jumping_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_normal_hill_individual",
-    "sb-w-bigair": "Snowboard_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_big_air",
-    "sb-w-hp-final": "Snowboard_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_halfpipe",
-    "sb-m-hp": "Snowboard_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_halfpipe",
+    "sb-w-bigair": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_big_air",
+    "sb-w-hp-final": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_halfpipe",
+    "sb-m-hp": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_halfpipe",
     "ss-m-1000": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_1000_metres",
     "ss-m-500": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_500_metres",
     "ss-w-500": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_500_metres",
@@ -340,21 +340,54 @@ NAME_TO_CODE.update({
 })
 
 
+def _extract_recap(page_html, winner_name=None, country_code=None):
+    """
+    Extract a short recap from the Wikipedia article's lead paragraph.
+    Returns a concise 1-line description or None.
+    """
+    if not page_html:
+        return None
+
+    # Strip style/script tags, then find <p> tags
+    clean = re.sub(r'<style[^>]*>.*?</style>', '', page_html, flags=re.DOTALL)
+    clean = re.sub(r'<script[^>]*>.*?</script>', '', clean, flags=re.DOTALL)
+    paragraphs = re.findall(r'<p[^>]*>(.*?)</p>', clean, re.DOTALL)
+
+    for p_html in paragraphs[:5]:
+        text = html_mod.unescape(re.sub(r'<[^>]+>', '', p_html)).strip()
+        text = re.sub(r'\s+', ' ', text)
+        text = re.sub(r'\[\d+\]', '', text)  # remove citation refs like [1]
+        if len(text) < 40:
+            continue
+
+        # Look for a sentence with a result keyword
+        sentences = re.split(r'(?<=\.)\s+', text)
+        for s in sentences:
+            s_lower = s.lower()
+            if any(kw in s_lower for kw in ['won', 'claimed', 'took', 'earned',
+                                              'captured', 'defeated', 'clinched']):
+                # Truncate to ~90 chars
+                if len(s) > 95:
+                    s = s[:92].rsplit(' ', 1)[0] + '...'
+                return s
+
+    return None
+
+
 def scrape_event_result(event_id):
     """
     Try to scrape the gold medalist from a Wikipedia event page.
-    Returns a result string like '🥇 GREMAUD (SUI)' or None.
-    
-    Uses multiple strategies with strict validation to avoid garbage results.
+    Returns (result, recap) tuple. Result like '🥇 GREMAUD (SUI)', recap is a short description.
+    Either or both may be None.
     """
     wiki_slug = EVENT_WIKI_MAP.get(event_id)
     if not wiki_slug:
-        return None
+        return None, None
 
     url = f"https://en.wikipedia.org/wiki/{wiki_slug}"
     html = fetch_url(url)
     if not html:
-        return None
+        return None, None
 
     # First check: does the page indicate the event is COMPLETED?
     # If the page says "will be held" but NOT "was held/was won", skip it
@@ -389,7 +422,7 @@ def scrape_event_result(event_id):
     # If page only has future tense and no past tense, event hasn't happened
     if has_future and not has_past:
         print(f"     ⏳ Event not completed yet (future tense detected)")
-        return None
+        return None, None
 
     # Strategy 1: Look for medalist infobox pattern
     # Wikipedia uses: {{MedalGold}} or class="gold" or similar
@@ -462,40 +495,42 @@ def scrape_event_result(event_id):
                         country_code = code_match.group(1)
 
     if not winner_name:
-        return None
-    
+        return None, _extract_recap(html)
+
     # Final validation: result must look like a real name
     # Reject single words, numbers, or very short strings
     surname = winner_name.split()[-1].upper()
     if len(surname) < 2 or surname.isdigit():
-        return None
-    
+        return None, None
+
     # Reject known garbage patterns
-    garbage = ['ROUND', 'FINAL', 'QUALIFICATION', 'TRAINING', 'OFFICIAL', 'SESSION', 
+    garbage = ['ROUND', 'FINAL', 'QUALIFICATION', 'TRAINING', 'OFFICIAL', 'SESSION',
                'MEDAL', 'EVENT', 'COMPETITION', 'OLYMPIC', 'WINTER', 'GAMES']
     if surname in garbage or winner_name.upper() in garbage:
-        return None
+        return None, None
+
+    recap = _extract_recap(html, winner_name, country_code)
 
     if country_code:
-        return f"🥇 {surname} ({country_code})"
+        return f"🥇 {surname} ({country_code})", recap
     else:
-        return f"🥇 {surname}"
+        return f"🥇 {surname}", recap
 
 
 def scrape_tournament_game_result(event_id):
     """
     Scrape a tournament game result (hockey/curling) from Wikipedia.
-    Returns a result string like 'USA wins 5-0' or 'Lost 2-3' or None.
+    Returns (result, recap) tuple. Result like 'USA wins 5-0'.
     """
     info = TOURNAMENT_GAME_MAP.get(event_id)
     if not info:
-        return None
+        return None, None
 
     wiki_slug, opponent = info
     url = f"https://en.wikipedia.org/wiki/{wiki_slug}"
     html = fetch_url(url)
     if not html:
-        return None
+        return None, None
 
     # Strip HTML tags, decode entities (&nbsp; &ndash; etc.), collapse whitespace
     text = re.sub(r'<[^>]+>', ' ', html)
@@ -525,19 +560,24 @@ def scrape_tournament_game_result(event_id):
                 opp_score = int(match.group(2))
 
             if usa_score > opp_score:
-                return f"USA wins {usa_score}-{opp_score}"
+                result = f"USA wins {usa_score}-{opp_score}"
+                recap = f"USA dominated {opponent} {usa_score}-{opp_score}."
             elif usa_score < opp_score:
-                return f"Lost {usa_score}-{opp_score}"
+                result = f"Lost {usa_score}-{opp_score}"
+                recap = f"Fell to {opponent} {usa_score}-{opp_score}."
             else:
-                return f"Draw {usa_score}-{opp_score}"
+                result = f"Draw {usa_score}-{opp_score}"
+                recap = f"Drew {opponent} {usa_score}-{opp_score}."
+            return result, recap
 
-    return None
+    return None, None
 
 
 def update_event_results(data):
     """
     For events marked done but without results, try to scrape Wikipedia.
     Checks medal events (🏅 in title) and tournament games (hockey/curling).
+    Also updates the event description with a short recap when available.
     """
     print("\n🔍 Checking for event results on Wikipedia...")
     for event in data["schedule"]:
@@ -551,10 +591,13 @@ def update_event_results(data):
         # Medal events — scrape for gold medalist
         if "🏅" in event.get("title", "") and eid in EVENT_WIKI_MAP:
             print(f"  📄 Checking {event['title'][:40]}...")
-            result = scrape_event_result(eid)
+            result, recap = scrape_event_result(eid)
             if result:
                 event["result"] = result
                 print(f"     → {result}")
+                if recap:
+                    event["desc"] = recap
+                    print(f"     📝 {recap}")
             else:
                 print(f"     → No result found yet")
             continue
@@ -562,10 +605,13 @@ def update_event_results(data):
         # Tournament games — scrape for score
         if eid in TOURNAMENT_GAME_MAP:
             print(f"  📄 Checking {event['title'][:40]}...")
-            result = scrape_tournament_game_result(eid)
+            result, recap = scrape_tournament_game_result(eid)
             if result:
                 event["result"] = result
                 print(f"     → {result}")
+                if recap:
+                    event["desc"] = recap
+                    print(f"     📝 {recap}")
             else:
                 print(f"     → No result found yet")
 
