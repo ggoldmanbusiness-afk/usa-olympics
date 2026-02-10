@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-10T16:58:18+00:00",
+  "last_updated": "2026-02-10T17:14:11+00:00",
   "events_completed": 24,
   "events_total": 116,
   "medal_table": [
@@ -463,7 +463,7 @@
     {
       "id": "luge-w-final",
       "date": "2026-02-10",
-      "time": "11:00 AM",
+      "time": "12:45 PM",
       "title": "Luge — Women's Singles Final 🏅",
       "desc": "Runs 3&4. Fastest track in years.",
       "channel": "USA / Peacock",
@@ -592,7 +592,7 @@
     {
       "id": "frs-m-moguls",
       "date": "2026-02-12",
-      "time": "6:45 AM",
+      "time": "6:15 AM",
       "title": "Freestyle — Men's Moguls Final 🏅",
       "desc": "Kingsbury for GOAT status.",
       "channel": "USA / Peacock",
@@ -626,7 +626,7 @@
     {
       "id": "luge-relay",
       "date": "2026-02-12",
-      "time": "12:45 PM",
+      "time": "12:30 PM",
       "title": "Luge — Team Relay 🏅",
       "desc": "Mixed relay on new track. Frantic tagging.",
       "channel": "NBC / Peacock",
@@ -807,7 +807,7 @@
     {
       "id": "alp-w-gs",
       "date": "2026-02-15",
-      "time": "4:00 AM",
+      "time": "7:20 AM",
       "title": "Alpine — Women's GS 🏅",
       "desc": "SHIFFRIN'S BEST EVENT. Redemption.",
       "channel": "Peacock (live) / NBC 7:20a",
@@ -1110,7 +1110,7 @@
     {
       "id": "frs-mixed-aerials",
       "date": "2026-02-19",
-      "time": "4:45 AM",
+      "time": "5:30 AM",
       "title": "Freestyle — Mixed Team Aerials 🏅",
       "desc": "Teams of 3 launch backflips. Scores combined.",
       "channel": "USA / Peacock",
@@ -1324,7 +1324,7 @@
     {
       "id": "close",
       "date": "2026-02-22",
-      "time": "1:00 PM",
+      "time": "2:30 PM",
       "title": "Closing Ceremony",
       "desc": "Verona Arena. Handoff to French Alps 2030.",
       "channel": "NBC / Peacock",

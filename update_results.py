@@ -692,6 +692,227 @@ def mark_past_events_done(data):
             continue
 
 
+YAHOO_SCHEDULE_URL = "https://sports.yahoo.com/olympics/article/2026-winter-olympics-milan-cortina-daily-schedule-streaming-tv-times-193334165.html"
+
+# Map our event ID prefixes to Yahoo sport header keywords
+SPORT_KEYWORDS = {
+    "alp": ["alpine skiing"],
+    "frs": ["freestyle skiing"],
+    "fs": ["figure skating"],
+    "hoc": ["hockey"],
+    "ss": ["speed skating"],
+    "st": ["short track"],
+    "sb": ["snowboarding"],
+    "sj": ["ski jumping"],
+    "luge": ["luge"],
+    "bob": ["bobsled"],
+    "skel": ["skeleton"],
+    "biat": ["biathlon"],
+    "xc": ["cross-country"],
+    "nc": ["nordic combined"],
+    "curl": ["curling"],
+    "skimo": ["ski mountaineering"],
+    "open": ["opening ceremony"],
+    "close": ["closing ceremony"],
+}
+
+# Map our event ID fragments to Yahoo event text keywords for matching
+EVENT_KEYWORDS = {
+    "m-dh": ["men's downhill"],
+    "w-dh": ["women's downhill"],
+    "w-sg": ["women's super-g"],
+    "w-gs": ["women's giant slalom"],
+    "w-sl": ["women's slalom"],
+    "m-moguls": ["men's moguls"],
+    "w-moguls": ["women's moguls"],
+    "w-slope": ["women's slopestyle"],
+    "m-slope": ["men's slopestyle"],
+    "w-bigair": ["women's big air"],
+    "m-bigair": ["men's big air"],
+    "w-hp": ["women's halfpipe"],
+    "m-hp": ["men's halfpipe"],
+    "w-aerials": ["women's aerials"],
+    "m-aerials": ["men's aerials"],
+    "m-nh": ["normal hill", "men's"],
+    "mixed-relay": ["mixed relay", "mixed team"],
+    "relay": ["relay"],
+    "m-1000": ["1000", "men's"],
+    "m-500": ["500", "men's"],
+    "w-500": ["500", "women's"],
+    "w-final": ["women's final"],
+    "m-free": ["men's free"],
+    "w-free": ["women's free"],
+    "id-free": ["ice dance"],
+    "mono": ["monobob"],
+    "gold": ["gold-medal", "gold medal"],
+}
+
+# Subsection keywords extracted from event IDs for disambiguation within a sport
+# Maps event ID fragments to Yahoo subsection headers (e.g., "Halfpipe", "Aerials")
+SUBSECTION_KEYWORDS = {
+    "hp": ["halfpipe"],
+    "aerials": ["aerials"],
+    "moguls": ["moguls"],
+    "slope": ["slopestyle"],
+    "bigair": ["big air"],
+    "dh": ["downhill"],
+    "sg": ["super-g"],
+    "gs": ["giant slalom"],
+    "sl": ["slalom"],
+}
+
+
+def scrape_schedule_times(data):
+    """
+    Scrape Yahoo Sports schedule page to sync event times.
+    Only updates future (not done) events where a match is found.
+    """
+    print("\n📅 Checking schedule times from Yahoo Sports...")
+    html = fetch_url(YAHOO_SCHEDULE_URL)
+    if not html:
+        print("  ⚠️  Could not fetch Yahoo schedule")
+        return
+
+    # Parse into text lines
+    text = re.sub(r'<br\s*/?>', '\n', html)
+    text = re.sub(r'</(p|h[1-6]|div|li)>', '\n', text)
+    text = re.sub(r'<[^>]+>', '', text)
+    text = html_mod.unescape(text)
+    lines = [l.strip() for l in text.split('\n') if l.strip()]
+
+    # Build a structured schedule: {date_str: [(time, sport, description), ...]}
+    MONTH_MAP = {"Feb.": "02", "February": "02", "Mar.": "03"}
+    yahoo_schedule = {}
+    current_date = None
+    current_sport = None
+    current_subsection = None
+
+    for line in lines:
+        # Day header: "Tuesday, Feb. 10, 2026 (Day 4)"
+        day_match = re.match(
+            r'(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),?\s+'
+            r'(Feb\.?|February|Mar\.?)\s+(\d+),?\s+2026',
+            line
+        )
+        if day_match:
+            month = MONTH_MAP.get(day_match.group(1), "02")
+            day = day_match.group(2).zfill(2)
+            current_date = f"2026-{month}-{day}"
+            current_sport = None
+            current_subsection = None
+            continue
+
+        if not current_date:
+            continue
+
+        # Sport header: a line that's just a sport name (no time)
+        if not re.search(r'\d{1,2}:\d{2}', line) and len(line) < 40:
+            sport_lower = line.lower().strip()
+            if any(kw in sport_lower for kws in SPORT_KEYWORDS.values() for kw in kws):
+                current_sport = sport_lower
+                current_subsection = None
+                continue
+            # Subsection header within a sport (e.g., "Halfpipe", "Aerials", "Giant slalom")
+            if current_sport:
+                for sub_kws in SUBSECTION_KEYWORDS.values():
+                    if any(kw in sport_lower for kw in sub_kws):
+                        current_subsection = sport_lower
+                        break
+                continue
+
+        # Time line: "4:30 a.m.: Women's qualifying..."
+        time_match = re.match(r'(\d{1,2}:\d{2}\s*(?:a\.m\.|p\.m\.))\s*:?\s*(.*)', line)
+        if time_match and current_sport:
+            raw_time = time_match.group(1)
+            desc = time_match.group(2).strip()
+            # Normalize time: "4:30 a.m." → "4:30 AM"
+            norm_time = raw_time.replace('a.m.', 'AM').replace('p.m.', 'PM')
+            norm_time = re.sub(r'\s+', ' ', norm_time).strip()
+
+            if current_date not in yahoo_schedule:
+                yahoo_schedule[current_date] = []
+            yahoo_schedule[current_date].append((norm_time, current_sport, desc.lower(), current_subsection))
+
+    if not yahoo_schedule:
+        print("  ⚠️  Could not parse any schedule data")
+        return
+
+    print(f"  ✅ Parsed schedule for {len(yahoo_schedule)} days")
+
+    # Now match our events to Yahoo entries
+    changes = 0
+    for event in data["schedule"]:
+        if event["done"]:
+            continue
+        if event["time"] == "TBD":
+            continue
+
+        eid = event["id"]
+        edate = event["date"]
+
+        if edate not in yahoo_schedule:
+            continue
+
+        # Determine sport from event ID prefix
+        prefix = eid.split("-")[0]
+        sport_kws = SPORT_KEYWORDS.get(prefix, [])
+
+        # Find matching Yahoo entries for this date + sport
+        candidates = []
+        for ytime, ysport, ydesc, ysubsection in yahoo_schedule[edate]:
+            if any(kw in ysport for kw in sport_kws):
+                candidates.append((ytime, ydesc, ysubsection))
+
+        if not candidates:
+            continue
+
+        # Filter candidates by subsection if the event ID maps to one
+        # e.g., frs-w-hp should only match entries under a "Halfpipe" subsection
+        eid_parts = eid.split("-")
+        event_subsection_kws = None
+        for part in eid_parts:
+            if part in SUBSECTION_KEYWORDS:
+                event_subsection_kws = SUBSECTION_KEYWORDS[part]
+                break
+
+        if event_subsection_kws:
+            subsection_filtered = [
+                (ytime, ydesc, ysub) for ytime, ydesc, ysub in candidates
+                if ysub and any(kw in ysub for kw in event_subsection_kws)
+            ]
+            # If we expected a specific subsection but found none, skip — don't
+            # fall back to unfiltered candidates (that causes cross-subsection matches)
+            if subsection_filtered:
+                candidates = subsection_filtered
+            else:
+                continue
+
+        # If only one candidate for this sport on this date, use it
+        matched_time = None
+        if len(candidates) == 1:
+            matched_time = candidates[0][0]
+        else:
+            # Try to match by event keywords
+            for suffix, kws in EVENT_KEYWORDS.items():
+                if suffix in eid:
+                    for ytime, ydesc, _ysub in candidates:
+                        if any(kw in ydesc for kw in kws):
+                            matched_time = ytime
+                            break
+                    if matched_time:
+                        break
+
+        if matched_time and matched_time != event["time"]:
+            print(f"  ⏰ {event['title'][:40]}: {event['time']} → {matched_time}")
+            event["time"] = matched_time
+            changes += 1
+
+    if changes:
+        print(f"  📅 Updated {changes} event time(s)")
+    else:
+        print("  ✅ All times match")
+
+
 def update_projections(data):
     """
     Dynamically update USA medal projections based on current pace.
@@ -786,7 +1007,10 @@ def main():
     # --- Step 2b: Try to fill in results for done medal events ---
     update_event_results(data)
 
-    # --- Step 2c: Update projections based on pace ---
+    # --- Step 2c: Sync schedule times from Yahoo ---
+    scrape_schedule_times(data)
+
+    # --- Step 2d: Update projections based on pace ---
     update_projections(data)
 
     # --- Step 3: Always update timestamp and save ---
