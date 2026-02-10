@@ -65,14 +65,22 @@ def parse_wiki_medal_table(html):
     if not html:
         return None
 
-    medals = []
-    # Find the medal table - look for wikitable with G S B Total columns
-    # Wikipedia tables have NOC, Gold, Silver, Bronze, Total
-    # We'll use regex to extract table rows
+    # Reverse lookup: country name -> IOC code
+    _name_to_code = {}
+    for code, name in COUNTRY_NAMES.items():
+        _name_to_code[name.lower()] = code
+    # Wikipedia variants that differ from COUNTRY_NAMES
+    _name_to_code["czech republic"] = "CZE"
+    _name_to_code["republic of korea"] = "KOR"
+    _name_to_code["people's republic of china"] = "CHN"
+    _name_to_code["great britain"] = "GBR"
+    _name_to_code["roc"] = "ROC"
 
-    # Find the main medal table (first wikitable sortable after "Medal table")
+    medals = []
+
+    # Find the first wikitable (may or may not have "sortable")
     table_match = re.search(
-        r'<table[^>]*class="[^"]*wikitable[^"]*sortable[^"]*"[^>]*>(.*?)</table>',
+        r'<table[^>]*class="[^"]*wikitable[^"]*"[^>]*>(.*?)</table>',
         html, re.DOTALL
     )
     if not table_match:
@@ -80,40 +88,54 @@ def parse_wiki_medal_table(html):
         return None
 
     table_html = table_match.group(1)
-
-    # Extract rows
     rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_html, re.DOTALL)
 
     for row in rows:
-        # Skip header rows and total row
-        if '<th' in row and 'Gold' in row:
-            continue
+        # Skip header rows and total/footer rows
         if 'Totals' in row or 'Total' in row:
             continue
 
-        # Extract cells
+        # Extract all cells (both <th> and <td>)
         cells = re.findall(r'<t[hd][^>]*>(.*?)</t[hd]>', row, re.DOTALL)
         if len(cells) < 5:
             continue
 
-        # Try to find country code/name
-        # Wikipedia uses format like: <span ...>Norway</span> (NOR) or similar
-        country_cell = cells[0] if cells else ""
-        # Try to extract 3-letter code
-        code_match = re.search(r'\(([A-Z]{3})\)', country_cell)
-        if not code_match:
-            # Try href-based detection
-            code_match = re.search(r'at_the_2026_Winter_Olympics"[^>]*>([A-Z]{3})', country_cell)
-        if not code_match:
-            # Try just finding a 3-letter code in a link
-            code_match = re.search(r'>([A-Z]{3})<', country_cell)
+        # Find the country name — look in the cell that contains a link
+        # to "X_at_the_2026_Winter_Olympics"
+        country_name = None
+        code = None
+        for cell in cells:
+            link_match = re.search(
+                r'at_the_2026_Winter_Olympics[^"]*"[^>]*>([^<]+)', cell
+            )
+            if link_match:
+                country_name = link_match.group(1).strip().rstrip('*')
+                break
 
-        if not code_match:
+        if not country_name:
+            # Fallback: strip HTML from each cell, find one that looks like a name
+            for cell in cells:
+                clean = html_mod.unescape(re.sub(r'<[^>]+>', '', cell)).strip().rstrip('*')
+                if clean and not clean.isdigit() and len(clean) > 2:
+                    country_name = clean
+                    break
+
+        if not country_name:
             continue
 
-        code = code_match.group(1)
+        # Resolve country name to IOC code
+        code = _name_to_code.get(country_name.lower())
+        if not code:
+            # Try partial match
+            for name_key, name_code in _name_to_code.items():
+                if name_key in country_name.lower() or country_name.lower() in name_key:
+                    code = name_code
+                    break
+        if not code:
+            print(f"  ⚠️  Unknown country: {country_name}")
+            continue
 
-        # Extract numbers - take last 4 numeric cells
+        # Extract medal numbers — last 4 digits in the row
         numbers = []
         for cell in cells:
             clean = re.sub(r'<[^>]+>', '', cell).strip()
@@ -123,11 +145,10 @@ def parse_wiki_medal_table(html):
         if len(numbers) < 4:
             continue
 
-        # Last 4 numbers should be: rank/gold/silver/bronze/total or gold/silver/bronze/total
         gold, silver, bronze, total = numbers[-4], numbers[-3], numbers[-2], numbers[-1]
 
         medals.append({
-            "country": COUNTRY_NAMES.get(code, code),
+            "country": COUNTRY_NAMES.get(code, country_name),
             "code": code,
             "flag": FLAG_MAP.get(code, "🏳️"),
             "gold": gold,
@@ -151,16 +172,33 @@ def parse_wiki_medal_table(html):
 
 
 def parse_events_completed(html):
-    """Try to extract number of completed events from Wikipedia."""
+    """
+    Extract number of completed events from Wikipedia medal table.
+    Uses total gold medals awarded as proxy (1 gold per event, with rare ties).
+    """
     if not html:
         return None
-    match = re.search(r'(\d+)\s*of\s*116\s*events?\s*completed', html, re.IGNORECASE)
-    if match:
-        return int(match.group(1))
-    # Try alternate pattern
-    match = re.search(r'Completed events\D*(\d+)', html, re.IGNORECASE)
-    if match:
-        return int(match.group(1))
+
+    # Find the wikitable
+    table_match = re.search(
+        r'<table[^>]*class="[^"]*wikitable[^"]*"[^>]*>(.*?)</table>',
+        html, re.DOTALL
+    )
+    if not table_match:
+        return None
+
+    # Find the Totals row
+    rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_match.group(1), re.DOTALL)
+    for row in rows:
+        if 'Totals' not in row and 'Total' not in row:
+            continue
+        cells = re.findall(r'<t[hd][^>]*>(.*?)</t[hd]>', row, re.DOTALL)
+        numbers = [int(re.sub(r'<[^>]+>', '', c).strip())
+                   for c in cells if re.sub(r'<[^>]+>', '', c).strip().isdigit()]
+        if numbers:
+            # First number is total golds = approximate events completed
+            return numbers[0]
+
     return None
 
 
@@ -274,9 +312,9 @@ EVENT_WIKI_MAP = {
     "frs-w-aerials": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_aerials",
     "frs-m-aerials": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_aerials",
     "sj-m-nh": "Ski_jumping_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_normal_hill_individual",
-    "sb-w-bigair": "Snowboard_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_big_air",
-    "sb-w-hp-final": "Snowboard_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_halfpipe",
-    "sb-m-hp": "Snowboard_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_halfpipe",
+    "sb-w-bigair": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_big_air",
+    "sb-w-hp-final": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_halfpipe",
+    "sb-m-hp": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_halfpipe",
     "ss-m-1000": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_1000_metres",
     "ss-m-500": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_500_metres",
     "ss-w-500": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_500_metres",
@@ -293,12 +331,24 @@ EVENT_WIKI_MAP = {
 # Tournament game events — maps event ID to (wiki_slug, opponent country name)
 # Used for group-stage / knockout games where we scrape a score, not a gold medalist.
 TOURNAMENT_GAME_MAP = {
+    # Women's hockey - group stage
     "hoc-w-fin": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Finland"),
     "hoc-w-sui": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Switzerland"),
     "hoc-w-can": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Canada"),
+    "hoc-w-cze": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Czechia"),
+    # Men's hockey - group stage
     "hoc-m-lat": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Latvia"),
     "hoc-m-den": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Denmark"),
+    "hoc-m-fin": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Finland"),
+    "hoc-m-swe": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Sweden"),
+    # Curling - mixed doubles
     "curl-md-ita": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Italy"),
+    "curl-md-nor": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Norway"),
+    "curl-md-swe": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Sweden"),
+    "curl-md-can": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Canada"),
+    "curl-md-chn": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "China"),
+    "curl-md-kor": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "South Korea"),
+    "curl-md-gbr": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Great Britain"),
 }
 
 # Reverse lookup: country name fragments to 3-letter codes
@@ -319,21 +369,54 @@ NAME_TO_CODE.update({
 })
 
 
+def _extract_recap(page_html, winner_name=None, country_code=None):
+    """
+    Extract a short recap from the Wikipedia article's lead paragraph.
+    Returns a concise 1-line description or None.
+    """
+    if not page_html:
+        return None
+
+    # Strip style/script tags, then find <p> tags
+    clean = re.sub(r'<style[^>]*>.*?</style>', '', page_html, flags=re.DOTALL)
+    clean = re.sub(r'<script[^>]*>.*?</script>', '', clean, flags=re.DOTALL)
+    paragraphs = re.findall(r'<p[^>]*>(.*?)</p>', clean, re.DOTALL)
+
+    for p_html in paragraphs[:5]:
+        text = html_mod.unescape(re.sub(r'<[^>]+>', '', p_html)).strip()
+        text = re.sub(r'\s+', ' ', text)
+        text = re.sub(r'\[\d+\]', '', text)  # remove citation refs like [1]
+        if len(text) < 40:
+            continue
+
+        # Look for a sentence with a result keyword
+        sentences = re.split(r'(?<=\.)\s+', text)
+        for s in sentences:
+            s_lower = s.lower()
+            if any(kw in s_lower for kw in ['won', 'claimed', 'took', 'earned',
+                                              'captured', 'defeated', 'clinched']):
+                # Truncate to ~90 chars
+                if len(s) > 95:
+                    s = s[:92].rsplit(' ', 1)[0] + '...'
+                return s
+
+    return None
+
+
 def scrape_event_result(event_id):
     """
     Try to scrape the gold medalist from a Wikipedia event page.
-    Returns a result string like '🥇 GREMAUD (SUI)' or None.
-    
-    Uses multiple strategies with strict validation to avoid garbage results.
+    Returns (result, recap) tuple. Result like '🥇 GREMAUD (SUI)', recap is a short description.
+    Either or both may be None.
     """
     wiki_slug = EVENT_WIKI_MAP.get(event_id)
     if not wiki_slug:
-        return None
+        return None, None
 
     url = f"https://en.wikipedia.org/wiki/{wiki_slug}"
     html = fetch_url(url)
     if not html:
-        return None
+        return None, None
 
     # First check: does the page indicate the event is COMPLETED?
     # If the page says "will be held" but NOT "was held/was won", skip it
@@ -368,7 +451,7 @@ def scrape_event_result(event_id):
     # If page only has future tense and no past tense, event hasn't happened
     if has_future and not has_past:
         print(f"     ⏳ Event not completed yet (future tense detected)")
-        return None
+        return None, None
 
     # Strategy 1: Look for medalist infobox pattern
     # Wikipedia uses: {{MedalGold}} or class="gold" or similar
@@ -441,40 +524,42 @@ def scrape_event_result(event_id):
                         country_code = code_match.group(1)
 
     if not winner_name:
-        return None
-    
+        return None, _extract_recap(html)
+
     # Final validation: result must look like a real name
     # Reject single words, numbers, or very short strings
     surname = winner_name.split()[-1].upper()
     if len(surname) < 2 or surname.isdigit():
-        return None
-    
+        return None, None
+
     # Reject known garbage patterns
-    garbage = ['ROUND', 'FINAL', 'QUALIFICATION', 'TRAINING', 'OFFICIAL', 'SESSION', 
+    garbage = ['ROUND', 'FINAL', 'QUALIFICATION', 'TRAINING', 'OFFICIAL', 'SESSION',
                'MEDAL', 'EVENT', 'COMPETITION', 'OLYMPIC', 'WINTER', 'GAMES']
     if surname in garbage or winner_name.upper() in garbage:
-        return None
+        return None, None
+
+    recap = _extract_recap(html, winner_name, country_code)
 
     if country_code:
-        return f"🥇 {surname} ({country_code})"
+        return f"🥇 {surname} ({country_code})", recap
     else:
-        return f"🥇 {surname}"
+        return f"🥇 {surname}", recap
 
 
 def scrape_tournament_game_result(event_id):
     """
     Scrape a tournament game result (hockey/curling) from Wikipedia.
-    Returns a result string like 'USA wins 5-0' or 'Lost 2-3' or None.
+    Returns (result, recap) tuple. Result like 'USA wins 5-0'.
     """
     info = TOURNAMENT_GAME_MAP.get(event_id)
     if not info:
-        return None
+        return None, None
 
     wiki_slug, opponent = info
     url = f"https://en.wikipedia.org/wiki/{wiki_slug}"
     html = fetch_url(url)
     if not html:
-        return None
+        return None, None
 
     # Strip HTML tags, decode entities (&nbsp; &ndash; etc.), collapse whitespace
     text = re.sub(r'<[^>]+>', ' ', html)
@@ -504,19 +589,24 @@ def scrape_tournament_game_result(event_id):
                 opp_score = int(match.group(2))
 
             if usa_score > opp_score:
-                return f"USA wins {usa_score}-{opp_score}"
+                result = f"USA wins {usa_score}-{opp_score}"
+                recap = f"USA dominated {opponent} {usa_score}-{opp_score}."
             elif usa_score < opp_score:
-                return f"Lost {usa_score}-{opp_score}"
+                result = f"Lost {usa_score}-{opp_score}"
+                recap = f"Fell to {opponent} {usa_score}-{opp_score}."
             else:
-                return f"Draw {usa_score}-{opp_score}"
+                result = f"Draw {usa_score}-{opp_score}"
+                recap = f"Drew {opponent} {usa_score}-{opp_score}."
+            return result, recap
 
-    return None
+    return None, None
 
 
 def update_event_results(data):
     """
     For events marked done but without results, try to scrape Wikipedia.
     Checks medal events (🏅 in title) and tournament games (hockey/curling).
+    Also updates the event description with a short recap when available.
     """
     print("\n🔍 Checking for event results on Wikipedia...")
     for event in data["schedule"]:
@@ -530,10 +620,13 @@ def update_event_results(data):
         # Medal events — scrape for gold medalist
         if "🏅" in event.get("title", "") and eid in EVENT_WIKI_MAP:
             print(f"  📄 Checking {event['title'][:40]}...")
-            result = scrape_event_result(eid)
+            result, recap = scrape_event_result(eid)
             if result:
                 event["result"] = result
                 print(f"     → {result}")
+                if recap:
+                    event["desc"] = recap
+                    print(f"     📝 {recap}")
             else:
                 print(f"     → No result found yet")
             continue
@@ -541,10 +634,13 @@ def update_event_results(data):
         # Tournament games — scrape for score
         if eid in TOURNAMENT_GAME_MAP:
             print(f"  📄 Checking {event['title'][:40]}...")
-            result = scrape_tournament_game_result(eid)
+            result, recap = scrape_tournament_game_result(eid)
             if result:
                 event["result"] = result
                 print(f"     → {result}")
+                if recap:
+                    event["desc"] = recap
+                    print(f"     📝 {recap}")
             else:
                 print(f"     → No result found yet")
 
@@ -596,6 +692,58 @@ def mark_past_events_done(data):
             continue
 
 
+def update_projections(data):
+    """
+    Dynamically update USA medal projections based on current pace.
+    Uses medals won so far and events remaining to project final totals.
+    """
+    events_done = data.get("events_completed", 0)
+    events_total = data.get("events_total", 116)
+    if events_done < 1:
+        return
+
+    usa = next((m for m in data.get("medal_table", []) if m["code"] == "USA"), None)
+    if not usa:
+        return
+
+    gold_now = usa["gold"]
+    total_now = usa["total"]
+    pct_done = events_done / events_total
+
+    # Project based on current pace, with slight regression toward pre-Games
+    # expectations (10G, 30T) to handle early variance
+    pre_gold = 10
+    pre_total = 30
+    # Weight current pace more as Games progress
+    pace_weight = min(pct_done * 1.5, 0.9)  # caps at 90% pace weight
+
+    pace_gold = gold_now / pct_done if pct_done > 0 else pre_gold
+    pace_total = total_now / pct_done if pct_done > 0 else pre_total
+
+    proj_gold = round(pace_weight * pace_gold + (1 - pace_weight) * pre_gold)
+    proj_total = round(pace_weight * pace_total + (1 - pace_weight) * pre_total)
+
+    # Projections can't be less than what's already won
+    proj_gold = max(proj_gold, gold_now)
+    proj_total = max(proj_total, total_now)
+
+    # Range: ±20% of mid projection, floored at current count
+    gold_low = max(round(proj_gold * 0.8), gold_now)
+    gold_high = round(proj_gold * 1.2)
+    total_low = max(round(proj_total * 0.8), total_now)
+    total_high = round(proj_total * 1.2)
+
+    data["usa_projection"] = {
+        "projected_gold_low": gold_low,
+        "projected_gold_high": gold_high,
+        "projected_gold_mid": proj_gold,
+        "projected_total_low": total_low,
+        "projected_total_high": total_high,
+        "projected_total_mid": proj_total,
+    }
+    print(f"\n📈 Updated projections: {proj_gold}G ({gold_low}-{gold_high}), {proj_total}T ({total_low}-{total_high})")
+
+
 def main():
     print("🏅 Olympics Tracker Update")
     print(f"   Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}")
@@ -637,6 +785,9 @@ def main():
 
     # --- Step 2b: Try to fill in results for done medal events ---
     update_event_results(data)
+
+    # --- Step 2c: Update projections based on pace ---
+    update_projections(data)
 
     # --- Step 3: Always update timestamp and save ---
     data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")

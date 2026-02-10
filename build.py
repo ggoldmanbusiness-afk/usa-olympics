@@ -70,6 +70,7 @@ def build():
         "{{SCHEDULE_JSON}}": schedule_js,
         "{{ATHLETES_JSON}}": athletes_js,
         "{{LAST_UPDATED}}": updated_display,
+        "{{LAST_UPDATED_ISO}}": last_updated,
     }
 
     for key, val in replacements.items():

@@ -6,7 +6,7 @@
 <title>🇺🇸 Team USA — Milano Cortina 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--red:#BF0A30;--red-light:#FEF2F2;--gold:#92710C;--gold-bg:#FFFBEB;--blue:#1E40AF;--blue-bg:#EFF6FF;--energy:#C2410C;--energy-bg:#FFF7ED;--text:#1A202C;--sub:#4A5568;--mute:#718096;--bg:#F7F8FA;--card:#fff;--bdr:rgba(0,0,0,.08)}
+:root{--red:#BF0A30;--red-light:#FEF2F2;--gold:#D4A843;--gold-bg:#FFFBEB;--blue:#1E40AF;--blue-bg:#EFF6FF;--energy:#C2410C;--energy-bg:#FFF7ED;--text:#1A202C;--sub:#4A5568;--mute:#718096;--bg:#F7F8FA;--card:#fff;--bdr:rgba(0,0,0,.08)}
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(--text);min-height:100vh}
 
 .hero{padding:2.5rem 1.5rem 1.5rem;background:linear-gradient(135deg,#0A1128,#1a1a3e 40%,#1B2A4A);text-align:center;color:#fff}
@@ -15,7 +15,7 @@
 .hero-sub{font-family:'Oswald',sans-serif;font-weight:300;font-size:.85rem;color:#B0C4DE;letter-spacing:.15em;text-transform:uppercase;margin-top:.25rem}
 .hero-medals{display:flex;justify-content:center;gap:1rem;margin-top:1rem;flex-wrap:wrap}
 .hm{display:flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.35rem .9rem;font-family:'Oswald',sans-serif;font-weight:500;font-size:.8rem;color:#fff}
-.hm .c{font-size:1.2rem;color:#D4A843}
+.hm .c{font-size:1.5rem;color:#D4A843}
 
 /* Tabs */
 .tabs{display:flex;gap:0;border-bottom:2px solid var(--bdr);background:var(--card)}
@@ -29,18 +29,20 @@
 .filters::-webkit-scrollbar{display:none}
 .fb{font-family:'Oswald',sans-serif;font-weight:400;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);color:var(--mute);border:1px solid var(--bdr);border-radius:100px;padding:.3rem .7rem;cursor:pointer;white-space:nowrap;transition:all .2s}
 .fb:hover{color:var(--text);border-color:rgba(0,0,0,.2)}.fb.active{background:var(--red);color:#fff;border-color:var(--red)}.fb.eb.active{background:var(--energy);border-color:var(--energy);color:#fff}
+.fb[data-count]::after{content:' ('attr(data-count)')';font-weight:400;opacity:.7}
 
 /* Schedule */
 .schedule{max-width:900px;margin:0 auto;padding:.6rem}
-.day-section{margin-bottom:1.2rem}
-.day-hdr{font-family:'Oswald',sans-serif;font-weight:600;font-size:1.1rem;text-transform:uppercase;letter-spacing:.1em;padding:.5rem 0;border-bottom:2px solid var(--red);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.day-section{margin-bottom:1.2rem}.day-section+.day-section{margin-top:1.8rem}
+.day-hdr{font-family:'Oswald',sans-serif;font-weight:600;font-size:1.1rem;text-transform:uppercase;letter-spacing:.1em;padding:.5rem 0;border-bottom:2px solid var(--red);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;scroll-margin-top:3.5rem}
 .day-hdr .dl{color:var(--red)}.day-hdr .dd{color:var(--text)}
 .day-hdr .dt{font-size:.55rem;background:var(--red);color:#fff;padding:.12rem .4rem;border-radius:100px;margin-left:auto}
 
-.ec{display:grid;grid-template-columns:60px 1fr auto;gap:.6rem;padding:.7rem;margin-bottom:.35rem;border-radius:8px;border-left:3px solid transparent;transition:all .2s;align-items:start;background:var(--card)}
-.ec:hover{background:#F0F2F5;transform:translateX(3px)}
-.ec.star{background:var(--red-light);border-left-color:var(--red)}.ec.medal{background:var(--gold-bg);border-left-color:var(--gold)}.ec.usa{background:var(--blue-bg);border-left-color:var(--blue)}.ec.chaos{background:var(--energy-bg);border-left-color:var(--energy)}.ec.done{opacity:.4;border-left-color:#D1D5DB;background:#F9FAFB}
-.et{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;color:var(--red);padding-top:.1rem}.ec.done .et{color:#9CA3AF}.ec.chaos .et{color:var(--energy)}
+.ec{display:grid;grid-template-columns:60px 1fr auto;gap:.6rem;padding:.7rem;margin-bottom:.35rem;border-radius:8px;border-left:3px solid transparent;transition:all .2s;align-items:start;background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.ec:hover{background:#F0F2F5;transform:translateX(3px);box-shadow:0 4px 12px rgba(0,0,0,.07)}
+.ec.e-medal{border-left-color:var(--gold)}.ec.e-usa{border-left-color:var(--red)}.ec.e-energy{border-left-color:var(--energy)}
+.ec.done{opacity:.55;border-left-color:#D1D5DB;background:#F9FAFB}.ec.done .eb2{opacity:1}
+.et{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;color:var(--red);padding-top:.1rem}.ec.done .et{color:#9CA3AF}
 .ei h3{font-family:'Oswald',sans-serif;font-weight:500;font-size:.9rem;text-transform:uppercase;letter-spacing:.03em;line-height:1.25;color:var(--text)}
 .ei .ed{font-size:.78rem;color:var(--sub);margin-top:.15rem;line-height:1.4}
 .etags{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.3rem}
@@ -48,7 +50,7 @@
 .tg-ch{background:#F3F4F6;color:#6B7280}.tg-e{background:#FED7AA;color:#9A3412}.tg-n{background:#E9D5FF;color:#7C3AED}.tg-u{background:#DBEAFE;color:#1E40AF}
 .eb2{font-size:1.3rem;text-align:center;min-width:28px}
 .rt{display:inline-block;font-family:'Oswald',sans-serif;font-size:.55rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .4rem;border-radius:3px;margin-left:.3rem;vertical-align:middle}
-.rt.rg{background:#D4A843;color:#fff}.rt.ri{background:#dc2626;color:#fff}
+.rt.rg{background:#D4A843;color:#fff}.rt.ri{background:#374151;color:#fff}
 
 /* Medal Table */
 .medal-section{max-width:900px;margin:0 auto;padding:.75rem}
@@ -98,7 +100,7 @@
 .ao{display:inline-block;font-family:'Oswald',sans-serif;font-weight:500;font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;padding:.12rem .45rem;border-radius:100px;margin-top:.35rem}
 .og{background:#D4A843;color:#fff}.om{background:var(--blue-bg);color:var(--blue);border:1px solid #93C5FD}.oo{background:#dc2626;color:#fff}
 
-.footer{text-align:center;padding:1.2rem;font-size:.65rem;color:#9CA3AF;font-family:'Oswald',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.footer{text-align:center;padding:1.5rem 1.2rem;font-size:.65rem;color:#9CA3AF;font-family:'Oswald',sans-serif;letter-spacing:.1em;text-transform:uppercase;border-top:1px solid var(--bdr)}
 .jump-today{position:fixed;bottom:1.2rem;right:1.2rem;z-index:200;font-family:'Oswald',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;border-radius:100px;padding:.6rem 1.2rem;cursor:pointer;box-shadow:0 4px 16px rgba(191,10,48,.35);transition:all .2s;display:none}
 .jump-today:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(191,10,48,.45)}
 .jump-today.visible{display:flex;align-items:center;gap:.4rem}
@@ -211,7 +213,7 @@
 </div>
 
 <button class="jump-today visible" id="jumpToday" onclick="jumpToToday()">📍 Jump to Today</button>
-<div class="footer">Stream everything on Peacock &bull; TV: NBC / USA Network / CNBC &bull; Updated {{LAST_UPDATED}}</div>
+<div class="footer">Stream everything on Peacock &bull; TV: NBC / USA Network / CNBC &bull; <span id="relTime">Updated {{LAST_UPDATED}}</span></div>
 
 <script>
 const RAW_SCHEDULE = {{SCHEDULE_JSON}};
@@ -262,9 +264,9 @@ function render(f='all'){
   if(f==='sliding')list=E.filter(x=>x.tags.includes('sliding'));
   let d='';
   list.forEach(ev=>{
-    if(ev.date!==d){d=ev.date;const t=ev.date.includes('Feb 9');const s=document.createElement('div');s.className='day-section';const h=document.createElement('div');h.className='day-hdr';h.innerHTML=`<span class="dl">${ev.date.split(' ')[0]}</span><span class="dd">${ev.date.split(' ').slice(1).join(' ')}</span>${t?'<span class="dt">TODAY</span>':''}`;s.appendChild(h);c.appendChild(s)}
+    if(ev.date!==d){d=ev.date;const now=new Date();const todayStr=DAYS[now.getDay()]+' '+MONTHS[now.getMonth()+1]+' '+now.getDate();const t=ev.date===todayStr;const s=document.createElement('div');s.className='day-section';const h=document.createElement('div');h.className='day-hdr';h.innerHTML=`<span class="dl">${ev.date.split(' ')[0]}</span><span class="dd">${ev.date.split(' ').slice(1).join(' ')}</span>${t?'<span class="dt">TODAY</span>':''}`;s.appendChild(h);c.appendChild(s)}
     const card=document.createElement('div');
-    card.className=`ec ${ev.done?'done':(ev.e&&!ev.done&&ev.p!=='star')?'chaos':ev.p}`;
+    const isMedal=ev.title.includes('🏅');const isUsa=ev.p==='star'||ev.p==='usa';const accent=ev.done?'done':isMedal?'e-medal':isUsa?'e-usa':ev.e?'e-energy':'';card.className=`ec${accent?' '+accent:''}`;
     let r='';if(ev.r){const g=ev.r.includes('GOLD')||ev.r.includes('🥇');r=`<span class="rt ${g?'rg':'ri'}">${ev.r}</span>`}
     let tg='<div class="etags">';tg+=`<span class="tg tg-ch">${ev.ch}</span>`;
     if(ev.e&&!ev.done)tg+=` <span class="tg tg-e">🔥 High Energy</span>`;
@@ -277,6 +279,11 @@ function render(f='all'){
 }
 
 // FILTERS
+function updateFilterCounts(){
+  const counts={all:E.length,star:E.filter(x=>x.p==='star'||x.p==='usa').length,chaos:E.filter(x=>x.e).length,upcoming:E.filter(x=>!x.done).length,hockey:E.filter(x=>x.tags.includes('hockey')).length,skating:E.filter(x=>x.tags.includes('skating')).length,skiing:E.filter(x=>x.tags.includes('skiing')).length,snowboard:E.filter(x=>x.tags.includes('snowboard')).length,sliding:E.filter(x=>x.tags.includes('sliding')).length};
+  document.querySelectorAll('.fb').forEach(b=>{const f=b.dataset.filter;const n=counts[f];if(n!==undefined)b.dataset.count=n;});
+}
+updateFilterCounts();
 document.querySelectorAll('.fb').forEach(b=>{b.addEventListener('click',()=>{
   document.querySelectorAll('.fb').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');render(b.dataset.filter);
@@ -323,6 +330,25 @@ function updateJumpBtn(){
 }
 window.addEventListener('scroll',updateJumpBtn);
 document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>setTimeout(updateJumpBtn,100)));
+
+// Relative "Updated X ago" in footer
+(function(){
+  const el=document.getElementById('relTime');
+  const raw='{{LAST_UPDATED_ISO}}';
+  function update(){
+    try{
+      const then=new Date(raw);if(isNaN(then))return;
+      const diff=Math.floor((Date.now()-then)/1000);
+      let txt;
+      if(diff<60)txt='just now';
+      else if(diff<3600){const m=Math.floor(diff/60);txt=m+' min'+(m>1?'s':'')+' ago';}
+      else if(diff<86400){const h=Math.floor(diff/3600);txt=h+' hr'+(h>1?'s':'')+' ago';}
+      else{const d=Math.floor(diff/86400);txt=d+' day'+(d>1?'s':'')+' ago';}
+      el.textContent='Updated '+txt;
+    }catch(e){}
+  }
+  update();setInterval(update,60000);
+})();
 
 </script>
 </body>
