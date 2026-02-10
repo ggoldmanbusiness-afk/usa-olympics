@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-10T19:54:40+00:00",
+  "last_updated": "2026-02-10T19:56:45+00:00",
   "events_completed": 27,
   "events_total": 116,
   "medal_table": [
@@ -438,22 +438,6 @@
       "result": "USA wins 5-0"
     },
     {
-      "id": "curl-md-gold",
-      "date": "2026-02-10",
-      "time": "12:05 PM",
-      "title": "Curling — Mixed Doubles Gold Medal 🏅",
-      "desc": "USA vs Sweden for gold! Dropkin & Thiesse go for it.",
-      "channel": "USA Network / Peacock",
-      "badge": "🥌",
-      "priority": "star",
-      "done": false,
-      "tags": [
-        "curling"
-      ],
-      "energy": true,
-      "result": null
-    },
-    {
       "id": "st-mixed-relay",
       "date": "2026-02-10",
       "time": "4:30 AM",
@@ -485,6 +469,22 @@
       ],
       "energy": true,
       "result": "🥇 RUUD"
+    },
+    {
+      "id": "curl-md-gold",
+      "date": "2026-02-10",
+      "time": "12:05 PM",
+      "title": "Curling — Mixed Doubles Gold Medal 🏅",
+      "desc": "USA vs Sweden for gold! Dropkin & Thiesse go for it.",
+      "channel": "USA Network / Peacock",
+      "badge": "🥌",
+      "priority": "star",
+      "done": false,
+      "tags": [
+        "curling"
+      ],
+      "energy": true,
+      "result": null
     },
     {
       "id": "luge-w-final",
