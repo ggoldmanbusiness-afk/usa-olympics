@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-02-10T11:42:07+00:00",
-  "events_completed": 18,
+  "last_updated": "2026-02-10T12:47:45+00:00",
+  "events_completed": 21,
   "events_total": 116,
   "medal_table": [
     {
       "country": "Norway",
       "code": "NOR",
       "flag": "🇳🇴",
-      "gold": 3,
+      "gold": 4,
       "silver": 1,
-      "bronze": 2,
-      "total": 6,
+      "bronze": 3,
+      "total": 8,
       "rank": 1
     },
     {
@@ -24,6 +24,16 @@
       "rank": 2
     },
     {
+      "country": "Italy",
+      "code": "ITA",
+      "flag": "🇮🇹",
+      "gold": 2,
+      "silver": 2,
+      "bronze": 6,
+      "total": 10,
+      "rank": 3
+    },
+    {
       "country": "Japan",
       "code": "JPN",
       "flag": "🇯🇵",
@@ -31,7 +41,17 @@
       "silver": 2,
       "bronze": 3,
       "total": 7,
-      "rank": 3
+      "rank": 4
+    },
+    {
+      "country": "Sweden",
+      "code": "SWE",
+      "flag": "🇸🇪",
+      "gold": 2,
+      "silver": 2,
+      "bronze": 1,
+      "total": 5,
+      "rank": 5
     },
     {
       "country": "Germany",
@@ -41,17 +61,17 @@
       "silver": 1,
       "bronze": 1,
       "total": 4,
-      "rank": 4
+      "rank": 6
     },
     {
       "country": "United States",
       "code": "USA",
       "flag": "🇺🇸",
       "gold": 2,
-      "silver": 0,
+      "silver": 1,
       "bronze": 0,
-      "total": 2,
-      "rank": 5
+      "total": 3,
+      "rank": 7
     },
     {
       "country": "Austria",
@@ -61,17 +81,7 @@
       "silver": 3,
       "bronze": 0,
       "total": 4,
-      "rank": 6
-    },
-    {
-      "country": "Italy",
-      "code": "ITA",
-      "flag": "🇮🇹",
-      "gold": 1,
-      "silver": 2,
-      "bronze": 6,
-      "total": 9,
-      "rank": 7
+      "rank": 8
     },
     {
       "country": "Czechia",
@@ -81,7 +91,7 @@
       "silver": 1,
       "bronze": 0,
       "total": 2,
-      "rank": 8
+      "rank": 9
     },
     {
       "country": "France",
@@ -91,7 +101,7 @@
       "silver": 1,
       "bronze": 0,
       "total": 2,
-      "rank": 9
+      "rank": 10
     },
     {
       "country": "Netherlands",
@@ -101,17 +111,17 @@
       "silver": 1,
       "bronze": 0,
       "total": 2,
-      "rank": 10
+      "rank": 11
     },
     {
-      "country": "Sweden",
-      "code": "SWE",
-      "flag": "🇸🇪",
-      "gold": 1,
+      "country": "Canada",
+      "code": "CAN",
+      "flag": "🇨🇦",
+      "gold": 0,
       "silver": 1,
-      "bronze": 0,
-      "total": 2,
-      "rank": 11
+      "bronze": 2,
+      "total": 3,
+      "rank": 12
     },
     {
       "country": "China",
@@ -121,7 +131,7 @@
       "silver": 1,
       "bronze": 1,
       "total": 2,
-      "rank": 12
+      "rank": 13
     },
     {
       "country": "South Korea",
@@ -131,7 +141,7 @@
       "silver": 1,
       "bronze": 1,
       "total": 2,
-      "rank": 13
+      "rank": 14
     },
     {
       "country": "New Zealand",
@@ -141,7 +151,7 @@
       "silver": 1,
       "bronze": 0,
       "total": 1,
-      "rank": 14
+      "rank": 15
     },
     {
       "country": "Poland",
@@ -151,7 +161,7 @@
       "silver": 1,
       "bronze": 0,
       "total": 1,
-      "rank": 15
+      "rank": 16
     },
     {
       "country": "Slovenia",
@@ -161,17 +171,17 @@
       "silver": 1,
       "bronze": 0,
       "total": 1,
-      "rank": 16
+      "rank": 17
     },
     {
-      "country": "Canada",
-      "code": "CAN",
-      "flag": "🇨🇦",
+      "country": "Belgium",
+      "code": "BEL",
+      "flag": "🇧🇪",
       "gold": 0,
       "silver": 0,
-      "bronze": 2,
-      "total": 2,
-      "rank": 17
+      "bronze": 1,
+      "total": 1,
+      "rank": 18
     },
     {
       "country": "Bulgaria",
@@ -181,13 +191,13 @@
       "silver": 0,
       "bronze": 1,
       "total": 1,
-      "rank": 18
+      "rank": 19
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 9,
-    "projected_gold_high": 13,
-    "projected_gold_mid": 11,
+    "projected_gold_low": 8,
+    "projected_gold_high": 12,
+    "projected_gold_mid": 10,
     "projected_total_low": 21,
     "projected_total_high": 31,
     "projected_total_mid": 26
