@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-10T01:35:43+00:00",
+  "last_updated": "2026-02-10T04:24:10+00:00",
   "events_completed": 18,
   "events_total": 116,
   "medal_table": [
@@ -185,12 +185,12 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 8,
-    "projected_gold_high": 12,
-    "projected_gold_mid": 10,
-    "projected_total_low": 25,
-    "projected_total_high": 32,
-    "projected_total_mid": 30
+    "projected_gold_low": 9,
+    "projected_gold_high": 13,
+    "projected_gold_mid": 11,
+    "projected_total_low": 21,
+    "projected_total_high": 31,
+    "projected_total_mid": 26
   },
   "schedule": [
     {
