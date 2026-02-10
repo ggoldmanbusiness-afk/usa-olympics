@@ -324,6 +324,8 @@ EVENT_WIKI_MAP = {
     "fs-id-free": "Figure_skating_at_the_2026_Winter_Olympics_%E2%80%93_Ice_dance",
     "fs-w-free": "Figure_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_singles",
     "bob-mono-final": "Bobsleigh_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_monobob",
+    "st-mixed-relay": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_2000_metre_relay",
+    "curl-md-gold": "Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament",
     "hoc-w-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament",
     "hoc-m-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament",
 }
