@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-02-10T12:47:45+00:00",
-  "events_completed": 21,
+  "last_updated": "2026-02-10T14:16:22+00:00",
+  "events_completed": 24,
   "events_total": 116,
   "medal_table": [
     {
       "country": "Norway",
       "code": "NOR",
       "flag": "🇳🇴",
-      "gold": 4,
+      "gold": 6,
       "silver": 1,
-      "bronze": 3,
-      "total": 8,
+      "bronze": 4,
+      "total": 11,
       "rank": 1
     },
     {
@@ -24,6 +24,16 @@
       "rank": 2
     },
     {
+      "country": "Austria",
+      "code": "AUT",
+      "flag": "🇦🇹",
+      "gold": 2,
+      "silver": 3,
+      "bronze": 0,
+      "total": 5,
+      "rank": 3
+    },
+    {
       "country": "Italy",
       "code": "ITA",
       "flag": "🇮🇹",
@@ -31,7 +41,7 @@
       "silver": 2,
       "bronze": 6,
       "total": 10,
-      "rank": 3
+      "rank": 4
     },
     {
       "country": "Japan",
@@ -41,7 +51,17 @@
       "silver": 2,
       "bronze": 3,
       "total": 7,
-      "rank": 4
+      "rank": 5
+    },
+    {
+      "country": "Germany",
+      "code": "GER",
+      "flag": "🇩🇪",
+      "gold": 2,
+      "silver": 2,
+      "bronze": 1,
+      "total": 5,
+      "rank": 6
     },
     {
       "country": "Sweden",
@@ -51,52 +71,32 @@
       "silver": 2,
       "bronze": 1,
       "total": 5,
-      "rank": 5
-    },
-    {
-      "country": "Germany",
-      "code": "GER",
-      "flag": "🇩🇪",
-      "gold": 2,
-      "silver": 1,
-      "bronze": 1,
-      "total": 4,
-      "rank": 6
+      "rank": 7
     },
     {
       "country": "United States",
       "code": "USA",
       "flag": "🇺🇸",
       "gold": 2,
-      "silver": 1,
-      "bronze": 0,
-      "total": 3,
-      "rank": 7
-    },
-    {
-      "country": "Austria",
-      "code": "AUT",
-      "flag": "🇦🇹",
-      "gold": 1,
-      "silver": 3,
-      "bronze": 0,
-      "total": 4,
+      "silver": 2,
+      "bronze": 1,
+      "total": 5,
       "rank": 8
-    },
-    {
-      "country": "Czechia",
-      "code": "CZE",
-      "flag": "🇨🇿",
-      "gold": 1,
-      "silver": 1,
-      "bronze": 0,
-      "total": 2,
-      "rank": 9
     },
     {
       "country": "France",
       "code": "FRA",
       "flag": "🇫🇷",
+      "gold": 1,
+      "silver": 2,
+      "bronze": 0,
+      "total": 3,
+      "rank": 9
+    },
+    {
+      "country": "Czechia",
+      "code": "CZE",
+      "flag": "🇨🇿",
       "gold": 1,
       "silver": 1,
       "bronze": 0,
@@ -134,9 +134,9 @@
       "rank": 13
     },
     {
-      "country": "South Korea",
-      "code": "KOR",
-      "flag": "🇰🇷",
+      "country": "New Zealand",
+      "code": "NZL",
+      "flag": "🇳🇿",
       "gold": 0,
       "silver": 1,
       "bronze": 1,
@@ -144,13 +144,13 @@
       "rank": 14
     },
     {
-      "country": "New Zealand",
-      "code": "NZL",
-      "flag": "🇳🇿",
+      "country": "South Korea",
+      "code": "KOR",
+      "flag": "🇰🇷",
       "gold": 0,
       "silver": 1,
-      "bronze": 0,
-      "total": 1,
+      "bronze": 1,
+      "total": 2,
       "rank": 15
     },
     {
@@ -198,9 +198,9 @@
     "projected_gold_low": 8,
     "projected_gold_high": 12,
     "projected_gold_mid": 10,
-    "projected_total_low": 21,
-    "projected_total_high": 31,
-    "projected_total_mid": 26
+    "projected_total_low": 22,
+    "projected_total_high": 34,
+    "projected_total_mid": 28
   },
   "schedule": [
     {
@@ -449,16 +449,16 @@
       "date": "2026-02-10",
       "time": "6:30 AM",
       "title": "Freestyle — Men's Slopestyle Final 🏅",
-      "desc": "USA's Ralph, Hall, Forehand for gold.",
+      "desc": "Birk Ruud of Norway, the 2022 Olympic champion in big air, won the event.",
       "channel": "USA / Peacock",
       "badge": "⛷️",
       "priority": "medal",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 RUUD"
     },
     {
       "id": "luge-w-final",
