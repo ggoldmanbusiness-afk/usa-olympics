@@ -1152,10 +1152,10 @@
       "date": "2026-02-19",
       "time": "TBD",
       "title": "Men's Hockey — Quarterfinals",
-      "desc": "Win or go home.",
+      "desc": "Single elimination begins.",
       "channel": "USA / Peacock",
       "badge": "🏒",
-      "priority": "star",
+      "priority": "normal",
       "done": false,
       "tags": [
         "hockey"
@@ -1184,10 +1184,10 @@
       "date": "2026-02-20",
       "time": "TBD",
       "title": "Men's Hockey — Semifinals",
-      "desc": "Two games from gold.",
+      "desc": "Semifinal round.",
       "channel": "NBC / Peacock",
       "badge": "🏒",
-      "priority": "star",
+      "priority": "normal",
       "done": false,
       "tags": [
         "hockey"
@@ -1200,10 +1200,10 @@
       "date": "2026-02-20",
       "time": "1:10 PM",
       "title": "Women's Hockey — Gold 🏅",
-      "desc": "USA vs Canada. Going for 3rd gold.",
+      "desc": "Gold medal game.",
       "channel": "NBC / Peacock",
       "badge": "🏒",
-      "priority": "star",
+      "priority": "medal",
       "done": false,
       "tags": [
         "hockey"
@@ -1300,10 +1300,10 @@
       "date": "2026-02-22",
       "time": "8:10 AM",
       "title": "Men's Hockey — Gold 🏅",
-      "desc": "THE event. NHL stars for gold.",
+      "desc": "Gold medal game.",
       "channel": "NBC / Peacock",
       "badge": "🏒",
-      "priority": "star",
+      "priority": "medal",
       "done": false,
       "tags": [
         "hockey"
