@@ -65,14 +65,22 @@ def parse_wiki_medal_table(html):
     if not html:
         return None
 
-    medals = []
-    # Find the medal table - look for wikitable with G S B Total columns
-    # Wikipedia tables have NOC, Gold, Silver, Bronze, Total
-    # We'll use regex to extract table rows
+    # Reverse lookup: country name -> IOC code
+    _name_to_code = {}
+    for code, name in COUNTRY_NAMES.items():
+        _name_to_code[name.lower()] = code
+    # Wikipedia variants that differ from COUNTRY_NAMES
+    _name_to_code["czech republic"] = "CZE"
+    _name_to_code["republic of korea"] = "KOR"
+    _name_to_code["people's republic of china"] = "CHN"
+    _name_to_code["great britain"] = "GBR"
+    _name_to_code["roc"] = "ROC"
 
-    # Find the main medal table (first wikitable sortable after "Medal table")
+    medals = []
+
+    # Find the first wikitable (may or may not have "sortable")
     table_match = re.search(
-        r'<table[^>]*class="[^"]*wikitable[^"]*sortable[^"]*"[^>]*>(.*?)</table>',
+        r'<table[^>]*class="[^"]*wikitable[^"]*"[^>]*>(.*?)</table>',
         html, re.DOTALL
     )
     if not table_match:
@@ -80,40 +88,54 @@ def parse_wiki_medal_table(html):
         return None
 
     table_html = table_match.group(1)
-
-    # Extract rows
     rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_html, re.DOTALL)
 
     for row in rows:
-        # Skip header rows and total row
-        if '<th' in row and 'Gold' in row:
-            continue
+        # Skip header rows and total/footer rows
         if 'Totals' in row or 'Total' in row:
             continue
 
-        # Extract cells
+        # Extract all cells (both <th> and <td>)
         cells = re.findall(r'<t[hd][^>]*>(.*?)</t[hd]>', row, re.DOTALL)
         if len(cells) < 5:
             continue
 
-        # Try to find country code/name
-        # Wikipedia uses format like: <span ...>Norway</span> (NOR) or similar
-        country_cell = cells[0] if cells else ""
-        # Try to extract 3-letter code
-        code_match = re.search(r'\(([A-Z]{3})\)', country_cell)
-        if not code_match:
-            # Try href-based detection
-            code_match = re.search(r'at_the_2026_Winter_Olympics"[^>]*>([A-Z]{3})', country_cell)
-        if not code_match:
-            # Try just finding a 3-letter code in a link
-            code_match = re.search(r'>([A-Z]{3})<', country_cell)
+        # Find the country name — look in the cell that contains a link
+        # to "X_at_the_2026_Winter_Olympics"
+        country_name = None
+        code = None
+        for cell in cells:
+            link_match = re.search(
+                r'at_the_2026_Winter_Olympics[^"]*"[^>]*>([^<]+)', cell
+            )
+            if link_match:
+                country_name = link_match.group(1).strip().rstrip('*')
+                break
 
-        if not code_match:
+        if not country_name:
+            # Fallback: strip HTML from each cell, find one that looks like a name
+            for cell in cells:
+                clean = html_mod.unescape(re.sub(r'<[^>]+>', '', cell)).strip().rstrip('*')
+                if clean and not clean.isdigit() and len(clean) > 2:
+                    country_name = clean
+                    break
+
+        if not country_name:
             continue
 
-        code = code_match.group(1)
+        # Resolve country name to IOC code
+        code = _name_to_code.get(country_name.lower())
+        if not code:
+            # Try partial match
+            for name_key, name_code in _name_to_code.items():
+                if name_key in country_name.lower() or country_name.lower() in name_key:
+                    code = name_code
+                    break
+        if not code:
+            print(f"  ⚠️  Unknown country: {country_name}")
+            continue
 
-        # Extract numbers - take last 4 numeric cells
+        # Extract medal numbers — last 4 digits in the row
         numbers = []
         for cell in cells:
             clean = re.sub(r'<[^>]+>', '', cell).strip()
@@ -123,11 +145,10 @@ def parse_wiki_medal_table(html):
         if len(numbers) < 4:
             continue
 
-        # Last 4 numbers should be: rank/gold/silver/bronze/total or gold/silver/bronze/total
         gold, silver, bronze, total = numbers[-4], numbers[-3], numbers[-2], numbers[-1]
 
         medals.append({
-            "country": COUNTRY_NAMES.get(code, code),
+            "country": COUNTRY_NAMES.get(code, country_name),
             "code": code,
             "flag": FLAG_MAP.get(code, "🏳️"),
             "gold": gold,
