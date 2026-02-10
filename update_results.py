@@ -820,6 +820,10 @@ def scrape_schedule_times(data):
                         break
                 continue
 
+        # Skip delayed rebroadcast lines: "airs at 4:30 p.m. on USA"
+        if re.search(r'airs at \d', line, re.IGNORECASE):
+            continue
+
         # Time line: "4:30 a.m.: Women's qualifying..."
         time_match = re.match(r'(\d{1,2}:\d{2}\s*(?:a\.m\.|p\.m\.))\s*:?\s*(.*)', line)
         if time_match and current_sport:
