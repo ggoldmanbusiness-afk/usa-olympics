@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-10T20:10:06+00:00",
+  "last_updated": "2026-02-10T20:34:58+00:00",
   "events_completed": 27,
   "events_total": 116,
   "medal_table": [
@@ -234,7 +234,7 @@
       "date": "2026-02-07",
       "time": "5:30 AM",
       "title": "Alpine — Men's Downhill 🏅",
-      "desc": "Franjo von Allmen of Switzerland won the event, Italian Giovanni Franzoni won the silver...",
+      "desc": "Franjo von Allmen of Switzerland won the event.",
       "channel": "USA / Peacock",
       "badge": "⛷️",
       "priority": "medal",
@@ -291,7 +291,7 @@
         "skiing"
       ],
       "energy": true,
-      "result": "🥇 JOHNSON / Vonn OUT"
+      "result": "🥇 JOHNSON (USA) / Vonn OUT"
     },
     {
       "id": "fs-team-final",
@@ -330,7 +330,7 @@
       "date": "2026-02-09",
       "time": "6:30 AM",
       "title": "Freestyle — Women's Slopestyle Final 🏅",
-      "desc": "Mathilde Gremaud of Switzerland successfully defended her 2022 title, and the 2022 silver...",
+      "desc": "Mathilde Gremaud of Switzerland successfully defended her 2022 title.",
       "channel": "USA / Peacock",
       "badge": "⛷️",
       "priority": "medal",
@@ -394,7 +394,7 @@
       "date": "2026-02-09",
       "time": "1:00 PM",
       "title": "Ski Jumping — Men's Normal Hill 🏅",
-      "desc": "Philipp Raimund of Germany won the event, Kacper Tomasiak of Poland won the silver medal,...",
+      "desc": "Philipp Raimund of Germany won the event.",
       "channel": "USA / Peacock",
       "badge": "⛷️",
       "priority": "medal",
@@ -442,7 +442,7 @@
       "date": "2026-02-10",
       "time": "4:30 AM",
       "title": "Short Track — Mixed Relay 🏅",
-      "desc": "Italy, with Elisa Confortola, Arianna Fontana, Chiara Betti, Thomas Nadalini, Pietro...",
+      "desc": "Italy, with Elisa Confortola, Arianna Fontana, Chiara Betti,...",
       "channel": "Peacock (live) / USA 11:30a",
       "badge": "⛸️",
       "priority": "chaos",
@@ -452,14 +452,14 @@
         "shorttrack"
       ],
       "energy": true,
-      "result": "🥇 CONFORTOLA"
+      "result": "🥇 CONFORTOLA (ITA)"
     },
     {
       "id": "frs-m-slope",
       "date": "2026-02-10",
       "time": "6:30 AM",
       "title": "Freestyle — Men's Slopestyle Final 🏅",
-      "desc": "Birk Ruud of Norway, the 2022 Olympic champion in big air, won the event.",
+      "desc": "Birk Ruud of Norway, the 2022 Olympic champion in big air, won the...",
       "channel": "USA / Peacock",
       "badge": "⛷️",
       "priority": "medal",
@@ -468,14 +468,14 @@
         "skiing"
       ],
       "energy": true,
-      "result": "🥇 RUUD"
+      "result": "🥇 RUUD (NOR)"
     },
     {
       "id": "curl-md-gold",
       "date": "2026-02-10",
       "time": "12:05 PM",
       "title": "Curling — Mixed Doubles Gold Medal 🏅",
-      "desc": "USA vs Sweden for gold! Dropkin & Thiesse go for it.",
+      "desc": "Fell to Sweden 5-6.",
       "channel": "USA Network / Peacock",
       "badge": "🥌",
       "priority": "star",
@@ -484,14 +484,14 @@
         "curling"
       ],
       "energy": true,
-      "result": null
+      "result": "Lost 5-6"
     },
     {
       "id": "luge-w-final",
       "date": "2026-02-10",
       "time": "12:45 PM",
       "title": "Luge — Women's Singles Final 🏅",
-      "desc": "Julia Taubitz of Germany won the event, Elīna Ieva Bota of Latvia won the silver medal, and...",
+      "desc": "Julia Taubitz of Germany won the event.",
       "channel": "USA / Peacock",
       "badge": "🛷",
       "priority": "medal",
@@ -500,7 +500,7 @@
         "sliding"
       ],
       "energy": true,
-      "result": "🥇 TAUBITZ"
+      "result": "🥇 TAUBITZ (GER)"
     },
     {
       "id": "fs-m-short",

@@ -325,9 +325,31 @@ EVENT_WIKI_MAP = {
     "fs-w-free": "Figure_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_singles",
     "bob-mono-final": "Bobsleigh_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_monobob",
     "st-mixed-relay": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_2000_metre_relay",
-    "curl-md-gold": "Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament",
-    "hoc-w-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament",
-    "hoc-m-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament",
+    # Snowboard cross
+    "sbx-m": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_snowboard_cross",
+    "sbx-w": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_snowboard_cross",
+    "sbx-mixed": "Snowboarding_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_team_snowboard_cross",
+    # Short track (individual/relay)
+    "st-500-1000": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_500_metres",
+    "st-m-1500": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_1500_metres",
+    "st-w-1000": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_1000_metres",
+    "st-relay-500": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_3000_metre_relay",
+    "st-m-5000relay": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_5000_metre_relay",
+    # Freestyle (new events)
+    "frs-w-dualmog": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_dual_moguls",
+    "frs-m-dualmog": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_dual_moguls",
+    "frs-m-skicross": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_ski_cross",
+    "frs-mixed-aerials": "Freestyle_skiing_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_team_aerials",
+    # Biathlon
+    "bia-w-pursuit": "Biathlon_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_pursuit",
+    "bia-m-mass": "Biathlon_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_mass_start",
+    "bia-w-mass": "Biathlon_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_mass_start",
+    # Skeleton
+    "skel-mixed": "Skeleton_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_team",
+    # Bobsled
+    "bob-2man": "Bobsleigh_at_the_2026_Winter_Olympics_%E2%80%93_Two-man",
+    # Speed skating
+    "ss-mass": "Speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_mass_start",
 }
 
 # Tournament game events — maps event ID to (wiki_slug, opponent country name)
@@ -351,6 +373,10 @@ TOURNAMENT_GAME_MAP = {
     "curl-md-chn": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "China"),
     "curl-md-kor": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "South Korea"),
     "curl-md-gbr": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Great Britain"),
+    "curl-md-gold": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Sweden"),
+    # Hockey gold medal games — opponents TBD until semifinals
+    "hoc-w-gold": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament", "Canada"),
+    "hoc-m-gold": ("Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament", "Canada"),
 }
 
 # Reverse lookup: country name fragments to 3-letter codes
@@ -368,6 +394,8 @@ NAME_TO_CODE.update({
     "austrian": "AUT", "swedish": "SWE", "canadian": "CAN", "korean": "KOR",
     "czech": "CZE", "slovenian": "SLO", "dutch": "NED", "finnish": "FIN",
     "british": "GBR", "australian": "AUS",
+    "the united states": "USA", "united states": "USA",
+    "switzerland": "SUI",
 })
 
 
@@ -397,9 +425,13 @@ def _extract_recap(page_html, winner_name=None, country_code=None):
             s_lower = s.lower()
             if any(kw in s_lower for kw in ['won', 'claimed', 'took', 'earned',
                                               'captured', 'defeated', 'clinched']):
-                # Truncate to ~90 chars
-                if len(s) > 95:
-                    s = s[:92].rsplit(' ', 1)[0] + '...'
+                # Trim to first clause about the winner — cut at first comma
+                # after the main subject to avoid listing all medalists
+                comma_idx = s.find(',')
+                if comma_idx > 20 and comma_idx < 70:
+                    s = s[:comma_idx] + '.'
+                elif len(s) > 70:
+                    s = s[:67].rsplit(' ', 1)[0] + '...'
                 return s
 
     return None
@@ -542,6 +574,33 @@ def scrape_event_result(event_id):
 
     recap = _extract_recap(html, winner_name, country_code)
 
+    # Fallback: if no country code yet, look for "Name of Country" in lead paragraph
+    if not country_code:
+        text_clean = re.sub(r'\s+', ' ', text_only)
+        # Pattern: "Surname of [the] Country" — try known country names
+        of_match = re.search(
+            rf'{re.escape(surname)}\s+of\s+(the\s+)?(\w+(?:\s+\w+)?(?:\s+\w+)?)',
+            text_clean, re.IGNORECASE
+        )
+        if of_match:
+            raw = ((of_match.group(1) or '') + of_match.group(2)).strip().lower()
+            # Try progressively shorter fragments
+            words = raw.split()
+            for n in range(len(words), 0, -1):
+                candidate = ' '.join(words[:n])
+                country_code = NAME_TO_CODE.get(candidate)
+                if country_code:
+                    break
+        # Also try: "Country, with Name" (team events)
+        if not country_code:
+            team_match = re.search(
+                rf'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*),?\s+with\s+.*?{re.escape(surname)}',
+                text_clean, re.IGNORECASE
+            )
+            if team_match:
+                country_word = team_match.group(1).strip().lower()
+                country_code = NAME_TO_CODE.get(country_word) or NAME_TO_CODE.get(country_word.split()[0])
+
     if country_code:
         return f"🥇 {surname} ({country_code})", recap
     else:
@@ -593,6 +652,43 @@ def scrape_tournament_game_result(event_id):
             if usa_score > opp_score:
                 result = f"USA wins {usa_score}-{opp_score}"
                 recap = f"USA dominated {opponent} {usa_score}-{opp_score}."
+            elif usa_score < opp_score:
+                result = f"Lost {usa_score}-{opp_score}"
+                recap = f"Fell to {opponent} {usa_score}-{opp_score}."
+            else:
+                result = f"Draw {usa_score}-{opp_score}"
+                recap = f"Drew {opponent} {usa_score}-{opp_score}."
+            return result, recap
+
+    # Fallback: curling table format — end-by-end scores then final total
+    # Scope to gold/final section to avoid matching earlier round-robin games
+    gold_section = text
+    for marker in ['Gold medal game', 'Gold_medal_game', 'Final ']:
+        idx = text.lower().rfind(marker.lower())
+        if idx != -1:
+            gold_section = text[idx:]
+            break
+
+    table_patterns = [
+        # Opponent row then USA row — grab last number before "United States"
+        (rf'{opponent}\s*\([^)]*\)(?:\s+\d+)*\s+(\d+)\s+United States\s*\([^)]*\)(?:\s+\d+)*\s+(\d+)', True),
+        # USA row then opponent row
+        (rf'United States\s*\([^)]*\)(?:\s+\d+)*\s+(\d+)\s+{opponent}\s*\([^)]*\)(?:\s+\d+)*\s+(\d+)', False),
+    ]
+
+    for pattern, opponent_first in table_patterns:
+        match = re.search(pattern, gold_section, re.IGNORECASE)
+        if match:
+            if opponent_first:
+                opp_score = int(match.group(1))
+                usa_score = int(match.group(2))
+            else:
+                usa_score = int(match.group(1))
+                opp_score = int(match.group(2))
+
+            if usa_score > opp_score:
+                result = f"USA wins {usa_score}-{opp_score}"
+                recap = f"USA beat {opponent} {usa_score}-{opp_score}."
             elif usa_score < opp_score:
                 result = f"Lost {usa_score}-{opp_score}"
                 recap = f"Fell to {opponent} {usa_score}-{opp_score}."
