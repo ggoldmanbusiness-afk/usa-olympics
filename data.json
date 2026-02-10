@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-10T21:34:30+00:00",
+  "last_updated": "2026-02-10T22:29:52+00:00",
   "events_completed": 27,
   "events_total": 116,
   "medal_table": [
@@ -523,16 +523,16 @@
       "date": "2026-02-10",
       "time": "2:10 PM",
       "title": "Women's Hockey: USA vs Canada",
-      "desc": "THE rivalry. Last 4 golds = USA vs CAN.",
+      "desc": "USA dominated Canada 5-0.",
       "channel": "USA / Peacock",
       "badge": "🏒",
       "priority": "star",
-      "done": false,
+      "done": true,
       "tags": [
         "hockey"
       ],
       "energy": true,
-      "result": null
+      "result": "USA wins 5-0"
     },
     {
       "id": "sb-w-hp-qual",
