@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-10T19:56:45+00:00",
+  "last_updated": "2026-02-10T20:10:06+00:00",
   "events_completed": 27,
   "events_total": 116,
   "medal_table": [
@@ -479,7 +479,7 @@
       "channel": "USA Network / Peacock",
       "badge": "🥌",
       "priority": "star",
-      "done": false,
+      "done": true,
       "tags": [
         "curling"
       ],
