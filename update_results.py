@@ -423,9 +423,13 @@ def _extract_recap(page_html, winner_name=None, country_code=None):
             s_lower = s.lower()
             if any(kw in s_lower for kw in ['won', 'claimed', 'took', 'earned',
                                               'captured', 'defeated', 'clinched']):
-                # Truncate to ~90 chars
-                if len(s) > 95:
-                    s = s[:92].rsplit(' ', 1)[0] + '...'
+                # Trim to first clause about the winner — cut at first comma
+                # after the main subject to avoid listing all medalists
+                comma_idx = s.find(',')
+                if comma_idx > 20 and comma_idx < 70:
+                    s = s[:comma_idx] + '.'
+                elif len(s) > 70:
+                    s = s[:67].rsplit(' ', 1)[0] + '...'
                 return s
 
     return None
