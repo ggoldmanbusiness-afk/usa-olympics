@@ -291,7 +291,7 @@
         "skiing"
       ],
       "energy": true,
-      "result": "🥇 JOHNSON / Vonn OUT"
+      "result": "🥇 JOHNSON (USA) / Vonn OUT"
     },
     {
       "id": "fs-team-final",
@@ -452,7 +452,7 @@
         "shorttrack"
       ],
       "energy": true,
-      "result": "🥇 CONFORTOLA"
+      "result": "🥇 CONFORTOLA (ITA)"
     },
     {
       "id": "frs-m-slope",
@@ -468,7 +468,7 @@
         "skiing"
       ],
       "energy": true,
-      "result": "🥇 RUUD"
+      "result": "🥇 RUUD (NOR)"
     },
     {
       "id": "curl-md-gold",
@@ -500,7 +500,7 @@
         "sliding"
       ],
       "energy": true,
-      "result": "🥇 TAUBITZ"
+      "result": "🥇 TAUBITZ (GER)"
     },
     {
       "id": "fs-m-short",

@@ -394,6 +394,8 @@ NAME_TO_CODE.update({
     "austrian": "AUT", "swedish": "SWE", "canadian": "CAN", "korean": "KOR",
     "czech": "CZE", "slovenian": "SLO", "dutch": "NED", "finnish": "FIN",
     "british": "GBR", "australian": "AUS",
+    "the united states": "USA", "united states": "USA",
+    "switzerland": "SUI",
 })
 
 
@@ -571,6 +573,33 @@ def scrape_event_result(event_id):
         return None, None
 
     recap = _extract_recap(html, winner_name, country_code)
+
+    # Fallback: if no country code yet, look for "Name of Country" in lead paragraph
+    if not country_code:
+        text_clean = re.sub(r'\s+', ' ', text_only)
+        # Pattern: "Surname of [the] Country" — try known country names
+        of_match = re.search(
+            rf'{re.escape(surname)}\s+of\s+(the\s+)?(\w+(?:\s+\w+)?(?:\s+\w+)?)',
+            text_clean, re.IGNORECASE
+        )
+        if of_match:
+            raw = ((of_match.group(1) or '') + of_match.group(2)).strip().lower()
+            # Try progressively shorter fragments
+            words = raw.split()
+            for n in range(len(words), 0, -1):
+                candidate = ' '.join(words[:n])
+                country_code = NAME_TO_CODE.get(candidate)
+                if country_code:
+                    break
+        # Also try: "Country, with Name" (team events)
+        if not country_code:
+            team_match = re.search(
+                rf'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*),?\s+with\s+.*?{re.escape(surname)}',
+                text_clean, re.IGNORECASE
+            )
+            if team_match:
+                country_word = team_match.group(1).strip().lower()
+                country_code = NAME_TO_CODE.get(country_word) or NAME_TO_CODE.get(country_word.split()[0])
 
     if country_code:
         return f"🥇 {surname} ({country_code})", recap
