@@ -325,7 +325,6 @@ EVENT_WIKI_MAP = {
     "fs-w-free": "Figure_skating_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_singles",
     "bob-mono-final": "Bobsleigh_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_monobob",
     "st-mixed-relay": "Short-track_speed_skating_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_2000_metre_relay",
-    "curl-md-gold": "Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament",
     "hoc-w-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Women%27s_tournament",
     "hoc-m-gold": "Ice_hockey_at_the_2026_Winter_Olympics_%E2%80%93_Men%27s_tournament",
 }
@@ -351,6 +350,7 @@ TOURNAMENT_GAME_MAP = {
     "curl-md-chn": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "China"),
     "curl-md-kor": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "South Korea"),
     "curl-md-gbr": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Great Britain"),
+    "curl-md-gold": ("Curling_at_the_2026_Winter_Olympics_%E2%80%93_Mixed_doubles_tournament", "Sweden"),
 }
 
 # Reverse lookup: country name fragments to 3-letter codes
@@ -593,6 +593,43 @@ def scrape_tournament_game_result(event_id):
             if usa_score > opp_score:
                 result = f"USA wins {usa_score}-{opp_score}"
                 recap = f"USA dominated {opponent} {usa_score}-{opp_score}."
+            elif usa_score < opp_score:
+                result = f"Lost {usa_score}-{opp_score}"
+                recap = f"Fell to {opponent} {usa_score}-{opp_score}."
+            else:
+                result = f"Draw {usa_score}-{opp_score}"
+                recap = f"Drew {opponent} {usa_score}-{opp_score}."
+            return result, recap
+
+    # Fallback: curling table format — end-by-end scores then final total
+    # Scope to gold/final section to avoid matching earlier round-robin games
+    gold_section = text
+    for marker in ['Gold medal game', 'Gold_medal_game', 'Final ']:
+        idx = text.lower().rfind(marker.lower())
+        if idx != -1:
+            gold_section = text[idx:]
+            break
+
+    table_patterns = [
+        # Opponent row then USA row — grab last number before "United States"
+        (rf'{opponent}\s*\([^)]*\)(?:\s+\d+)*\s+(\d+)\s+United States\s*\([^)]*\)(?:\s+\d+)*\s+(\d+)', True),
+        # USA row then opponent row
+        (rf'United States\s*\([^)]*\)(?:\s+\d+)*\s+(\d+)\s+{opponent}\s*\([^)]*\)(?:\s+\d+)*\s+(\d+)', False),
+    ]
+
+    for pattern, opponent_first in table_patterns:
+        match = re.search(pattern, gold_section, re.IGNORECASE)
+        if match:
+            if opponent_first:
+                opp_score = int(match.group(1))
+                usa_score = int(match.group(2))
+            else:
+                usa_score = int(match.group(1))
+                opp_score = int(match.group(2))
+
+            if usa_score > opp_score:
+                result = f"USA wins {usa_score}-{opp_score}"
+                recap = f"USA beat {opponent} {usa_score}-{opp_score}."
             elif usa_score < opp_score:
                 result = f"Lost {usa_score}-{opp_score}"
                 recap = f"Fell to {opponent} {usa_score}-{opp_score}."

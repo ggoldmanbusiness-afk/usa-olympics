@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-10T20:10:06+00:00",
+  "last_updated": "2026-02-10T20:14:00+00:00",
   "events_completed": 27,
   "events_total": 116,
   "medal_table": [
@@ -475,7 +475,7 @@
       "date": "2026-02-10",
       "time": "12:05 PM",
       "title": "Curling — Mixed Doubles Gold Medal 🏅",
-      "desc": "USA vs Sweden for gold! Dropkin & Thiesse go for it.",
+      "desc": "Fell to Sweden 5-6.",
       "channel": "USA Network / Peacock",
       "badge": "🥌",
       "priority": "star",
@@ -484,7 +484,7 @@
         "curling"
       ],
       "energy": true,
-      "result": null
+      "result": "Lost 5-6"
     },
     {
       "id": "luge-w-final",
