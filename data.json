@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-11T18:49:34+00:00",
-  "events_completed": 32,
+  "last_updated": "2026-02-11T19:50:03+00:00",
+  "events_completed": 34,
   "events_total": 116,
   "medal_table": [
     {
@@ -14,6 +14,26 @@
       "rank": 1
     },
     {
+      "country": "United States",
+      "code": "USA",
+      "flag": "🇺🇸",
+      "gold": 4,
+      "silver": 5,
+      "bronze": 2,
+      "total": 11,
+      "rank": 2
+    },
+    {
+      "country": "Italy",
+      "code": "ITA",
+      "flag": "🇮🇹",
+      "gold": 4,
+      "silver": 2,
+      "bronze": 7,
+      "total": 13,
+      "rank": 3
+    },
+    {
       "country": "Switzerland",
       "code": "CHE",
       "flag": "🇨🇭",
@@ -21,17 +41,7 @@
       "silver": 1,
       "bronze": 2,
       "total": 7,
-      "rank": 2
-    },
-    {
-      "country": "United States",
-      "code": "USA",
-      "flag": "🇺🇸",
-      "gold": 3,
-      "silver": 5,
-      "bronze": 2,
-      "total": 10,
-      "rank": 3
+      "rank": 4
     },
     {
       "country": "Germany",
@@ -39,18 +49,8 @@
       "flag": "🇩🇪",
       "gold": 3,
       "silver": 3,
-      "bronze": 1,
-      "total": 7,
-      "rank": 4
-    },
-    {
-      "country": "Italy",
-      "code": "ITA",
-      "flag": "🇮🇹",
-      "gold": 3,
-      "silver": 2,
-      "bronze": 7,
-      "total": 12,
+      "bronze": 2,
+      "total": 8,
       "rank": 5
     },
     {
@@ -68,9 +68,9 @@
       "code": "AUT",
       "flag": "🇦🇹",
       "gold": 2,
-      "silver": 4,
+      "silver": 5,
       "bronze": 1,
-      "total": 7,
+      "total": 8,
       "rank": 7
     },
     {
@@ -94,19 +94,19 @@
       "rank": 9
     },
     {
-      "country": "Czechia",
-      "code": "CZE",
-      "flag": "🇨🇿",
-      "gold": 1,
-      "silver": 1,
-      "bronze": 0,
-      "total": 2,
-      "rank": 10
-    },
-    {
       "country": "Netherlands",
       "code": "NED",
       "flag": "🇳🇱",
+      "gold": 1,
+      "silver": 2,
+      "bronze": 0,
+      "total": 3,
+      "rank": 10
+    },
+    {
+      "country": "Czechia",
+      "code": "CZE",
+      "flag": "🇨🇿",
       "gold": 1,
       "silver": 1,
       "bronze": 0,
@@ -139,8 +139,8 @@
       "flag": "🇨🇳",
       "gold": 0,
       "silver": 1,
-      "bronze": 1,
-      "total": 2,
+      "bronze": 2,
+      "total": 3,
       "rank": 14
     },
     {
@@ -215,9 +215,9 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 8,
-    "projected_gold_high": 12,
-    "projected_gold_mid": 10,
+    "projected_gold_low": 10,
+    "projected_gold_high": 14,
+    "projected_gold_mid": 12,
     "projected_total_low": 26,
     "projected_total_high": 40,
     "projected_total_mid": 33
@@ -582,16 +582,16 @@
       "date": "2026-02-11",
       "time": "12:30 PM",
       "title": "Speed Skating — Men's 1000m 🏅",
-      "desc": "Stolz medal shot.",
+      "desc": "Jordan Stolz of the United States won the event.",
       "channel": "NBC / Peacock",
       "badge": "⏱️",
       "priority": "medal",
-      "done": false,
+      "done": true,
       "tags": [
         "skating"
       ],
       "energy": false,
-      "result": null
+      "result": "🥇 STOLZ (USA)"
     },
     {
       "id": "fs-id-free",
