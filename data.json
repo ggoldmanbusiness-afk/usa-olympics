@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-11T21:25:58+00:00",
-  "events_completed": 34,
+  "last_updated": "2026-02-11T22:20:26+00:00",
+  "events_completed": 35,
   "events_total": 116,
   "medal_table": [
     {
@@ -18,9 +18,9 @@
       "code": "USA",
       "flag": "🇺🇸",
       "gold": 4,
-      "silver": 5,
+      "silver": 6,
       "bronze": 2,
-      "total": 11,
+      "total": 12,
       "rank": 2
     },
     {
@@ -54,6 +54,16 @@
       "rank": 5
     },
     {
+      "country": "France",
+      "code": "FRA",
+      "flag": "🇫🇷",
+      "gold": 3,
+      "silver": 3,
+      "bronze": 1,
+      "total": 7,
+      "rank": 6
+    },
+    {
       "country": "Sweden",
       "code": "SWE",
       "flag": "🇸🇪",
@@ -61,7 +71,7 @@
       "silver": 2,
       "bronze": 1,
       "total": 6,
-      "rank": 6
+      "rank": 7
     },
     {
       "country": "Austria",
@@ -71,16 +81,6 @@
       "silver": 5,
       "bronze": 1,
       "total": 8,
-      "rank": 7
-    },
-    {
-      "country": "France",
-      "code": "FRA",
-      "flag": "🇫🇷",
-      "gold": 2,
-      "silver": 3,
-      "bronze": 1,
-      "total": 6,
       "rank": 8
     },
     {
@@ -129,8 +129,8 @@
       "flag": "🇨🇦",
       "gold": 0,
       "silver": 1,
-      "bronze": 2,
-      "total": 3,
+      "bronze": 3,
+      "total": 4,
       "rank": 13
     },
     {
@@ -215,12 +215,12 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 10,
-    "projected_gold_high": 14,
-    "projected_gold_mid": 12,
-    "projected_total_low": 26,
-    "projected_total_high": 40,
-    "projected_total_mid": 33
+    "projected_gold_low": 9,
+    "projected_gold_high": 13,
+    "projected_gold_mid": 11,
+    "projected_total_low": 27,
+    "projected_total_high": 41,
+    "projected_total_mid": 34
   },
   "schedule": [
     {
@@ -598,7 +598,7 @@
       "date": "2026-02-11",
       "time": "1:30 PM",
       "title": "Figure Skating — Ice Dance 🏅",
-      "desc": "Chock/Bates for gold.",
+      "desc": "Laurence Fournier Beaudry and Guillaume Cizeron of France won the...",
       "channel": "NBC / Peacock",
       "badge": "⛸️",
       "priority": "star",
@@ -607,7 +607,7 @@
         "skating"
       ],
       "energy": false,
-      "result": null
+      "result": "🥇 CIZERON (FRA)"
     },
     {
       "id": "alp-w-sg",
