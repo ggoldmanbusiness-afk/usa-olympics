@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-11T10:39:19+00:00",
+  "last_updated": "2026-02-11T11:37:05+00:00",
   "events_completed": 27,
   "events_total": 116,
   "medal_table": [
@@ -543,7 +543,7 @@
       "channel": "USA / Peacock",
       "badge": "🏂",
       "priority": "usa",
-      "done": false,
+      "done": true,
       "tags": [
         "snowboard"
       ],
