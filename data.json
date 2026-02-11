@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-11T14:09:14+00:00",
-  "events_completed": 29,
+  "last_updated": "2026-02-11T15:50:43+00:00",
+  "events_completed": 31,
   "events_total": 116,
   "medal_table": [
     {
@@ -24,6 +24,16 @@
       "rank": 2
     },
     {
+      "country": "United States",
+      "code": "USA",
+      "flag": "🇺🇸",
+      "gold": 3,
+      "silver": 5,
+      "bronze": 2,
+      "total": 10,
+      "rank": 3
+    },
+    {
       "country": "Germany",
       "code": "GER",
       "flag": "🇩🇪",
@@ -31,7 +41,7 @@
       "silver": 2,
       "bronze": 1,
       "total": 6,
-      "rank": 3
+      "rank": 4
     },
     {
       "country": "Sweden",
@@ -41,16 +51,6 @@
       "silver": 2,
       "bronze": 1,
       "total": 6,
-      "rank": 4
-    },
-    {
-      "country": "United States",
-      "code": "USA",
-      "flag": "🇺🇸",
-      "gold": 2,
-      "silver": 4,
-      "bronze": 2,
-      "total": 8,
       "rank": 5
     },
     {
@@ -64,6 +64,16 @@
       "rank": 6
     },
     {
+      "country": "France",
+      "code": "FRA",
+      "flag": "🇫🇷",
+      "gold": 2,
+      "silver": 3,
+      "bronze": 1,
+      "total": 6,
+      "rank": 7
+    },
+    {
       "country": "Italy",
       "code": "ITA",
       "flag": "🇮🇹",
@@ -71,7 +81,7 @@
       "silver": 2,
       "bronze": 7,
       "total": 11,
-      "rank": 7
+      "rank": 8
     },
     {
       "country": "Japan",
@@ -81,16 +91,6 @@
       "silver": 2,
       "bronze": 4,
       "total": 8,
-      "rank": 8
-    },
-    {
-      "country": "France",
-      "code": "FRA",
-      "flag": "🇫🇷",
-      "gold": 1,
-      "silver": 2,
-      "bronze": 0,
-      "total": 3,
       "rank": 9
     },
     {
@@ -184,19 +184,19 @@
       "rank": 18
     },
     {
-      "country": "Belgium",
-      "code": "BEL",
-      "flag": "🇧🇪",
-      "gold": 0,
-      "silver": 0,
-      "bronze": 1,
-      "total": 1,
-      "rank": 19
-    },
-    {
       "country": "Bulgaria",
       "code": "BUL",
       "flag": "🇧🇬",
+      "gold": 0,
+      "silver": 0,
+      "bronze": 2,
+      "total": 2,
+      "rank": 19
+    },
+    {
+      "country": "Belgium",
+      "code": "BEL",
+      "flag": "🇧🇪",
       "gold": 0,
       "silver": 0,
       "bronze": 1,
@@ -215,12 +215,12 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 7,
-    "projected_gold_high": 11,
-    "projected_gold_mid": 9,
-    "projected_total_low": 25,
-    "projected_total_high": 37,
-    "projected_total_mid": 31
+    "projected_gold_low": 8,
+    "projected_gold_high": 12,
+    "projected_gold_mid": 10,
+    "projected_total_low": 26,
+    "projected_total_high": 40,
+    "projected_total_mid": 33
   },
   "schedule": [
     {
@@ -565,17 +565,17 @@
       "date": "2026-02-11",
       "time": "8:15 AM",
       "title": "Freestyle — Women's Moguls Final 🏅",
-      "desc": "Fast, technical, spectacular wipeouts.",
+      "desc": "Elizabeth Lemley of the United Stated won the event.",
       "channel": "USA / Peacock",
       "badge": "⛷️",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing",
         "moguls"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 LEMLEY"
     },
     {
       "id": "ss-m-1000",
