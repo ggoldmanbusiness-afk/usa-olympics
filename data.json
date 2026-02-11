@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-02-11T12:42:59+00:00",
-  "events_completed": 28,
+  "last_updated": "2026-02-11T14:09:14+00:00",
+  "events_completed": 29,
   "events_total": 116,
   "medal_table": [
     {
       "country": "Norway",
       "code": "NOR",
       "flag": "🇳🇴",
-      "gold": 6,
+      "gold": 7,
       "silver": 2,
       "bronze": 4,
-      "total": 12,
+      "total": 13,
       "rank": 1
     },
     {
@@ -58,9 +58,9 @@
       "code": "AUT",
       "flag": "🇦🇹",
       "gold": 2,
-      "silver": 3,
+      "silver": 4,
       "bronze": 0,
-      "total": 5,
+      "total": 6,
       "rank": 6
     },
     {
@@ -202,6 +202,16 @@
       "bronze": 1,
       "total": 1,
       "rank": 20
+    },
+    {
+      "country": "Finland",
+      "code": "FIN",
+      "flag": "🇫🇮",
+      "gold": 0,
+      "silver": 0,
+      "bronze": 1,
+      "total": 1,
+      "rank": 21
     }
   ],
   "usa_projection": {
