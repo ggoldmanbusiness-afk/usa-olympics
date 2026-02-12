@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-12T19:43:25+00:00",
-  "events_completed": 41,
+  "last_updated": "2026-02-12T20:23:37+00:00",
+  "events_completed": 42,
   "events_total": 116,
   "medal_table": [
     {
@@ -28,9 +28,9 @@
       "code": "USA",
       "flag": "🇺🇸",
       "gold": 4,
-      "silver": 6,
+      "silver": 7,
       "bronze": 3,
-      "total": 13,
+      "total": 14,
       "rank": 3
     },
     {
@@ -89,8 +89,8 @@
       "flag": "🇯🇵",
       "gold": 2,
       "silver": 2,
-      "bronze": 5,
-      "total": 9,
+      "bronze": 6,
+      "total": 10,
       "rank": 9
     },
     {
@@ -104,6 +104,16 @@
       "rank": 10
     },
     {
+      "country": "South Korea",
+      "code": "KOR",
+      "flag": "🇰🇷",
+      "gold": 1,
+      "silver": 1,
+      "bronze": 1,
+      "total": 3,
+      "rank": 11
+    },
+    {
       "country": "Czechia",
       "code": "CZE",
       "flag": "🇨🇿",
@@ -111,7 +121,7 @@
       "silver": 1,
       "bronze": 0,
       "total": 2,
-      "rank": 11
+      "rank": 12
     },
     {
       "country": "Slovenia",
@@ -121,7 +131,7 @@
       "silver": 1,
       "bronze": 0,
       "total": 2,
-      "rank": 12
+      "rank": 13
     },
     {
       "country": "Australia",
@@ -131,7 +141,7 @@
       "silver": 0,
       "bronze": 0,
       "total": 1,
-      "rank": 13
+      "rank": 14
     },
     {
       "country": "Canada",
@@ -141,7 +151,7 @@
       "silver": 3,
       "bronze": 3,
       "total": 6,
-      "rank": 14
+      "rank": 15
     },
     {
       "country": "China",
@@ -151,22 +161,12 @@
       "silver": 1,
       "bronze": 2,
       "total": 3,
-      "rank": 15
+      "rank": 16
     },
     {
       "country": "New Zealand",
       "code": "NZL",
       "flag": "🇳🇿",
-      "gold": 0,
-      "silver": 1,
-      "bronze": 1,
-      "total": 2,
-      "rank": 16
-    },
-    {
-      "country": "South Korea",
-      "code": "KOR",
-      "flag": "🇰🇷",
       "gold": 0,
       "silver": 1,
       "bronze": 1,
@@ -228,9 +228,9 @@
     "projected_gold_low": 9,
     "projected_gold_high": 13,
     "projected_gold_mid": 11,
-    "projected_total_low": 27,
-    "projected_total_high": 41,
-    "projected_total_mid": 34
+    "projected_total_low": 28,
+    "projected_total_high": 42,
+    "projected_total_mid": 35
   },
   "schedule": [
     {
@@ -690,16 +690,16 @@
       "date": "2026-02-12",
       "time": "1:30 PM",
       "title": "Snowboard — Women's HP Final 🏅",
-      "desc": "CHLOE KIM 3-peat attempt.",
+      "desc": "Choi Ga-on of South Korea won the event.",
       "channel": "NBC / Peacock",
       "badge": "🏂",
       "priority": "star",
-      "done": false,
+      "done": true,
       "tags": [
         "snowboard"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 GA-ON (KOR)"
     },
     {
       "id": "st-500-1000",
