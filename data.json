@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-12T22:22:01+00:00",
+  "last_updated": "2026-02-12T23:19:29+00:00",
   "events_completed": 44,
   "events_total": 116,
   "medal_table": [
@@ -723,16 +723,16 @@
       "date": "2026-02-12",
       "time": "3:10 PM",
       "title": "Men's Hockey: USA vs Latvia",
-      "desc": "USA debut! Matthews captain. NHL stars.",
+      "desc": "USA dominated Latvia 5-1.",
       "channel": "USA / Peacock",
       "badge": "🏒",
       "priority": "star",
-      "done": false,
+      "done": true,
       "tags": [
         "hockey"
       ],
       "energy": true,
-      "result": null
+      "result": "USA wins 5-1"
     },
     {
       "id": "sbx-w",
