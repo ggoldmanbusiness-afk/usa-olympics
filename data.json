@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-12T11:33:26+00:00",
-  "events_completed": 36,
+  "last_updated": "2026-02-12T12:39:44+00:00",
+  "events_completed": 37,
   "events_total": 116,
   "medal_table": [
     {
@@ -89,8 +89,8 @@
       "flag": "🇯🇵",
       "gold": 2,
       "silver": 2,
-      "bronze": 4,
-      "total": 8,
+      "bronze": 5,
+      "total": 9,
       "rank": 9
     },
     {
@@ -124,14 +124,24 @@
       "rank": 12
     },
     {
+      "country": "Australia",
+      "code": "AUS",
+      "flag": "🇦🇺",
+      "gold": 1,
+      "silver": 0,
+      "bronze": 0,
+      "total": 1,
+      "rank": 13
+    },
+    {
       "country": "Canada",
       "code": "CAN",
       "flag": "🇨🇦",
       "gold": 0,
-      "silver": 1,
+      "silver": 2,
       "bronze": 3,
-      "total": 4,
-      "rank": 13
+      "total": 5,
+      "rank": 14
     },
     {
       "country": "China",
@@ -141,7 +151,7 @@
       "silver": 1,
       "bronze": 2,
       "total": 3,
-      "rank": 14
+      "rank": 15
     },
     {
       "country": "New Zealand",
@@ -151,7 +161,7 @@
       "silver": 1,
       "bronze": 1,
       "total": 2,
-      "rank": 15
+      "rank": 16
     },
     {
       "country": "South Korea",
@@ -161,7 +171,7 @@
       "silver": 1,
       "bronze": 1,
       "total": 2,
-      "rank": 16
+      "rank": 17
     },
     {
       "country": "Latvia",
@@ -171,7 +181,7 @@
       "silver": 1,
       "bronze": 0,
       "total": 1,
-      "rank": 17
+      "rank": 18
     },
     {
       "country": "Poland",
@@ -181,7 +191,7 @@
       "silver": 1,
       "bronze": 0,
       "total": 1,
-      "rank": 18
+      "rank": 19
     },
     {
       "country": "Bulgaria",
@@ -191,7 +201,7 @@
       "silver": 0,
       "bronze": 2,
       "total": 2,
-      "rank": 19
+      "rank": 20
     },
     {
       "country": "Belgium",
@@ -201,7 +211,7 @@
       "silver": 0,
       "bronze": 1,
       "total": 1,
-      "rank": 20
+      "rank": 21
     },
     {
       "country": "Finland",
@@ -211,7 +221,7 @@
       "silver": 0,
       "bronze": 1,
       "total": 1,
-      "rank": 21
+      "rank": 22
     }
   ],
   "usa_projection": {
@@ -614,16 +624,16 @@
       "date": "2026-02-12",
       "time": "5:30 AM",
       "title": "Alpine — Women's Super-G 🏅",
-      "desc": "Shiffrin + Breezy. Two USA threats. 80mph, one run.",
+      "desc": "Federica Brignone of Italy won the event.",
       "channel": "USA / Peacock",
       "badge": "⛷️",
       "priority": "star",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 BRIGNONE (ITA)"
     },
     {
       "id": "frs-m-moguls",
