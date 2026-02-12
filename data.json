@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-12T14:03:44+00:00",
-  "events_completed": 38,
+  "last_updated": "2026-02-12T15:41:29+00:00",
+  "events_completed": 39,
   "events_total": 116,
   "medal_table": [
     {
@@ -54,6 +54,16 @@
       "rank": 5
     },
     {
+      "country": "Austria",
+      "code": "AUT",
+      "flag": "🇦🇹",
+      "gold": 3,
+      "silver": 5,
+      "bronze": 3,
+      "total": 11,
+      "rank": 6
+    },
+    {
       "country": "France",
       "code": "FRA",
       "flag": "🇫🇷",
@@ -61,7 +71,7 @@
       "silver": 4,
       "bronze": 1,
       "total": 8,
-      "rank": 6
+      "rank": 7
     },
     {
       "country": "Germany",
@@ -71,16 +81,6 @@
       "silver": 3,
       "bronze": 2,
       "total": 8,
-      "rank": 7
-    },
-    {
-      "country": "Austria",
-      "code": "AUT",
-      "flag": "🇦🇹",
-      "gold": 2,
-      "silver": 5,
-      "bronze": 2,
-      "total": 9,
       "rank": 8
     },
     {
@@ -138,9 +138,9 @@
       "code": "CAN",
       "flag": "🇨🇦",
       "gold": 0,
-      "silver": 2,
+      "silver": 3,
       "bronze": 3,
-      "total": 5,
+      "total": 6,
       "rank": 14
     },
     {
@@ -228,9 +228,9 @@
     "projected_gold_low": 9,
     "projected_gold_high": 13,
     "projected_gold_mid": 11,
-    "projected_total_low": 28,
-    "projected_total_high": 42,
-    "projected_total_mid": 35
+    "projected_total_low": 27,
+    "projected_total_high": 41,
+    "projected_total_mid": 34
   },
   "schedule": [
     {
@@ -640,7 +640,7 @@
       "date": "2026-02-12",
       "time": "6:15 AM",
       "title": "Freestyle — Men's Moguls Final 🏅",
-      "desc": "Kingsbury for GOAT status.",
+      "desc": "Cooper Woods-Topalovic of Australia won gold.",
       "channel": "USA / Peacock",
       "badge": "⛷️",
       "priority": "chaos",
@@ -650,24 +650,24 @@
         "moguls"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 WOODS-TOPALOVIC (AUS)"
     },
     {
       "id": "sbx-m",
       "date": "2026-02-12",
       "time": "8:35 AM",
       "title": "Snowboard Cross — Men's 🏅",
-      "desc": "4 riders, 1 mountain, constant contact.",
+      "desc": "Alessandro Hämmerle of Austria won the event and Éliot Grondin of...",
       "channel": "USA / Peacock",
       "badge": "🏂",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "snowboard",
         "boardercross"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 HÄMMERLE (AUT)"
     },
     {
       "id": "luge-relay",
