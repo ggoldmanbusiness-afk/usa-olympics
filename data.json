@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-12T18:46:39+00:00",
+  "last_updated": "2026-02-12T19:43:25+00:00",
   "events_completed": 41,
   "events_total": 116,
   "medal_table": [
@@ -674,16 +674,16 @@
       "date": "2026-02-12",
       "time": "12:30 PM",
       "title": "Luge — Team Relay 🏅",
-      "desc": "Mixed relay on new track. Frantic tagging.",
+      "desc": "Germany, represented by Julia Taubitz, Tobias Wendl / Tobias Arlt,...",
       "channel": "NBC / Peacock",
       "badge": "🛷",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "sliding"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 TAUBITZ"
     },
     {
       "id": "sb-w-hp-final",
