@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-12T12:39:44+00:00",
-  "events_completed": 37,
+  "last_updated": "2026-02-12T14:03:44+00:00",
+  "events_completed": 38,
   "events_total": 116,
   "medal_table": [
     {
@@ -29,9 +29,19 @@
       "flag": "🇺🇸",
       "gold": 4,
       "silver": 6,
-      "bronze": 2,
-      "total": 12,
+      "bronze": 3,
+      "total": 13,
       "rank": 3
+    },
+    {
+      "country": "Sweden",
+      "code": "SWE",
+      "flag": "🇸🇪",
+      "gold": 4,
+      "silver": 3,
+      "bronze": 1,
+      "total": 8,
+      "rank": 4
     },
     {
       "country": "Switzerland",
@@ -41,7 +51,7 @@
       "silver": 1,
       "bronze": 2,
       "total": 7,
-      "rank": 4
+      "rank": 5
     },
     {
       "country": "France",
@@ -51,7 +61,7 @@
       "silver": 4,
       "bronze": 1,
       "total": 8,
-      "rank": 5
+      "rank": 6
     },
     {
       "country": "Germany",
@@ -61,16 +71,6 @@
       "silver": 3,
       "bronze": 2,
       "total": 8,
-      "rank": 6
-    },
-    {
-      "country": "Sweden",
-      "code": "SWE",
-      "flag": "🇸🇪",
-      "gold": 3,
-      "silver": 2,
-      "bronze": 1,
-      "total": 6,
       "rank": 7
     },
     {
@@ -228,9 +228,9 @@
     "projected_gold_low": 9,
     "projected_gold_high": 13,
     "projected_gold_mid": 11,
-    "projected_total_low": 27,
-    "projected_total_high": 41,
-    "projected_total_mid": 34
+    "projected_total_low": 28,
+    "projected_total_high": 42,
+    "projected_total_mid": 35
   },
   "schedule": [
     {
@@ -644,7 +644,7 @@
       "channel": "USA / Peacock",
       "badge": "⛷️",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing",
         "moguls"
