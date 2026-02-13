@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-13T14:35:22+00:00",
+  "last_updated": "2026-02-13T15:32:27+00:00",
   "events_completed": 47,
   "events_total": 116,
   "medal_table": [
@@ -739,17 +739,17 @@
       "date": "2026-02-13",
       "time": "8:30 AM",
       "title": "Snowboard Cross — Women's 🏅",
-      "desc": "4 riders bombing with jumps & berms.",
+      "desc": "Josie Baff of Australia won the event.",
       "channel": "USA / Peacock",
       "badge": "🏂",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "snowboard",
         "boardercross"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 BAFF (AUS)"
     },
     {
       "id": "sb-m-hp",
