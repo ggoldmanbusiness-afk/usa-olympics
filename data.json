@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-14T22:13:04+00:00",
+  "last_updated": "2026-02-14T23:14:35+00:00",
   "events_completed": 59,
   "events_total": 116,
   "medal_table": [
@@ -859,16 +859,16 @@
       "date": "2026-02-14",
       "time": "3:10 PM",
       "title": "Men's Hockey: USA vs Denmark",
-      "desc": "Building for knockouts.",
+      "desc": "USA dominated Denmark 6-3.",
       "channel": "USA / Peacock",
       "badge": "🏒",
       "priority": "usa",
-      "done": false,
+      "done": true,
       "tags": [
         "hockey"
       ],
       "energy": false,
-      "result": null
+      "result": "USA wins 6-3"
     },
     {
       "id": "alp-w-gs",
