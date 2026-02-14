@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-14T20:14:32+00:00",
+  "last_updated": "2026-02-14T21:14:56+00:00",
   "events_completed": 58,
   "events_total": 116,
   "medal_table": [
@@ -846,7 +846,7 @@
       "channel": "USA / Peacock",
       "badge": "⛸️",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skating",
         "shorttrack"
