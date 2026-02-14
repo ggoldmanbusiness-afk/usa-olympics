@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-14T12:25:21+00:00",
-  "events_completed": 53,
+  "last_updated": "2026-02-14T13:37:40+00:00",
+  "events_completed": 54,
   "events_total": 116,
   "medal_table": [
     {
@@ -68,9 +68,9 @@
       "code": "CHE",
       "flag": "🇨🇭",
       "gold": 4,
-      "silver": 1,
-      "bronze": 2,
-      "total": 7,
+      "silver": 2,
+      "bronze": 3,
+      "total": 9,
       "rank": 7
     },
     {
