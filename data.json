@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-14T21:14:56+00:00",
-  "events_completed": 58,
+  "last_updated": "2026-02-14T22:13:04+00:00",
+  "events_completed": 59,
   "events_total": 116,
   "medal_table": [
     {
@@ -64,6 +64,16 @@
       "rank": 6
     },
     {
+      "country": "Netherlands",
+      "code": "NED",
+      "flag": "🇳🇱",
+      "gold": 4,
+      "silver": 4,
+      "bronze": 1,
+      "total": 9,
+      "rank": 7
+    },
+    {
       "country": "Sweden",
       "code": "SWE",
       "flag": "🇸🇪",
@@ -71,7 +81,7 @@
       "silver": 4,
       "bronze": 1,
       "total": 9,
-      "rank": 7
+      "rank": 8
     },
     {
       "country": "Switzerland",
@@ -81,7 +91,7 @@
       "silver": 2,
       "bronze": 3,
       "total": 9,
-      "rank": 8
+      "rank": 9
     },
     {
       "country": "Japan",
@@ -91,16 +101,6 @@
       "silver": 4,
       "bronze": 8,
       "total": 15,
-      "rank": 9
-    },
-    {
-      "country": "Netherlands",
-      "code": "NED",
-      "flag": "🇳🇱",
-      "gold": 3,
-      "silver": 4,
-      "bronze": 1,
-      "total": 8,
       "rank": 10
     },
     {
@@ -138,9 +138,9 @@
       "code": "KOR",
       "flag": "🇰🇷",
       "gold": 1,
-      "silver": 1,
+      "silver": 2,
       "bronze": 2,
-      "total": 4,
+      "total": 5,
       "rank": 14
     },
     {
@@ -194,9 +194,9 @@
       "rank": 19
     },
     {
-      "country": "New Zealand",
-      "code": "NZL",
-      "flag": "🇳🇿",
+      "country": "Latvia",
+      "code": "LAT",
+      "flag": "🇱🇻",
       "gold": 0,
       "silver": 1,
       "bronze": 1,
@@ -204,13 +204,13 @@
       "rank": 20
     },
     {
-      "country": "Latvia",
-      "code": "LAT",
-      "flag": "🇱🇻",
+      "country": "New Zealand",
+      "code": "NZL",
+      "flag": "🇳🇿",
       "gold": 0,
       "silver": 1,
-      "bronze": 0,
-      "total": 1,
+      "bronze": 1,
+      "total": 2,
       "rank": 21
     },
     {
@@ -852,7 +852,7 @@
         "shorttrack"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 SPECHENHAUSER"
     },
     {
       "id": "hoc-m-den",
