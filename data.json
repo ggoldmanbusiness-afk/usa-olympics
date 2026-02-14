@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-14T17:18:27+00:00",
+  "last_updated": "2026-02-14T18:19:51+00:00",
   "events_completed": 56,
   "events_total": 116,
   "medal_table": [
@@ -830,12 +830,12 @@
       "channel": "NBC / Peacock",
       "badge": "⏱️",
       "priority": "star",
-      "done": false,
+      "done": true,
       "tags": [
         "skating"
       ],
       "energy": false,
-      "result": null
+      "result": "🥇 STOLZ"
     },
     {
       "id": "st-m-1500",
