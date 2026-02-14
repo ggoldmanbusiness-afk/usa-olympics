@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-14T16:17:18+00:00",
-  "events_completed": 55,
+  "last_updated": "2026-02-14T17:18:27+00:00",
+  "events_completed": 56,
   "events_total": 116,
   "medal_table": [
     {
@@ -27,10 +27,10 @@
       "country": "United States",
       "code": "USA",
       "flag": "🇺🇸",
-      "gold": 4,
+      "gold": 5,
       "silver": 8,
       "bronze": 4,
-      "total": 16,
+      "total": 17,
       "rank": 3
     },
     {
@@ -84,6 +84,16 @@
       "rank": 8
     },
     {
+      "country": "Netherlands",
+      "code": "NED",
+      "flag": "🇳🇱",
+      "gold": 3,
+      "silver": 4,
+      "bronze": 1,
+      "total": 8,
+      "rank": 9
+    },
+    {
       "country": "Japan",
       "code": "JPN",
       "flag": "🇯🇵",
@@ -91,16 +101,6 @@
       "silver": 3,
       "bronze": 8,
       "total": 14,
-      "rank": 9
-    },
-    {
-      "country": "Netherlands",
-      "code": "NED",
-      "flag": "🇳🇱",
-      "gold": 3,
-      "silver": 3,
-      "bronze": 1,
-      "total": 7,
       "rank": 10
     },
     {
@@ -169,8 +169,8 @@
       "flag": "🇨🇦",
       "gold": 0,
       "silver": 3,
-      "bronze": 4,
-      "total": 7,
+      "bronze": 5,
+      "total": 8,
       "rank": 17
     },
     {
@@ -245,12 +245,12 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 7,
-    "projected_gold_high": 11,
-    "projected_gold_mid": 9,
-    "projected_total_low": 26,
-    "projected_total_high": 40,
-    "projected_total_mid": 33
+    "projected_gold_low": 8,
+    "projected_gold_high": 12,
+    "projected_gold_mid": 10,
+    "projected_total_low": 27,
+    "projected_total_high": 41,
+    "projected_total_mid": 34
   },
   "schedule": [
     {
