@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-15T14:18:22+00:00",
-  "events_completed": 66,
+  "last_updated": "2026-02-15T15:15:59+00:00",
+  "events_completed": 65,
   "events_total": 116,
   "medal_table": [
     {
@@ -8,19 +8,19 @@
       "code": "NOR",
       "flag": "🇳🇴",
       "gold": 11,
-      "silver": 7,
+      "silver": 6,
       "bronze": 7,
-      "total": 25,
+      "total": 24,
       "rank": 1
     },
     {
       "country": "Italy",
       "code": "ITA",
       "flag": "🇮🇹",
-      "gold": 9,
+      "gold": 8,
       "silver": 4,
       "bronze": 10,
-      "total": 23,
+      "total": 22,
       "rank": 2
     },
     {
@@ -219,8 +219,8 @@
       "flag": "🇫🇮",
       "gold": 0,
       "silver": 0,
-      "bronze": 4,
-      "total": 4,
+      "bronze": 3,
+      "total": 3,
       "rank": 22
     },
     {
@@ -875,7 +875,7 @@
       "date": "2026-02-15",
       "time": "7:20 AM",
       "title": "Alpine — Women's GS 🏅",
-      "desc": "SHIFFRIN'S BEST EVENT. Redemption.",
+      "desc": "Federica Brignone of Italy won the event.",
       "channel": "Peacock (live) / NBC 7:20a",
       "badge": "⛷️",
       "priority": "star",
@@ -884,7 +884,7 @@
         "skiing"
       ],
       "energy": false,
-      "result": null
+      "result": "🥇 BRIGNONE (ITA)"
     },
     {
       "id": "frs-m-dualmog",
@@ -930,13 +930,13 @@
       "channel": "Peacock / NBC",
       "badge": "🎯",
       "priority": "medal",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing",
         "biathlon"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 VITTOZZI"
     },
     {
       "id": "bob-mono-12",
