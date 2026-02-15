@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-15T16:17:16+00:00",
-  "events_completed": 65,
+  "last_updated": "2026-02-15T17:17:29+00:00",
+  "events_completed": 66,
   "events_total": 116,
   "medal_table": [
     {
@@ -34,6 +34,16 @@
       "rank": 3
     },
     {
+      "country": "Netherlands",
+      "code": "NED",
+      "flag": "🇳🇱",
+      "gold": 5,
+      "silver": 5,
+      "bronze": 1,
+      "total": 11,
+      "rank": 4
+    },
+    {
       "country": "Sweden",
       "code": "SWE",
       "flag": "🇸🇪",
@@ -41,7 +51,7 @@
       "silver": 5,
       "bronze": 1,
       "total": 11,
-      "rank": 4
+      "rank": 5
     },
     {
       "country": "France",
@@ -51,7 +61,7 @@
       "silver": 7,
       "bronze": 4,
       "total": 15,
-      "rank": 5
+      "rank": 6
     },
     {
       "country": "Austria",
@@ -61,7 +71,7 @@
       "silver": 6,
       "bronze": 3,
       "total": 13,
-      "rank": 6
+      "rank": 7
     },
     {
       "country": "Germany",
@@ -71,16 +81,6 @@
       "silver": 5,
       "bronze": 4,
       "total": 13,
-      "rank": 7
-    },
-    {
-      "country": "Netherlands",
-      "code": "NED",
-      "flag": "🇳🇱",
-      "gold": 4,
-      "silver": 4,
-      "bronze": 1,
-      "total": 9,
       "rank": 8
     },
     {
@@ -99,8 +99,8 @@
       "flag": "🇯🇵",
       "gold": 3,
       "silver": 5,
-      "bronze": 8,
-      "total": 16,
+      "bronze": 9,
+      "total": 17,
       "rank": 10
     },
     {
@@ -947,7 +947,7 @@
       "channel": "Peacock / USA",
       "badge": "🛷",
       "priority": "star",
-      "done": false,
+      "done": true,
       "tags": [
         "sliding",
         "bobsled"
