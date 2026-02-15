@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-15T17:17:29+00:00",
-  "events_completed": 66,
+  "last_updated": "2026-02-15T19:17:50+00:00",
+  "events_completed": 67,
   "events_total": 116,
   "medal_table": [
     {
@@ -64,22 +64,22 @@
       "rank": 6
     },
     {
+      "country": "Germany",
+      "code": "GER",
+      "flag": "🇩🇪",
+      "gold": 4,
+      "silver": 6,
+      "bronze": 5,
+      "total": 15,
+      "rank": 7
+    },
+    {
       "country": "Austria",
       "code": "AUT",
       "flag": "🇦🇹",
       "gold": 4,
       "silver": 6,
       "bronze": 3,
-      "total": 13,
-      "rank": 7
-    },
-    {
-      "country": "Germany",
-      "code": "GER",
-      "flag": "🇩🇪",
-      "gold": 4,
-      "silver": 5,
-      "bronze": 4,
       "total": 13,
       "rank": 8
     },
@@ -114,6 +114,16 @@
       "rank": 11
     },
     {
+      "country": "Great Britain",
+      "code": "GBR",
+      "flag": "🇬🇧",
+      "gold": 3,
+      "silver": 0,
+      "bronze": 0,
+      "total": 3,
+      "rank": 12
+    },
+    {
       "country": "Czechia",
       "code": "CZE",
       "flag": "🇨🇿",
@@ -121,7 +131,7 @@
       "silver": 2,
       "bronze": 0,
       "total": 4,
-      "rank": 12
+      "rank": 13
     },
     {
       "country": "Slovenia",
@@ -131,16 +141,6 @@
       "silver": 1,
       "bronze": 0,
       "total": 3,
-      "rank": 13
-    },
-    {
-      "country": "Great Britain",
-      "code": "GBR",
-      "flag": "🇬🇧",
-      "gold": 2,
-      "silver": 0,
-      "bronze": 0,
-      "total": 2,
       "rank": 14
     },
     {
@@ -960,33 +960,33 @@
       "date": "2026-02-15",
       "time": "11:03 AM",
       "title": "Speed Skating — Women's 500m 🏅",
-      "desc": "Erin Jackson defending gold.",
+      "desc": "Femke Kok of the Netherlands won the event.",
       "channel": "NBC / Peacock",
       "badge": "⏱️",
       "priority": "star",
-      "done": false,
+      "done": true,
       "tags": [
         "skating"
       ],
       "energy": false,
-      "result": null
+      "result": "🥇 KOK"
     },
     {
       "id": "skel-mixed",
       "date": "2026-02-15",
       "time": "12:00 PM",
       "title": "Skeleton — Mixed Team 🏅",
-      "desc": "NEW! Head-first at 80mph.",
+      "desc": "Tabitha Stoecker and Matt Weston of Great Britain won the event.",
       "channel": "Peacock / USA",
       "badge": "💀",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "sliding"
       ],
       "energy": true,
       "new_event": true,
-      "result": null
+      "result": "🥇 STOECKER"
     },
     {
       "id": "frs-w-bigair",
