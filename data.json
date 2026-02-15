@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-15T12:27:21+00:00",
-  "events_completed": 62,
+  "last_updated": "2026-02-15T13:38:15+00:00",
+  "events_completed": 63,
   "events_total": 116,
   "medal_table": [
     {
@@ -8,19 +8,19 @@
       "code": "NOR",
       "flag": "🇳🇴",
       "gold": 11,
-      "silver": 4,
+      "silver": 5,
       "bronze": 7,
-      "total": 22,
+      "total": 23,
       "rank": 1
     },
     {
       "country": "Italy",
       "code": "ITA",
       "flag": "🇮🇹",
-      "gold": 6,
+      "gold": 7,
       "silver": 3,
-      "bronze": 10,
-      "total": 19,
+      "bronze": 11,
+      "total": 21,
       "rank": 2
     },
     {
@@ -38,9 +38,9 @@
       "code": "SWE",
       "flag": "🇸🇪",
       "gold": 5,
-      "silver": 4,
+      "silver": 5,
       "bronze": 1,
-      "total": 10,
+      "total": 11,
       "rank": 4
     },
     {
