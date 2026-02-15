@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-02-15T11:15:00+00:00",
-  "events_completed": 61,
+  "last_updated": "2026-02-15T12:27:21+00:00",
+  "events_completed": 62,
   "events_total": 116,
   "medal_table": [
     {
       "country": "Norway",
       "code": "NOR",
       "flag": "🇳🇴",
-      "gold": 10,
+      "gold": 11,
       "silver": 4,
       "bronze": 7,
-      "total": 21,
+      "total": 22,
       "rank": 1
     },
     {
@@ -19,8 +19,8 @@
       "flag": "🇮🇹",
       "gold": 6,
       "silver": 3,
-      "bronze": 9,
-      "total": 18,
+      "bronze": 10,
+      "total": 19,
       "rank": 2
     },
     {
@@ -44,19 +44,19 @@
       "rank": 4
     },
     {
-      "country": "Austria",
-      "code": "AUT",
-      "flag": "🇦🇹",
-      "gold": 4,
-      "silver": 6,
-      "bronze": 3,
-      "total": 13,
-      "rank": 5
-    },
-    {
       "country": "France",
       "code": "FRA",
       "flag": "🇫🇷",
+      "gold": 4,
+      "silver": 7,
+      "bronze": 3,
+      "total": 14,
+      "rank": 5
+    },
+    {
+      "country": "Austria",
+      "code": "AUT",
+      "flag": "🇦🇹",
       "gold": 4,
       "silver": 6,
       "bronze": 3,
@@ -245,12 +245,12 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 8,
-    "projected_gold_high": 12,
-    "projected_gold_mid": 10,
-    "projected_total_low": 26,
-    "projected_total_high": 38,
-    "projected_total_mid": 32
+    "projected_gold_low": 7,
+    "projected_gold_high": 11,
+    "projected_gold_mid": 9,
+    "projected_total_low": 25,
+    "projected_total_high": 37,
+    "projected_total_mid": 31
   },
   "schedule": [
     {
