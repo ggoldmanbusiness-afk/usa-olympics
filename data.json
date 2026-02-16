@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-16T19:26:16+00:00",
-  "events_completed": 70,
+  "last_updated": "2026-02-16T20:19:03+00:00",
+  "events_completed": 71,
   "events_total": 116,
   "medal_table": [
     {
@@ -9,8 +9,8 @@
       "flag": "🇳🇴",
       "gold": 12,
       "silver": 7,
-      "bronze": 8,
-      "total": 27,
+      "bronze": 9,
+      "total": 28,
       "rank": 1
     },
     {
@@ -44,6 +44,16 @@
       "rank": 4
     },
     {
+      "country": "Austria",
+      "code": "AUT",
+      "flag": "🇦🇹",
+      "gold": 5,
+      "silver": 7,
+      "bronze": 3,
+      "total": 15,
+      "rank": 5
+    },
+    {
       "country": "Sweden",
       "code": "SWE",
       "flag": "🇸🇪",
@@ -51,7 +61,7 @@
       "silver": 5,
       "bronze": 1,
       "total": 11,
-      "rank": 5
+      "rank": 6
     },
     {
       "country": "Switzerland",
@@ -61,7 +71,7 @@
       "silver": 2,
       "bronze": 3,
       "total": 10,
-      "rank": 6
+      "rank": 7
     },
     {
       "country": "France",
@@ -71,16 +81,6 @@
       "silver": 7,
       "bronze": 4,
       "total": 15,
-      "rank": 7
-    },
-    {
-      "country": "Austria",
-      "code": "AUT",
-      "flag": "🇦🇹",
-      "gold": 4,
-      "silver": 7,
-      "bronze": 3,
-      "total": 14,
       "rank": 8
     },
     {
@@ -174,6 +174,16 @@
       "rank": 17
     },
     {
+      "country": "Poland",
+      "code": "POL",
+      "flag": "🇵🇱",
+      "gold": 0,
+      "silver": 3,
+      "bronze": 1,
+      "total": 4,
+      "rank": 18
+    },
+    {
       "country": "China",
       "code": "CHN",
       "flag": "🇨🇳",
@@ -181,16 +191,6 @@
       "silver": 2,
       "bronze": 2,
       "total": 4,
-      "rank": 18
-    },
-    {
-      "country": "Poland",
-      "code": "POL",
-      "flag": "🇵🇱",
-      "gold": 0,
-      "silver": 2,
-      "bronze": 1,
-      "total": 3,
       "rank": 19
     },
     {
@@ -993,17 +993,17 @@
       "date": "2026-02-16",
       "time": "1:30 PM",
       "title": "Freestyle — Women's Big Air Final 🏅",
-      "desc": "60ft in the air. Quadruple flips. Gu vs Gremaud.",
+      "desc": "There were only three events in 2025–26 FIS Freestyle Ski World...",
       "channel": "NBC / Peacock",
       "badge": "🎿",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing",
         "bigair"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 OLDHAM"
     },
     {
       "id": "st-w-1000",
