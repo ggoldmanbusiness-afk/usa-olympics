@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-16T20:19:03+00:00",
-  "events_completed": 71,
+  "last_updated": "2026-02-16T21:19:48+00:00",
+  "events_completed": 73,
   "events_total": 116,
   "medal_table": [
     {
@@ -19,9 +19,19 @@
       "flag": "🇮🇹",
       "gold": 8,
       "silver": 4,
-      "bronze": 10,
-      "total": 22,
+      "bronze": 11,
+      "total": 23,
       "rank": 2
+    },
+    {
+      "country": "United States",
+      "code": "USA",
+      "flag": "🇺🇸",
+      "gold": 6,
+      "silver": 8,
+      "bronze": 5,
+      "total": 19,
+      "rank": 3
     },
     {
       "country": "Netherlands",
@@ -31,16 +41,6 @@
       "silver": 5,
       "bronze": 1,
       "total": 12,
-      "rank": 3
-    },
-    {
-      "country": "United States",
-      "code": "USA",
-      "flag": "🇺🇸",
-      "gold": 5,
-      "silver": 8,
-      "bronze": 4,
-      "total": 17,
       "rank": 4
     },
     {
@@ -74,22 +74,22 @@
       "rank": 7
     },
     {
+      "country": "Germany",
+      "code": "GER",
+      "flag": "🇩🇪",
+      "gold": 4,
+      "silver": 7,
+      "bronze": 5,
+      "total": 16,
+      "rank": 8
+    },
+    {
       "country": "France",
       "code": "FRA",
       "flag": "🇫🇷",
       "gold": 4,
       "silver": 7,
       "bronze": 4,
-      "total": 15,
-      "rank": 8
-    },
-    {
-      "country": "Germany",
-      "code": "GER",
-      "flag": "🇩🇪",
-      "gold": 4,
-      "silver": 6,
-      "bronze": 5,
       "total": 15,
       "rank": 9
     },
@@ -124,6 +124,16 @@
       "rank": 12
     },
     {
+      "country": "Canada",
+      "code": "CAN",
+      "flag": "🇨🇦",
+      "gold": 2,
+      "silver": 4,
+      "bronze": 5,
+      "total": 11,
+      "rank": 13
+    },
+    {
       "country": "Czechia",
       "code": "CZE",
       "flag": "🇨🇿",
@@ -131,7 +141,7 @@
       "silver": 2,
       "bronze": 0,
       "total": 4,
-      "rank": 13
+      "rank": 14
     },
     {
       "country": "Slovenia",
@@ -141,16 +151,6 @@
       "silver": 1,
       "bronze": 1,
       "total": 4,
-      "rank": 14
-    },
-    {
-      "country": "Canada",
-      "code": "CAN",
-      "flag": "🇨🇦",
-      "gold": 1,
-      "silver": 4,
-      "bronze": 5,
-      "total": 10,
       "rank": 15
     },
     {
@@ -174,22 +174,22 @@
       "rank": 17
     },
     {
+      "country": "China",
+      "code": "CHN",
+      "flag": "🇨🇳",
+      "gold": 0,
+      "silver": 3,
+      "bronze": 2,
+      "total": 5,
+      "rank": 18
+    },
+    {
       "country": "Poland",
       "code": "POL",
       "flag": "🇵🇱",
       "gold": 0,
       "silver": 3,
       "bronze": 1,
-      "total": 4,
-      "rank": 18
-    },
-    {
-      "country": "China",
-      "code": "CHN",
-      "flag": "🇨🇳",
-      "gold": 0,
-      "silver": 2,
-      "bronze": 2,
       "total": 4,
       "rank": 19
     },
@@ -245,12 +245,12 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 6,
-    "projected_gold_high": 10,
-    "projected_gold_mid": 8,
-    "projected_total_low": 22,
-    "projected_total_high": 34,
-    "projected_total_mid": 28
+    "projected_gold_low": 8,
+    "projected_gold_high": 12,
+    "projected_gold_mid": 10,
+    "projected_total_low": 24,
+    "projected_total_high": 36,
+    "projected_total_mid": 30
   },
   "schedule": [
     {
