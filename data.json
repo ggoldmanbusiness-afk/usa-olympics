@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-16T21:19:48+00:00",
-  "events_completed": 73,
+  "last_updated": "2026-02-16T22:17:46+00:00",
+  "events_completed": 74,
   "events_total": 116,
   "medal_table": [
     {
@@ -79,8 +79,8 @@
       "flag": "🇩🇪",
       "gold": 4,
       "silver": 7,
-      "bronze": 5,
-      "total": 16,
+      "bronze": 6,
+      "total": 17,
       "rank": 8
     },
     {
@@ -97,10 +97,10 @@
       "country": "Japan",
       "code": "JPN",
       "flag": "🇯🇵",
-      "gold": 3,
+      "gold": 4,
       "silver": 5,
       "bronze": 9,
-      "total": 17,
+      "total": 18,
       "rank": 10
     },
     {
@@ -245,9 +245,9 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 8,
-    "projected_gold_high": 12,
-    "projected_gold_mid": 10,
+    "projected_gold_low": 7,
+    "projected_gold_high": 11,
+    "projected_gold_mid": 9,
     "projected_total_low": 24,
     "projected_total_high": 36,
     "projected_total_mid": 30
