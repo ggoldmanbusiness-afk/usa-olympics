@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-16T11:33:04+00:00",
-  "events_completed": 68,
+  "last_updated": "2026-02-16T12:38:32+00:00",
+  "events_completed": 69,
   "events_total": 116,
   "medal_table": [
     {
@@ -24,6 +24,16 @@
       "rank": 2
     },
     {
+      "country": "Netherlands",
+      "code": "NED",
+      "flag": "🇳🇱",
+      "gold": 6,
+      "silver": 5,
+      "bronze": 1,
+      "total": 12,
+      "rank": 3
+    },
+    {
       "country": "United States",
       "code": "USA",
       "flag": "🇺🇸",
@@ -31,16 +41,6 @@
       "silver": 8,
       "bronze": 4,
       "total": 17,
-      "rank": 3
-    },
-    {
-      "country": "Netherlands",
-      "code": "NED",
-      "flag": "🇳🇱",
-      "gold": 5,
-      "silver": 5,
-      "bronze": 1,
-      "total": 11,
       "rank": 4
     },
     {
@@ -148,9 +148,9 @@
       "code": "CAN",
       "flag": "🇨🇦",
       "gold": 1,
-      "silver": 3,
+      "silver": 4,
       "bronze": 5,
-      "total": 9,
+      "total": 10,
       "rank": 15
     },
     {
@@ -159,8 +159,8 @@
       "flag": "🇰🇷",
       "gold": 1,
       "silver": 2,
-      "bronze": 2,
-      "total": 5,
+      "bronze": 3,
+      "total": 6,
       "rank": 16
     },
     {
@@ -1010,7 +1010,7 @@
       "date": "2026-02-16",
       "time": "5:00 AM",
       "title": "Short Track — Women's 1000m 🏅",
-      "desc": "More bumping & photo finishes.",
+      "desc": "Xandra Velzeboer of the Netherlands won the event.",
       "channel": "Peacock (live) / USA 6:15p",
       "badge": "⛸️",
       "priority": "chaos",
@@ -1020,7 +1020,7 @@
         "shorttrack"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 VELZEBOER"
     },
     {
       "id": "bob-mono-final",
