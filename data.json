@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-16T18:29:57+00:00",
+  "last_updated": "2026-02-16T19:26:16+00:00",
   "events_completed": 70,
   "events_total": 116,
   "medal_table": [
@@ -1027,17 +1027,17 @@
       "date": "2026-02-16",
       "time": "12:00 PM",
       "title": "Bobsled — Monobob Final 🏅",
-      "desc": "Humphries for back-to-back gold!",
+      "desc": "Laura Nolte won the 2025–26 Bobsleigh World Cup.",
       "channel": "NBC / Peacock",
       "badge": "🛷",
       "priority": "star",
-      "done": false,
+      "done": true,
       "tags": [
         "sliding",
         "bobsled"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 NOLTE"
     },
     {
       "id": "alp-w-sl",
