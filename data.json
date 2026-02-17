@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-17T14:00:10+00:00",
-  "events_completed": 75,
+  "last_updated": "2026-02-17T15:41:32+00:00",
+  "events_completed": 77,
   "events_total": 116,
   "medal_table": [
     {
@@ -8,19 +8,19 @@
       "code": "NOR",
       "flag": "🇳🇴",
       "gold": 13,
-      "silver": 7,
+      "silver": 8,
       "bronze": 9,
-      "total": 29,
+      "total": 30,
       "rank": 1
     },
     {
       "country": "Italy",
       "code": "ITA",
       "flag": "🇮🇹",
-      "gold": 8,
+      "gold": 9,
       "silver": 4,
       "bronze": 11,
-      "total": 23,
+      "total": 24,
       "rank": 2
     },
     {
@@ -28,9 +28,9 @@
       "code": "USA",
       "flag": "🇺🇸",
       "gold": 6,
-      "silver": 8,
+      "silver": 9,
       "bronze": 5,
-      "total": 19,
+      "total": 20,
       "rank": 3
     },
     {
@@ -54,14 +54,24 @@
       "rank": 5
     },
     {
+      "country": "France",
+      "code": "FRA",
+      "flag": "🇫🇷",
+      "gold": 5,
+      "silver": 7,
+      "bronze": 4,
+      "total": 16,
+      "rank": 6
+    },
+    {
       "country": "Sweden",
       "code": "SWE",
       "flag": "🇸🇪",
       "gold": 5,
       "silver": 5,
-      "bronze": 1,
-      "total": 11,
-      "rank": 6
+      "bronze": 2,
+      "total": 12,
+      "rank": 7
     },
     {
       "country": "Switzerland",
@@ -71,7 +81,7 @@
       "silver": 2,
       "bronze": 3,
       "total": 10,
-      "rank": 7
+      "rank": 8
     },
     {
       "country": "Germany",
@@ -81,16 +91,6 @@
       "silver": 7,
       "bronze": 6,
       "total": 17,
-      "rank": 8
-    },
-    {
-      "country": "France",
-      "code": "FRA",
-      "flag": "🇫🇷",
-      "gold": 4,
-      "silver": 7,
-      "bronze": 4,
-      "total": 15,
       "rank": 9
     },
     {
@@ -179,8 +179,8 @@
       "flag": "🇨🇳",
       "gold": 0,
       "silver": 3,
-      "bronze": 2,
-      "total": 5,
+      "bronze": 3,
+      "total": 6,
       "rank": 18
     },
     {
@@ -248,9 +248,9 @@
     "projected_gold_low": 7,
     "projected_gold_high": 11,
     "projected_gold_mid": 9,
-    "projected_total_low": 23,
-    "projected_total_high": 35,
-    "projected_total_mid": 29
+    "projected_total_low": 24,
+    "projected_total_high": 36,
+    "projected_total_mid": 30
   },
   "schedule": [
     {
