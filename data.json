@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-17T18:42:26+00:00",
+  "last_updated": "2026-02-17T19:40:10+00:00",
   "events_completed": 78,
   "events_total": 116,
   "medal_table": [
@@ -1060,17 +1060,17 @@
       "date": "2026-02-17",
       "time": "1:00 PM",
       "title": "Bobsled — Two-Man Final 🏅",
-      "desc": "Speed + g-forces.",
+      "desc": "If they won, Friedrich would become the first person to win three...",
       "channel": "NBC / Peacock",
       "badge": "🛷",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "sliding",
         "bobsled"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 LOCHNER"
     },
     {
       "id": "frs-m-bigair",
