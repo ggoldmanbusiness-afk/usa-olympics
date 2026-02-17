@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-02-17T19:40:10+00:00",
-  "events_completed": 78,
+  "last_updated": "2026-02-17T20:26:10+00:00",
+  "events_completed": 79,
   "events_total": 116,
   "medal_table": [
     {
       "country": "Norway",
       "code": "NOR",
       "flag": "🇳🇴",
-      "gold": 13,
+      "gold": 14,
       "silver": 8,
       "bronze": 9,
-      "total": 30,
+      "total": 31,
       "rank": 1
     },
     {
@@ -28,9 +28,9 @@
       "code": "USA",
       "flag": "🇺🇸",
       "gold": 6,
-      "silver": 9,
+      "silver": 10,
       "bronze": 5,
-      "total": 20,
+      "total": 21,
       "rank": 3
     },
     {
@@ -49,8 +49,8 @@
       "flag": "🇦🇹",
       "gold": 5,
       "silver": 8,
-      "bronze": 3,
-      "total": 16,
+      "bronze": 4,
+      "total": 17,
       "rank": 5
     },
     {
@@ -248,9 +248,9 @@
     "projected_gold_low": 7,
     "projected_gold_high": 11,
     "projected_gold_mid": 9,
-    "projected_total_low": 24,
-    "projected_total_high": 36,
-    "projected_total_mid": 30
+    "projected_total_low": 25,
+    "projected_total_high": 37,
+    "projected_total_mid": 31
   },
   "schedule": [
     {
@@ -1081,7 +1081,7 @@
       "channel": "NBC / Peacock",
       "badge": "🎿",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing",
         "bigair"
