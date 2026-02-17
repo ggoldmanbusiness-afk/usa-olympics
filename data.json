@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-17T15:41:32+00:00",
-  "events_completed": 77,
+  "last_updated": "2026-02-17T16:45:00+00:00",
+  "events_completed": 78,
   "events_total": 116,
   "medal_table": [
     {
@@ -38,9 +38,9 @@
       "code": "NED",
       "flag": "🇳🇱",
       "gold": 6,
-      "silver": 5,
+      "silver": 6,
       "bronze": 1,
-      "total": 12,
+      "total": 13,
       "rank": 4
     },
     {
@@ -99,9 +99,19 @@
       "flag": "🇯🇵",
       "gold": 4,
       "silver": 5,
-      "bronze": 9,
-      "total": 18,
+      "bronze": 10,
+      "total": 19,
       "rank": 10
+    },
+    {
+      "country": "Canada",
+      "code": "CAN",
+      "flag": "🇨🇦",
+      "gold": 3,
+      "silver": 4,
+      "bronze": 5,
+      "total": 12,
+      "rank": 11
     },
     {
       "country": "Australia",
@@ -111,7 +121,7 @@
       "silver": 1,
       "bronze": 1,
       "total": 5,
-      "rank": 11
+      "rank": 12
     },
     {
       "country": "Great Britain",
@@ -121,16 +131,6 @@
       "silver": 0,
       "bronze": 0,
       "total": 3,
-      "rank": 12
-    },
-    {
-      "country": "Canada",
-      "code": "CAN",
-      "flag": "🇨🇦",
-      "gold": 2,
-      "silver": 4,
-      "bronze": 5,
-      "total": 11,
       "rank": 13
     },
     {
