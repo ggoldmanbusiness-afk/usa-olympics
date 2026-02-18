@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-18T12:37:26+00:00",
-  "events_completed": 83,
+  "last_updated": "2026-02-18T14:01:12+00:00",
+  "events_completed": 85,
   "events_total": 116,
   "medal_table": [
     {
@@ -27,10 +27,10 @@
       "country": "United States",
       "code": "USA",
       "flag": "🇺🇸",
-      "gold": 6,
+      "gold": 7,
       "silver": 11,
       "bronze": 6,
-      "total": 23,
+      "total": 24,
       "rank": 3
     },
     {
@@ -49,8 +49,8 @@
       "flag": "🇸🇪",
       "gold": 6,
       "silver": 5,
-      "bronze": 2,
-      "total": 13,
+      "bronze": 3,
+      "total": 14,
       "rank": 5
     },
     {
@@ -88,9 +88,9 @@
       "code": "CHE",
       "flag": "🇨🇭",
       "gold": 5,
-      "silver": 3,
+      "silver": 4,
       "bronze": 3,
-      "total": 11,
+      "total": 12,
       "rank": 9
     },
     {
@@ -118,9 +118,9 @@
       "code": "AUS",
       "flag": "🇦🇺",
       "gold": 3,
-      "silver": 1,
+      "silver": 2,
       "bronze": 1,
-      "total": 5,
+      "total": 6,
       "rank": 12
     },
     {
@@ -134,6 +134,16 @@
       "rank": 13
     },
     {
+      "country": "China",
+      "code": "CHN",
+      "flag": "🇨🇳",
+      "gold": 2,
+      "silver": 3,
+      "bronze": 4,
+      "total": 9,
+      "rank": 14
+    },
+    {
       "country": "Czechia",
       "code": "CZE",
       "flag": "🇨🇿",
@@ -141,7 +151,7 @@
       "silver": 2,
       "bronze": 0,
       "total": 4,
-      "rank": 14
+      "rank": 15
     },
     {
       "country": "Slovenia",
@@ -151,16 +161,6 @@
       "silver": 1,
       "bronze": 1,
       "total": 4,
-      "rank": 15
-    },
-    {
-      "country": "China",
-      "code": "CHN",
-      "flag": "🇨🇳",
-      "gold": 1,
-      "silver": 3,
-      "bronze": 3,
-      "total": 7,
       "rank": 16
     },
     {
@@ -245,9 +245,9 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 7,
-    "projected_gold_high": 11,
-    "projected_gold_mid": 9,
+    "projected_gold_low": 8,
+    "projected_gold_high": 12,
+    "projected_gold_mid": 10,
     "projected_total_low": 26,
     "projected_total_high": 38,
     "projected_total_mid": 32
