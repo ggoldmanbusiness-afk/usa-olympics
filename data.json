@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-02-18T11:31:42+00:00",
-  "events_completed": 81,
+  "last_updated": "2026-02-18T12:37:26+00:00",
+  "events_completed": 83,
   "events_total": 116,
   "medal_table": [
     {
       "country": "Norway",
       "code": "NOR",
       "flag": "🇳🇴",
-      "gold": 14,
+      "gold": 15,
       "silver": 8,
       "bronze": 9,
-      "total": 31,
+      "total": 32,
       "rank": 1
     },
     {
@@ -19,8 +19,8 @@
       "flag": "🇮🇹",
       "gold": 9,
       "silver": 4,
-      "bronze": 11,
-      "total": 24,
+      "bronze": 12,
+      "total": 25,
       "rank": 2
     },
     {
@@ -28,9 +28,9 @@
       "code": "USA",
       "flag": "🇺🇸",
       "gold": 6,
-      "silver": 10,
-      "bronze": 5,
-      "total": 21,
+      "silver": 11,
+      "bronze": 6,
+      "total": 23,
       "rank": 3
     },
     {
@@ -98,9 +98,9 @@
       "code": "JPN",
       "flag": "🇯🇵",
       "gold": 4,
-      "silver": 5,
+      "silver": 6,
       "bronze": 10,
-      "total": 19,
+      "total": 20,
       "rank": 10
     },
     {
@@ -154,6 +154,16 @@
       "rank": 15
     },
     {
+      "country": "China",
+      "code": "CHN",
+      "flag": "🇨🇳",
+      "gold": 1,
+      "silver": 3,
+      "bronze": 3,
+      "total": 7,
+      "rank": 16
+    },
+    {
       "country": "South Korea",
       "code": "KOR",
       "flag": "🇰🇷",
@@ -161,7 +171,7 @@
       "silver": 2,
       "bronze": 3,
       "total": 6,
-      "rank": 16
+      "rank": 17
     },
     {
       "country": "Kazakhstan",
@@ -171,16 +181,6 @@
       "silver": 0,
       "bronze": 0,
       "total": 1,
-      "rank": 17
-    },
-    {
-      "country": "China",
-      "code": "CHN",
-      "flag": "🇨🇳",
-      "gold": 0,
-      "silver": 3,
-      "bronze": 3,
-      "total": 6,
       "rank": 18
     },
     {
@@ -248,9 +248,9 @@
     "projected_gold_low": 7,
     "projected_gold_high": 11,
     "projected_gold_mid": 9,
-    "projected_total_low": 24,
-    "projected_total_high": 36,
-    "projected_total_mid": 30
+    "projected_total_low": 26,
+    "projected_total_high": 38,
+    "projected_total_mid": 32
   },
   "schedule": [
     {
@@ -1098,13 +1098,13 @@
       "channel": "Peacock / USA",
       "badge": "🎿",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing",
         "aerials"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 THÉNAULT"
     },
     {
       "id": "bia-m-mass",
