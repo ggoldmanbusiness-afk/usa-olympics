@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-18T14:01:12+00:00",
-  "events_completed": 85,
+  "last_updated": "2026-02-18T15:40:55+00:00",
+  "events_completed": 87,
   "events_total": 116,
   "medal_table": [
     {
@@ -9,8 +9,8 @@
       "flag": "🇳🇴",
       "gold": 15,
       "silver": 8,
-      "bronze": 9,
-      "total": 32,
+      "bronze": 10,
+      "total": 33,
       "rank": 1
     },
     {
@@ -34,13 +34,13 @@
       "rank": 3
     },
     {
-      "country": "Netherlands",
-      "code": "NED",
-      "flag": "🇳🇱",
+      "country": "France",
+      "code": "FRA",
+      "flag": "🇫🇷",
       "gold": 6,
-      "silver": 6,
-      "bronze": 1,
-      "total": 13,
+      "silver": 7,
+      "bronze": 4,
+      "total": 17,
       "rank": 4
     },
     {
@@ -48,10 +48,20 @@
       "code": "SWE",
       "flag": "🇸🇪",
       "gold": 6,
-      "silver": 5,
+      "silver": 6,
       "bronze": 3,
-      "total": 14,
+      "total": 15,
       "rank": 5
+    },
+    {
+      "country": "Netherlands",
+      "code": "NED",
+      "flag": "🇳🇱",
+      "gold": 6,
+      "silver": 6,
+      "bronze": 1,
+      "total": 13,
+      "rank": 6
     },
     {
       "country": "Germany",
@@ -61,7 +71,7 @@
       "silver": 8,
       "bronze": 8,
       "total": 21,
-      "rank": 6
+      "rank": 7
     },
     {
       "country": "Austria",
@@ -71,17 +81,17 @@
       "silver": 8,
       "bronze": 4,
       "total": 17,
-      "rank": 7
+      "rank": 8
     },
     {
-      "country": "France",
-      "code": "FRA",
-      "flag": "🇫🇷",
+      "country": "Japan",
+      "code": "JPN",
+      "flag": "🇯🇵",
       "gold": 5,
-      "silver": 7,
-      "bronze": 4,
-      "total": 16,
-      "rank": 8
+      "silver": 6,
+      "bronze": 11,
+      "total": 22,
+      "rank": 9
     },
     {
       "country": "Switzerland",
@@ -91,16 +101,6 @@
       "silver": 4,
       "bronze": 3,
       "total": 12,
-      "rank": 9
-    },
-    {
-      "country": "Japan",
-      "code": "JPN",
-      "flag": "🇯🇵",
-      "gold": 4,
-      "silver": 6,
-      "bronze": 10,
-      "total": 20,
       "rank": 10
     },
     {
@@ -194,19 +194,19 @@
       "rank": 19
     },
     {
-      "country": "Latvia",
-      "code": "LAT",
-      "flag": "🇱🇻",
-      "gold": 0,
-      "silver": 1,
-      "bronze": 1,
-      "total": 2,
-      "rank": 20
-    },
-    {
       "country": "New Zealand",
       "code": "NZL",
       "flag": "🇳🇿",
+      "gold": 0,
+      "silver": 2,
+      "bronze": 1,
+      "total": 3,
+      "rank": 20
+    },
+    {
+      "country": "Latvia",
+      "code": "LAT",
+      "flag": "🇱🇻",
       "gold": 0,
       "silver": 1,
       "bronze": 1,
@@ -245,9 +245,9 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 8,
-    "projected_gold_high": 12,
-    "projected_gold_mid": 10,
+    "projected_gold_low": 7,
+    "projected_gold_high": 11,
+    "projected_gold_mid": 9,
     "projected_total_low": 26,
     "projected_total_high": 38,
     "projected_total_mid": 32
@@ -1053,7 +1053,7 @@
         "skiing"
       ],
       "energy": false,
-      "result": null
+      "result": "🥇 SHIFFRIN"
     },
     {
       "id": "bob-2man",
@@ -1115,7 +1115,7 @@
       "channel": "USA / Peacock",
       "badge": "🎯",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing",
         "biathlon"
