@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-18T19:40:14+00:00",
-  "events_completed": 87,
+  "last_updated": "2026-02-18T20:27:58+00:00",
+  "events_completed": 88,
   "events_total": 116,
   "medal_table": [
     {
@@ -18,9 +18,9 @@
       "code": "ITA",
       "flag": "🇮🇹",
       "gold": 9,
-      "silver": 4,
+      "silver": 5,
       "bronze": 12,
-      "total": 25,
+      "total": 26,
       "rank": 2
     },
     {
@@ -109,8 +109,8 @@
       "flag": "🇨🇦",
       "gold": 3,
       "silver": 4,
-      "bronze": 5,
-      "total": 12,
+      "bronze": 6,
+      "total": 13,
       "rank": 11
     },
     {
@@ -144,6 +144,16 @@
       "rank": 14
     },
     {
+      "country": "South Korea",
+      "code": "KOR",
+      "flag": "🇰🇷",
+      "gold": 2,
+      "silver": 2,
+      "bronze": 3,
+      "total": 7,
+      "rank": 15
+    },
+    {
       "country": "Czechia",
       "code": "CZE",
       "flag": "🇨🇿",
@@ -151,7 +161,7 @@
       "silver": 2,
       "bronze": 0,
       "total": 4,
-      "rank": 15
+      "rank": 16
     },
     {
       "country": "Slovenia",
@@ -161,16 +171,6 @@
       "silver": 1,
       "bronze": 1,
       "total": 4,
-      "rank": 16
-    },
-    {
-      "country": "South Korea",
-      "code": "KOR",
-      "flag": "🇰🇷",
-      "gold": 1,
-      "silver": 2,
-      "bronze": 3,
-      "total": 6,
       "rank": 17
     },
     {
@@ -248,9 +248,9 @@
     "projected_gold_low": 7,
     "projected_gold_high": 11,
     "projected_gold_mid": 9,
-    "projected_total_low": 26,
-    "projected_total_high": 38,
-    "projected_total_mid": 32
+    "projected_total_low": 25,
+    "projected_total_high": 37,
+    "projected_total_mid": 31
   },
   "schedule": [
     {
@@ -1132,7 +1132,7 @@
       "channel": "NBC / Peacock",
       "badge": "⛷️",
       "priority": "medal",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing"
       ],
