@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-18T20:27:58+00:00",
-  "events_completed": 88,
+  "last_updated": "2026-02-18T21:26:59+00:00",
+  "events_completed": 89,
   "events_total": 116,
   "medal_table": [
     {
@@ -44,6 +44,16 @@
       "rank": 4
     },
     {
+      "country": "Netherlands",
+      "code": "NED",
+      "flag": "🇳🇱",
+      "gold": 6,
+      "silver": 7,
+      "bronze": 2,
+      "total": 15,
+      "rank": 5
+    },
+    {
       "country": "Sweden",
       "code": "SWE",
       "flag": "🇸🇪",
@@ -51,16 +61,6 @@
       "silver": 6,
       "bronze": 3,
       "total": 15,
-      "rank": 5
-    },
-    {
-      "country": "Netherlands",
-      "code": "NED",
-      "flag": "🇳🇱",
-      "gold": 6,
-      "silver": 6,
-      "bronze": 1,
-      "total": 13,
       "rank": 6
     },
     {
@@ -107,10 +107,10 @@
       "country": "Canada",
       "code": "CAN",
       "flag": "🇨🇦",
-      "gold": 3,
+      "gold": 4,
       "silver": 4,
       "bronze": 6,
-      "total": 13,
+      "total": 14,
       "rank": 11
     },
     {
@@ -1148,7 +1148,7 @@
       "channel": "USA / Peacock",
       "badge": "⛸️",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skating",
         "shorttrack"
