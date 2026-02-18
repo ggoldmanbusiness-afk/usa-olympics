@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-18T04:11:34+00:00",
+  "last_updated": "2026-02-18T05:54:38+00:00",
   "events_completed": 80,
   "events_total": 116,
   "medal_table": [
@@ -1077,7 +1077,7 @@
       "date": "2026-02-17",
       "time": "1:30 PM",
       "title": "Freestyle — Men's Big Air Final 🏅",
-      "desc": "Skiers launch 60ft doing quad flips. Insane.",
+      "desc": "Tormod Frostad of Norway won the event.",
       "channel": "NBC / Peacock",
       "badge": "🎿",
       "priority": "chaos",
@@ -1087,7 +1087,7 @@
         "bigair"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 FROSTAD (NOR)"
     },
     {
       "id": "frs-w-aerials",
