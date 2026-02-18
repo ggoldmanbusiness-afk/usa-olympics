@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-18T21:26:59+00:00",
+  "last_updated": "2026-02-18T22:22:53+00:00",
   "events_completed": 89,
   "events_total": 116,
   "medal_table": [
@@ -726,7 +726,7 @@
       "date": "2026-02-12",
       "time": "2:15 PM",
       "title": "Short Track — 500m/1000m Finals 🏅",
-      "desc": "Sprint finals. Bumping, passing, falls.",
+      "desc": "Steven Dubois of Canada won the event.",
       "channel": "NBC / Peacock",
       "badge": "⛸️",
       "priority": "chaos",
@@ -736,7 +736,7 @@
         "shorttrack"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 DUBOIS (CAN)"
     },
     {
       "id": "hoc-m-lat",
