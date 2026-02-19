@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-19T21:23:01+00:00",
-  "events_completed": 94,
+  "last_updated": "2026-02-19T22:21:18+00:00",
+  "events_completed": 95,
   "events_total": 116,
   "medal_table": [
     {
@@ -14,22 +14,22 @@
       "rank": 1
     },
     {
+      "country": "United States",
+      "code": "USA",
+      "flag": "🇺🇸",
+      "gold": 9,
+      "silver": 12,
+      "bronze": 6,
+      "total": 27,
+      "rank": 2
+    },
+    {
       "country": "Italy",
       "code": "ITA",
       "flag": "🇮🇹",
       "gold": 9,
       "silver": 5,
       "bronze": 12,
-      "total": 26,
-      "rank": 2
-    },
-    {
-      "country": "United States",
-      "code": "USA",
-      "flag": "🇺🇸",
-      "gold": 8,
-      "silver": 12,
-      "bronze": 6,
       "total": 26,
       "rank": 3
     },
@@ -98,9 +98,9 @@
       "code": "JPN",
       "flag": "🇯🇵",
       "gold": 5,
-      "silver": 6,
-      "bronze": 11,
-      "total": 22,
+      "silver": 7,
+      "bronze": 12,
+      "total": 24,
       "rank": 10
     },
     {
@@ -255,12 +255,12 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 8,
-    "projected_gold_high": 12,
-    "projected_gold_mid": 10,
-    "projected_total_low": 26,
-    "projected_total_high": 38,
-    "projected_total_mid": 32
+    "projected_gold_low": 9,
+    "projected_gold_high": 13,
+    "projected_gold_mid": 11,
+    "projected_total_low": 27,
+    "projected_total_high": 40,
+    "projected_total_mid": 33
   },
   "schedule": [
     {
