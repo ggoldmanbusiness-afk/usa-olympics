@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-19T22:21:18+00:00",
+  "last_updated": "2026-02-19T23:20:56+00:00",
   "events_completed": 95,
   "events_total": 116,
   "medal_table": [
@@ -1254,7 +1254,7 @@
       "date": "2026-02-19",
       "time": "1:00 PM",
       "title": "Figure Skating — Women's Free 🏅",
-      "desc": "Women's individual gold.",
+      "desc": "Alysa Liu won the gold medal.",
       "channel": "NBC / Peacock",
       "badge": "⛸️",
       "priority": "medal",
@@ -1263,7 +1263,7 @@
         "skating"
       ],
       "energy": false,
-      "result": null
+      "result": "🥇 LIU"
     },
     {
       "id": "hoc-m-sf",
