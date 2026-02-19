@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-19T09:34:58+00:00",
+  "last_updated": "2026-02-19T10:33:10+00:00",
   "events_completed": 89,
   "events_total": 116,
   "medal_table": [
@@ -1165,7 +1165,7 @@
       "channel": "Peacock / USA 6:55a",
       "badge": "⛰️",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing"
       ],
