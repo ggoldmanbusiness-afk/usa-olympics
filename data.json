@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-19T11:31:20+00:00",
+  "last_updated": "2026-02-19T12:38:23+00:00",
   "events_completed": 89,
   "events_total": 116,
   "medal_table": [
@@ -1182,7 +1182,7 @@
       "channel": "USA / Peacock",
       "badge": "🎿",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing",
         "aerials"
@@ -1199,7 +1199,7 @@
       "channel": "USA / Peacock",
       "badge": "🎿",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing",
         "aerials"
@@ -1216,7 +1216,7 @@
       "channel": "Peacock / USA 11:45a",
       "badge": "⛷️",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing"
       ],
