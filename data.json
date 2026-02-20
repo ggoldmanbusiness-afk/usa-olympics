@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-20T21:15:05+00:00",
-  "events_completed": 101,
+  "last_updated": "2026-02-20T22:14:55+00:00",
+  "events_completed": 102,
   "events_total": 116,
   "medal_table": [
     {
@@ -19,8 +19,8 @@
       "flag": "🇺🇸",
       "gold": 10,
       "silver": 12,
-      "bronze": 6,
-      "total": 28,
+      "bronze": 7,
+      "total": 29,
       "rank": 2
     },
     {
@@ -124,6 +124,16 @@
       "rank": 12
     },
     {
+      "country": "South Korea",
+      "code": "KOR",
+      "flag": "🇰🇷",
+      "gold": 3,
+      "silver": 4,
+      "bronze": 3,
+      "total": 10,
+      "rank": 13
+    },
+    {
       "country": "Australia",
       "code": "AUS",
       "flag": "🇦🇺",
@@ -131,7 +141,7 @@
       "silver": 2,
       "bronze": 1,
       "total": 6,
-      "rank": 13
+      "rank": 14
     },
     {
       "country": "Great Britain",
@@ -141,16 +151,6 @@
       "silver": 0,
       "bronze": 0,
       "total": 3,
-      "rank": 14
-    },
-    {
-      "country": "South Korea",
-      "code": "KOR",
-      "flag": "🇰🇷",
-      "gold": 2,
-      "silver": 3,
-      "bronze": 3,
-      "total": 8,
       "rank": 15
     },
     {
@@ -268,9 +268,9 @@
     "projected_gold_low": 10,
     "projected_gold_high": 13,
     "projected_gold_mid": 11,
-    "projected_total_low": 28,
-    "projected_total_high": 38,
-    "projected_total_mid": 32
+    "projected_total_low": 29,
+    "projected_total_high": 40,
+    "projected_total_mid": 33
   },
   "schedule": [
     {
