@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-20T12:34:31+00:00",
-  "events_completed": 96,
+  "last_updated": "2026-02-20T13:53:30+00:00",
+  "events_completed": 97,
   "events_total": 116,
   "medal_table": [
     {
@@ -78,9 +78,9 @@
       "code": "CHE",
       "flag": "🇨🇭",
       "gold": 6,
-      "silver": 5,
+      "silver": 6,
       "bronze": 4,
-      "total": 15,
+      "total": 16,
       "rank": 8
     },
     {
@@ -117,10 +117,10 @@
       "country": "China",
       "code": "CHN",
       "flag": "🇨🇳",
-      "gold": 3,
+      "gold": 4,
       "silver": 3,
-      "bronze": 4,
-      "total": 10,
+      "bronze": 5,
+      "total": 12,
       "rank": 12
     },
     {
