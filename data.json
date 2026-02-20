@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-20T19:30:51+00:00",
-  "events_completed": 99,
+  "last_updated": "2026-02-20T20:19:32+00:00",
+  "events_completed": 100,
   "events_total": 116,
   "medal_table": [
     {
@@ -17,10 +17,10 @@
       "country": "United States",
       "code": "USA",
       "flag": "🇺🇸",
-      "gold": 9,
+      "gold": 10,
       "silver": 12,
       "bronze": 6,
-      "total": 27,
+      "total": 28,
       "rank": 2
     },
     {
@@ -109,8 +109,8 @@
       "flag": "🇨🇦",
       "gold": 4,
       "silver": 5,
-      "bronze": 7,
-      "total": 16,
+      "bronze": 8,
+      "total": 17,
       "rank": 11
     },
     {
@@ -234,6 +234,16 @@
       "rank": 23
     },
     {
+      "country": "Estonia",
+      "code": "EST",
+      "flag": "🇪🇪",
+      "gold": 0,
+      "silver": 1,
+      "bronze": 0,
+      "total": 1,
+      "rank": 24
+    },
+    {
       "country": "Bulgaria",
       "code": "BUL",
       "flag": "🇧🇬",
@@ -241,7 +251,7 @@
       "silver": 0,
       "bronze": 2,
       "total": 2,
-      "rank": 24
+      "rank": 25
     },
     {
       "country": "Belgium",
@@ -251,16 +261,16 @@
       "silver": 0,
       "bronze": 1,
       "total": 1,
-      "rank": 25
+      "rank": 26
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 9,
-    "projected_gold_high": 12,
-    "projected_gold_mid": 10,
-    "projected_total_low": 27,
-    "projected_total_high": 37,
-    "projected_total_mid": 31
+    "projected_gold_low": 10,
+    "projected_gold_high": 13,
+    "projected_gold_mid": 11,
+    "projected_total_low": 28,
+    "projected_total_high": 38,
+    "projected_total_mid": 32
   },
   "schedule": [
     {
@@ -1284,7 +1294,7 @@
     {
       "id": "hoc-w-gold",
       "date": "2026-02-20",
-      "time": "1:10 PM",
+      "time": "10:40 AM",
       "title": "Women's Hockey — Gold 🏅",
       "desc": "Gold medal game.",
       "channel": "NBC / Peacock",
