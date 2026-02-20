@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-02-20T13:53:30+00:00",
-  "events_completed": 97,
+  "last_updated": "2026-02-20T14:33:29+00:00",
+  "events_completed": 98,
   "events_total": 116,
   "medal_table": [
     {
       "country": "Norway",
       "code": "NOR",
       "flag": "🇳🇴",
-      "gold": 16,
-      "silver": 8,
+      "gold": 17,
+      "silver": 9,
       "bronze": 10,
-      "total": 34,
+      "total": 36,
       "rank": 1
     },
     {
@@ -49,8 +49,8 @@
       "flag": "🇫🇷",
       "gold": 6,
       "silver": 8,
-      "bronze": 5,
-      "total": 19,
+      "bronze": 6,
+      "total": 20,
       "rank": 5
     },
     {
@@ -1121,7 +1121,7 @@
       "date": "2026-02-18",
       "time": "8:15 AM",
       "title": "Biathlon — Men's Mass Start 🏅",
-      "desc": "30 skiers leave together. 4 shooting stops. Miss = penalty lap.",
+      "desc": "Johannes Dale-Skjevdal of Norway won the event.",
       "channel": "USA / Peacock",
       "badge": "🎯",
       "priority": "chaos",
@@ -1131,7 +1131,7 @@
         "biathlon"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 DALE-SKJEVDAL (NOR)"
     },
     {
       "id": "frs-w-hp",
