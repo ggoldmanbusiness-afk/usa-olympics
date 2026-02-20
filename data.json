@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-20T11:23:32+00:00",
-  "events_completed": 95,
+  "last_updated": "2026-02-20T12:34:31+00:00",
+  "events_completed": 96,
   "events_total": 116,
   "medal_table": [
     {
@@ -34,6 +34,16 @@
       "rank": 3
     },
     {
+      "country": "Germany",
+      "code": "GER",
+      "flag": "🇩🇪",
+      "gold": 6,
+      "silver": 8,
+      "bronze": 8,
+      "total": 22,
+      "rank": 4
+    },
+    {
       "country": "France",
       "code": "FRA",
       "flag": "🇫🇷",
@@ -41,7 +51,7 @@
       "silver": 8,
       "bronze": 5,
       "total": 19,
-      "rank": 4
+      "rank": 5
     },
     {
       "country": "Netherlands",
@@ -51,7 +61,7 @@
       "silver": 7,
       "bronze": 3,
       "total": 16,
-      "rank": 5
+      "rank": 6
     },
     {
       "country": "Sweden",
@@ -59,28 +69,18 @@
       "flag": "🇸🇪",
       "gold": 6,
       "silver": 6,
-      "bronze": 3,
-      "total": 15,
-      "rank": 6
+      "bronze": 4,
+      "total": 16,
+      "rank": 7
     },
     {
       "country": "Switzerland",
       "code": "CHE",
       "flag": "🇨🇭",
       "gold": 6,
-      "silver": 4,
+      "silver": 5,
       "bronze": 4,
-      "total": 14,
-      "rank": 7
-    },
-    {
-      "country": "Germany",
-      "code": "GER",
-      "flag": "🇩🇪",
-      "gold": 5,
-      "silver": 8,
-      "bronze": 8,
-      "total": 21,
+      "total": 15,
       "rank": 8
     },
     {
@@ -259,8 +259,8 @@
     "projected_gold_high": 13,
     "projected_gold_mid": 11,
     "projected_total_low": 27,
-    "projected_total_high": 40,
-    "projected_total_mid": 33
+    "projected_total_high": 38,
+    "projected_total_mid": 32
   },
   "schedule": [
     {
