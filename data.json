@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-20T10:27:35+00:00",
+  "last_updated": "2026-02-20T11:23:32+00:00",
   "events_completed": 95,
   "events_total": 116,
   "medal_table": [
@@ -1215,7 +1215,7 @@
         "aerials"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 WERNER"
     },
     {
       "id": "frs-m-skicross",
