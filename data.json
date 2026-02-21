@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-21T16:17:03+00:00",
-  "events_completed": 108,
+  "last_updated": "2026-02-21T17:17:33+00:00",
+  "events_completed": 109,
   "events_total": 116,
   "medal_table": [
     {
@@ -19,9 +19,19 @@
       "flag": "🇺🇸",
       "gold": 11,
       "silver": 12,
-      "bronze": 7,
-      "total": 30,
+      "bronze": 8,
+      "total": 31,
       "rank": 2
+    },
+    {
+      "country": "Netherlands",
+      "code": "NED",
+      "flag": "🇳🇱",
+      "gold": 10,
+      "silver": 7,
+      "bronze": 3,
+      "total": 20,
+      "rank": 3
     },
     {
       "country": "Italy",
@@ -31,16 +41,6 @@
       "silver": 6,
       "bronze": 14,
       "total": 30,
-      "rank": 3
-    },
-    {
-      "country": "Netherlands",
-      "code": "NED",
-      "flag": "🇳🇱",
-      "gold": 9,
-      "silver": 7,
-      "bronze": 3,
-      "total": 19,
       "rank": 4
     },
     {
@@ -108,9 +108,9 @@
       "code": "CAN",
       "flag": "🇨🇦",
       "gold": 4,
-      "silver": 5,
+      "silver": 6,
       "bronze": 9,
-      "total": 18,
+      "total": 19,
       "rank": 11
     },
     {
@@ -278,9 +278,9 @@
     "projected_gold_low": 11,
     "projected_gold_high": 14,
     "projected_gold_mid": 12,
-    "projected_total_low": 30,
-    "projected_total_high": 38,
-    "projected_total_mid": 32
+    "projected_total_low": 31,
+    "projected_total_high": 40,
+    "projected_total_mid": 33
   },
   "schedule": [
     {
