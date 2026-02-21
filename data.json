@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-21T10:15:36+00:00",
-  "events_completed": 102,
+  "last_updated": "2026-02-21T11:14:10+00:00",
+  "events_completed": 103,
   "events_total": 116,
   "medal_table": [
     {
@@ -44,6 +44,16 @@
       "rank": 4
     },
     {
+      "country": "Switzerland",
+      "code": "CHE",
+      "flag": "🇨🇭",
+      "gold": 7,
+      "silver": 6,
+      "bronze": 5,
+      "total": 18,
+      "rank": 5
+    },
+    {
       "country": "Germany",
       "code": "GER",
       "flag": "🇩🇪",
@@ -51,7 +61,7 @@
       "silver": 8,
       "bronze": 8,
       "total": 22,
-      "rank": 5
+      "rank": 6
     },
     {
       "country": "France",
@@ -61,16 +71,6 @@
       "silver": 8,
       "bronze": 6,
       "total": 20,
-      "rank": 6
-    },
-    {
-      "country": "Switzerland",
-      "code": "CHE",
-      "flag": "🇨🇭",
-      "gold": 6,
-      "silver": 6,
-      "bronze": 5,
-      "total": 17,
       "rank": 7
     },
     {
@@ -118,9 +118,9 @@
       "code": "CHN",
       "flag": "🇨🇳",
       "gold": 4,
-      "silver": 3,
+      "silver": 4,
       "bronze": 5,
-      "total": 12,
+      "total": 13,
       "rank": 12
     },
     {
@@ -139,8 +139,8 @@
       "flag": "🇦🇺",
       "gold": 3,
       "silver": 2,
-      "bronze": 1,
-      "total": 6,
+      "bronze": 2,
+      "total": 7,
       "rank": 14
     },
     {
@@ -269,8 +269,8 @@
     "projected_gold_high": 13,
     "projected_gold_mid": 11,
     "projected_total_low": 29,
-    "projected_total_high": 40,
-    "projected_total_mid": 33
+    "projected_total_high": 38,
+    "projected_total_mid": 32
   },
   "schedule": [
     {
@@ -1333,7 +1333,7 @@
       "channel": "USA / Peacock",
       "badge": "🛷",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "sliding",
         "bobsled"
