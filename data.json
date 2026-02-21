@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-21T13:35:43+00:00",
-  "events_completed": 106,
+  "last_updated": "2026-02-21T14:16:59+00:00",
+  "events_completed": 107,
   "events_total": 116,
   "medal_table": [
     {
@@ -34,6 +34,16 @@
       "rank": 3
     },
     {
+      "country": "France",
+      "code": "FRA",
+      "flag": "🇫🇷",
+      "gold": 8,
+      "silver": 9,
+      "bronze": 6,
+      "total": 23,
+      "rank": 4
+    },
+    {
       "country": "Netherlands",
       "code": "NED",
       "flag": "🇳🇱",
@@ -41,16 +51,6 @@
       "silver": 7,
       "bronze": 3,
       "total": 18,
-      "rank": 4
-    },
-    {
-      "country": "France",
-      "code": "FRA",
-      "flag": "🇫🇷",
-      "gold": 7,
-      "silver": 8,
-      "bronze": 6,
-      "total": 21,
       "rank": 5
     },
     {
@@ -159,8 +159,8 @@
       "flag": "🇨🇿",
       "gold": 2,
       "silver": 2,
-      "bronze": 0,
-      "total": 4,
+      "bronze": 1,
+      "total": 5,
       "rank": 16
     },
     {
@@ -269,8 +269,8 @@
     "projected_gold_high": 14,
     "projected_gold_mid": 12,
     "projected_total_low": 30,
-    "projected_total_high": 40,
-    "projected_total_mid": 33
+    "projected_total_high": 38,
+    "projected_total_mid": 32
   },
   "schedule": [
     {
@@ -1350,7 +1350,7 @@
       "channel": "USA / Peacock",
       "badge": "⛰️",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing"
       ],
