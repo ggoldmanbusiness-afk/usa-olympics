@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-21T14:16:59+00:00",
+  "last_updated": "2026-02-21T15:15:36+00:00",
   "events_completed": 107,
   "events_total": 116,
   "medal_table": [
@@ -1367,13 +1367,13 @@
       "channel": "USA / Peacock",
       "badge": "🎯",
       "priority": "chaos",
-      "done": false,
+      "done": true,
       "tags": [
         "skiing",
         "biathlon"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 MICHELON"
     },
     {
       "id": "ss-mass",
