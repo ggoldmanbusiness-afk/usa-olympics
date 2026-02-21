@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-21T12:25:30+00:00",
-  "events_completed": 104,
+  "last_updated": "2026-02-21T13:35:43+00:00",
+  "events_completed": 106,
   "events_total": 116,
   "medal_table": [
     {
@@ -27,10 +27,10 @@
       "country": "Italy",
       "code": "ITA",
       "flag": "🇮🇹",
-      "gold": 9,
-      "silver": 5,
+      "gold": 10,
+      "silver": 6,
       "bronze": 13,
-      "total": 27,
+      "total": 29,
       "rank": 3
     },
     {
@@ -44,6 +44,16 @@
       "rank": 4
     },
     {
+      "country": "France",
+      "code": "FRA",
+      "flag": "🇫🇷",
+      "gold": 7,
+      "silver": 8,
+      "bronze": 6,
+      "total": 21,
+      "rank": 5
+    },
+    {
       "country": "Germany",
       "code": "GER",
       "flag": "🇩🇪",
@@ -51,16 +61,6 @@
       "silver": 8,
       "bronze": 8,
       "total": 22,
-      "rank": 5
-    },
-    {
-      "country": "France",
-      "code": "FRA",
-      "flag": "🇫🇷",
-      "gold": 6,
-      "silver": 8,
-      "bronze": 6,
-      "total": 20,
       "rank": 6
     },
     {
@@ -68,9 +68,9 @@
       "code": "CHE",
       "flag": "🇨🇭",
       "gold": 6,
-      "silver": 7,
-      "bronze": 5,
-      "total": 18,
+      "silver": 8,
+      "bronze": 6,
+      "total": 20,
       "rank": 7
     },
     {
@@ -179,8 +179,8 @@
       "flag": "🇪🇸",
       "gold": 1,
       "silver": 0,
-      "bronze": 1,
-      "total": 2,
+      "bronze": 2,
+      "total": 3,
       "rank": 18
     },
     {
@@ -1232,7 +1232,7 @@
       "date": "2026-02-19",
       "time": "5:55 AM",
       "title": "Freestyle — Men's Ski Cross 🏅",
-      "desc": "Like SBX but on SKIS. Full contact.",
+      "desc": "Simone Deromedis of Italy won the event.",
       "channel": "Peacock / USA 11:45a",
       "badge": "⛷️",
       "priority": "chaos",
@@ -1241,7 +1241,7 @@
         "skiing"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 DEROMEDIS (ITA)"
     },
     {
       "id": "hoc-m-qf",
