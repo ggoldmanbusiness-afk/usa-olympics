@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-22T10:15:15+00:00",
-  "events_completed": 111,
+  "last_updated": "2026-02-22T11:13:28+00:00",
+  "events_completed": 112,
   "events_total": 116,
   "medal_table": [
     {
@@ -117,10 +117,10 @@
       "country": "China",
       "code": "CHN",
       "flag": "🇨🇳",
-      "gold": 4,
-      "silver": 3,
+      "gold": 5,
+      "silver": 4,
       "bronze": 6,
-      "total": 13,
+      "total": 15,
       "rank": 12
     },
     {
@@ -149,8 +149,8 @@
       "flag": "🇬🇧",
       "gold": 3,
       "silver": 1,
-      "bronze": 0,
-      "total": 4,
+      "bronze": 1,
+      "total": 5,
       "rank": 15
     },
     {
@@ -1167,7 +1167,7 @@
         "skiing"
       ],
       "energy": true,
-      "result": null
+      "result": "🥇 GU (CHN)"
     },
     {
       "id": "st-relay-500",
