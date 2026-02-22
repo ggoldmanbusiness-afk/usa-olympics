@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-22T22:13:54+00:00",
+  "last_updated": "2026-02-22T23:15:53+00:00",
   "events_completed": 116,
   "events_total": 116,
   "medal_table": [
@@ -1426,7 +1426,7 @@
       "channel": "NBC / Peacock",
       "badge": "🎆",
       "priority": "normal",
-      "done": false,
+      "done": true,
       "tags": [
         "ceremony"
       ],
