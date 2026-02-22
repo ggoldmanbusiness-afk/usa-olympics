@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-22T15:15:34+00:00",
-  "events_completed": 115,
+  "last_updated": "2026-02-22T16:17:41+00:00",
+  "events_completed": 116,
   "events_total": 116,
   "medal_table": [
     {
@@ -17,10 +17,10 @@
       "country": "United States",
       "code": "USA",
       "flag": "🇺🇸",
-      "gold": 11,
+      "gold": 12,
       "silver": 12,
       "bronze": 9,
-      "total": 32,
+      "total": 33,
       "rank": 2
     },
     {
@@ -108,9 +108,9 @@
       "code": "CAN",
       "flag": "🇨🇦",
       "gold": 5,
-      "silver": 6,
+      "silver": 7,
       "bronze": 9,
-      "total": 20,
+      "total": 21,
       "rank": 11
     },
     {
@@ -275,12 +275,12 @@
     }
   ],
   "usa_projection": {
-    "projected_gold_low": 11,
-    "projected_gold_high": 13,
-    "projected_gold_mid": 11,
-    "projected_total_low": 32,
-    "projected_total_high": 38,
-    "projected_total_mid": 32
+    "projected_gold_low": 12,
+    "projected_gold_high": 14,
+    "projected_gold_mid": 12,
+    "projected_total_low": 33,
+    "projected_total_high": 40,
+    "projected_total_mid": 33
   },
   "schedule": [
     {
@@ -1410,7 +1410,7 @@
       "channel": "NBC / Peacock",
       "badge": "🏒",
       "priority": "medal",
-      "done": false,
+      "done": true,
       "tags": [
         "hockey"
       ],
